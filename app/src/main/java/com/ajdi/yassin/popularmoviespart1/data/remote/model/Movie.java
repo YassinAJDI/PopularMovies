@@ -17,7 +17,7 @@ public class Movie {
     private String imageUrl;
 
     @SerializedName("overview")
-    private String plot;
+    private String overview;
 
     @SerializedName("popularity")
     private long popularity;
