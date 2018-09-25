@@ -24,6 +24,7 @@ public class ApiClient {
 
         client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
+                .addInterceptor(new AuthInterceptor())
                 .build();
     }
 
