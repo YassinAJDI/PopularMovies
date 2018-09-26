@@ -20,10 +20,10 @@ public class Movie {
     private String overview;
 
     @SerializedName("popularity")
-    private long popularity;
+    private double popularity;
 
     @SerializedName("vote_average")
-    private long userRating;
+    private double userRating;
 
     @SerializedName("release_date")
     private String releaseDate;

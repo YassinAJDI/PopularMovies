@@ -24,11 +24,23 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // Support libs
+    def support_lib_version = '1.0.0'
+    implementation "androidx.appcompat:appcompat:$support_lib_version"
+    implementation "com.google.android.material:material:$support_lib_version"
+    implementation "androidx.recyclerview:recyclerview:$support_lib_version"
+    implementation "androidx.cardview:cardview:$support_lib_version"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    // LiveData & ViewModel
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    // Paging
+    def paging_version = "2.0.0-rc01"
+    implementation "androidx.paging:paging-runtime:$paging_version"
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
