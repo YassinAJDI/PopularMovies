@@ -3,7 +3,7 @@ package com.ajdi.yassin.popularmoviespart1.ui.movieslist;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajdi.yassin.popularmoviespart1.data.remote.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;

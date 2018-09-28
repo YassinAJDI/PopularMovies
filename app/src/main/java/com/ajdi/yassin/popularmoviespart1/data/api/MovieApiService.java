@@ -1,4 +1,6 @@
-package com.ajdi.yassin.popularmoviespart1.data.remote.api;
+package com.ajdi.yassin.popularmoviespart1.data.api;
+
+import com.ajdi.yassin.popularmoviespart1.data.model.MoviesResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
