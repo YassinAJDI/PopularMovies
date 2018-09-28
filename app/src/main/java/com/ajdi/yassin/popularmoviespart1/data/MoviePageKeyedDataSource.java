@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PageKeyedDataSource;
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -52,6 +53,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
             initialLoad.postValue(NetworkState.LOADED);
             callback.onResult(movieList, null, FIRST_PAGE + 1);
         } catch (IOException e) {
+            // publish error
             NetworkState error = NetworkState.error(e.getMessage());
             networkState.postValue(error);
             initialLoad.postValue(error);
@@ -59,12 +61,42 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
     }
 
     @Override
-    public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) {
-
+    public void loadBefore(@NonNull LoadParams<Integer> params,
+                           @NonNull LoadCallback<Integer, Movie> callback) {
+        // ignored, since we only ever append to our initial load
     }
 
     @Override
-    public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Movie> callback) {
+    public void loadAfter(@NonNull final LoadParams<Integer> params,
+                          @NonNull final LoadCallback<Integer, Movie> callback) {
+        networkState.postValue(NetworkState.LOADING);
 
+        // load data from API
+        // but before that check filtering option
+        Call<MoviesResponse> request = movieApiService.getPopularMovies(params.key);
+
+        request.enqueue(new Callback<MoviesResponse>() {
+            @Override
+            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                if (response.isSuccessful()) {
+                    MoviesResponse data = response.body();
+                    List<Movie> movieList =
+                            data != null ? data.getMovies() : Collections.<Movie>emptyList();
+
+                    callback.onResult(movieList, params.key + 1);
+                    networkState.postValue(NetworkState.LOADED);
+                } else {
+
+                    networkState.postValue(
+                            NetworkState.error("error code: " + response.code()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                networkState.postValue(
+                        NetworkState.error(t != null ? t.getMessage() : "unknown error"));
+            }
+        });
     }
 }
