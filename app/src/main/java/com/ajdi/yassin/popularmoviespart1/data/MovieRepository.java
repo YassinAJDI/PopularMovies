@@ -29,7 +29,6 @@ public class MovieRepository implements DataSource {
 
     @Override
     public LiveData<PagedList<Movie>> getPopularMovies() {
-
         MovieDataSourceFactory sourceFactory = new MovieDataSourceFactory(mMovieApiService);
 
         // paging configuration
@@ -38,6 +37,7 @@ public class MovieRepository implements DataSource {
                 .setPageSize(20)
                 .build();
 
+        // Get the paged list
         moviesList = new LivePagedListBuilder<>(sourceFactory, config)
                 .setFetchExecutor(mExecutors.networkIO())
                 .build();

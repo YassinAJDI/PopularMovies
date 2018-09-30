@@ -17,6 +17,11 @@ android {
         }
     }
 
+    // Enable dataBinding
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes.each {
         it.buildConfigField 'String', 'TMDB_API_KEY', TMDB_API_KEY
     }
@@ -51,4 +56,8 @@ dependencies {
 
     // OkHttp
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }

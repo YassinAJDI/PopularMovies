@@ -25,8 +25,8 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
 
     private static final int FIRST_PAGE = 1;
 
-    MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
-    MutableLiveData<NetworkState> initialLoad = new MutableLiveData<>();
+    public MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
+    public MutableLiveData<NetworkState> initialLoad = new MutableLiveData<>();
 
     private final MovieApiService movieApiService;
 
@@ -47,7 +47,8 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
         try {
             Response<MoviesResponse> response = request.execute();
             MoviesResponse data = response.body();
-            List<Movie> movieList = data != null ? data.getMovies() : Collections.<Movie>emptyList();
+            List<Movie> movieList =
+                    data != null ? data.getMovies() : Collections.<Movie>emptyList();
 
             networkState.postValue(NetworkState.LOADED);
             initialLoad.postValue(NetworkState.LOADED);
