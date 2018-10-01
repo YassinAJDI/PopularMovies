@@ -10,6 +10,8 @@ import com.ajdi.yassin.popularmoviespart1.utils.GlideRequests;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesAdapter.IMAGE_URL;
+
 /**
  * @author Yassin Ajdi.
  */
@@ -29,7 +31,8 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
 
         // movie poster
         glide
-                .load(movie.getImageUrl())
+                .load(IMAGE_URL + movie.getImageUrl())
+                .placeholder(android.R.color.holo_red_dark)
                 .into(binding.imageMoviePoster);
 
         binding.executePendingBindings();

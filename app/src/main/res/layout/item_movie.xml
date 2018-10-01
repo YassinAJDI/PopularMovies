@@ -4,7 +4,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="180dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
@@ -17,7 +17,7 @@
             android:id="@+id/image_movie_poster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
+            android:background="@color/colorAccent"
             android:scaleType="centerCrop" />
 
     </androidx.cardview.widget.CardView>

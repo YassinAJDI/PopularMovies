@@ -6,6 +6,8 @@ import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideRequests;
+import com.ajdi.yassin.popularmoviespart1.utils.Injection;
+import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -28,7 +30,8 @@ public class MovieListActivity extends AppCompatActivity {
     }
 
     private MoviesViewModel obtainViewModel() {
-        return ViewModelProviders.of(this).get(MoviesViewModel.class);
+        ViewModelFactory factory = ViewModelFactory.getInstance(Injection.provideMovieRepository());
+        return ViewModelProviders.of(this, factory).get(MoviesViewModel.class);
     }
 
     private void setupListAdapter() {
