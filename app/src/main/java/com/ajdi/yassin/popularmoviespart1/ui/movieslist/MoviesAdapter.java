@@ -1,6 +1,5 @@
 package com.ajdi.yassin.popularmoviespart1.ui.movieslist;
 
-import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
@@ -12,9 +11,13 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
+ * Adapter implementation that shows a list of Movie posters
+ *
  * @author Yassin Ajdi.
  */
-public class MoviesAdapter extends PagedListAdapter<Movie, MoviesAdapter.MovieViewHolder> {
+public class MoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHolder> {
+
+    private GlideRequests glide;
 
     public MoviesAdapter(GlideRequests glide) {
         super(new DiffUtil.ItemCallback<Movie>() {
@@ -28,24 +31,21 @@ public class MoviesAdapter extends PagedListAdapter<Movie, MoviesAdapter.MovieVi
                 return false;
             }
         });
+
+        this.glide = glide;
     }
+
 
     @NonNull
     @Override
-    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return MovieViewHolder.create(parent, glide);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-
-    }
-
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
-
-        public MovieViewHolder(@NonNull View itemView) {
-            super(itemView);
-        }
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Movie movie = getItem(position);
+        ((MovieViewHolder) holder).bindTo(movie);
     }
 
     // Callback
