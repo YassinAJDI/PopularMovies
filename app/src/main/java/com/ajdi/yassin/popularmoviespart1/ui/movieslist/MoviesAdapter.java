@@ -20,17 +20,7 @@ public class MoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHold
     private GlideRequests glide;
 
     public MoviesAdapter(GlideRequests glide) {
-        super(new DiffUtil.ItemCallback<Movie>() {
-            @Override
-            public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
-                return false;
-            }
-
-            @Override
-            public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
-                return false;
-            }
-        });
+        super(MOVIE_COMPARATOR);
 
         this.glide = glide;
     }
@@ -48,15 +38,15 @@ public class MoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHold
         ((MovieViewHolder) holder).bindTo(movie);
     }
 
-    // Callback
-//    public static DiffCallback<Movie> DIFF_CALLBACK = new DiffCallback<Movie>() {
-//        @Override
-//        public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
-//            return oldItem.id == newItem.id;
-//        }
-//        @Override
-//        public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
-//            return oldItem.equals(newItem);
-//        }
-//    };
+    private static DiffUtil.ItemCallback<Movie> MOVIE_COMPARATOR = new DiffUtil.ItemCallback<Movie>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem.equals(newItem);
+        }
+    };
 }

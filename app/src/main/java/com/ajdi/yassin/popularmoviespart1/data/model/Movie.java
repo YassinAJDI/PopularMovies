@@ -2,6 +2,8 @@ package com.ajdi.yassin.popularmoviespart1.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 /**
  * Created by Yassin Ajdi.
  */
@@ -82,5 +84,25 @@ public class Movie {
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return id == movie.id &&
+                Double.compare(movie.popularity, popularity) == 0 &&
+                Double.compare(movie.userRating, userRating) == 0 &&
+                Objects.equals(title, movie.title) &&
+                Objects.equals(imageUrl, movie.imageUrl) &&
+                Objects.equals(overview, movie.overview) &&
+                Objects.equals(releaseDate, movie.releaseDate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, title, imageUrl, overview, popularity, userRating, releaseDate);
     }
 }
