@@ -3,6 +3,7 @@ package com.ajdi.yassin.popularmoviespart1.ui.movieslist;
 import android.os.Bundle;
 
 import com.ajdi.yassin.popularmoviespart1.R;
+import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideRequests;
@@ -36,9 +37,10 @@ public class MovieListActivity extends AppCompatActivity {
 
     private void setupListAdapter() {
         RecyclerView recyclerView = findViewById(R.id.rv_movie_list);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setLayoutManager(
+                new GridLayoutManager(this, 3));
         GlideRequests glideRequests = GlideApp.with(this);
-        final MoviesAdapter moviesAdapter = new MoviesAdapter(glideRequests);
+        final MoviesAdapter moviesAdapter = new MoviesAdapter(glideRequests, viewModel);
         recyclerView.setAdapter(moviesAdapter);
 
         // observe paged list
@@ -46,6 +48,14 @@ public class MovieListActivity extends AppCompatActivity {
             @Override
             public void onChanged(PagedList<Movie> movies) {
                 moviesAdapter.submitList(movies);
+            }
+        });
+
+        // observe network state
+        viewModel.getNetWorkState().observe(this, new Observer<NetworkState>() {
+            @Override
+            public void onChanged(NetworkState networkState) {
+                moviesAdapter.setNetworkState(networkState);
             }
         });
     }

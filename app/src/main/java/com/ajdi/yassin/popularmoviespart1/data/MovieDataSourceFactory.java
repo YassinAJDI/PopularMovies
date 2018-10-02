@@ -13,7 +13,7 @@ import androidx.paging.DataSource;
  */
 public class MovieDataSourceFactory extends DataSource.Factory<Integer, Movie> {
 
-    private MutableLiveData<MoviePageKeyedDataSource> sourceLiveData = new MutableLiveData<>();
+    public MutableLiveData<MoviePageKeyedDataSource> sourceLiveData = new MutableLiveData<>();
 
     private final MovieApiService movieApiService;
 

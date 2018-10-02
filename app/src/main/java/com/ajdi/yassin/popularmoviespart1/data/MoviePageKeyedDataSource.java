@@ -1,6 +1,7 @@
 package com.ajdi.yassin.popularmoviespart1.data;
 
 import com.ajdi.yassin.popularmoviespart1.data.api.MovieApiService;
+import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.MoviesResponse;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 
@@ -30,13 +31,15 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
 
     private final MovieApiService movieApiService;
 
+    public RetryCallback retryCallback = null;
+
     public MoviePageKeyedDataSource(MovieApiService movieApiService) {
         this.movieApiService = movieApiService;
     }
 
     @Override
-    public void loadInitial(@NonNull LoadInitialParams<Integer> params,
-                            @NonNull LoadInitialCallback<Integer, Movie> callback) {
+    public void loadInitial(@NonNull final LoadInitialParams<Integer> params,
+                            @NonNull final LoadInitialCallback<Integer, Movie> callback) {
         networkState.postValue(NetworkState.LOADING);
         initialLoad.postValue(NetworkState.LOADING);
 
@@ -55,6 +58,12 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
             callback.onResult(movieList, null, FIRST_PAGE + 1);
         } catch (IOException e) {
             // publish error
+            retryCallback = new RetryCallback() {
+                @Override
+                public void invoke() {
+                    loadInitial(params, callback);
+                }
+            };
             NetworkState error = NetworkState.error(e.getMessage());
             networkState.postValue(error);
             initialLoad.postValue(error);
@@ -87,7 +96,12 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
                     callback.onResult(movieList, params.key + 1);
                     networkState.postValue(NetworkState.LOADED);
                 } else {
-
+                    retryCallback = new RetryCallback() {
+                        @Override
+                        public void invoke() {
+                            loadAfter(params, callback);
+                        }
+                    };
                     networkState.postValue(
                             NetworkState.error("error code: " + response.code()));
                 }
@@ -95,9 +109,20 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
 
             @Override
             public void onFailure(Call<MoviesResponse> call, Throwable t) {
+                retryCallback = new RetryCallback() {
+                    @Override
+                    public void invoke() {
+                        loadAfter(params, callback);
+                    }
+                };
                 networkState.postValue(
                         NetworkState.error(t != null ? t.getMessage() : "unknown error"));
             }
         });
     }
+
+    public interface RetryCallback {
+        void invoke();
+    }
+
 }

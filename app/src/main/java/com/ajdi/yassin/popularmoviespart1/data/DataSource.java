@@ -1,14 +1,11 @@
 package com.ajdi.yassin.popularmoviespart1.data;
 
-import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
-
-import androidx.lifecycle.LiveData;
-import androidx.paging.PagedList;
+import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
 
 /**
  * @author Yassin Ajdi.
  */
 public interface DataSource {
 
-    LiveData<PagedList<Movie>> getPopularMovies();
+    RepoMoviesResult getPopularMovies();
 }

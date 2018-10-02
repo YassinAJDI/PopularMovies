@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PopularMoviesPart1</string>
+    <string name="action_retry">Retry</string>
 </resources>
