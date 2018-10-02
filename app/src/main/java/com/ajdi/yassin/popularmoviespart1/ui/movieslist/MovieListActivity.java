@@ -37,11 +37,24 @@ public class MovieListActivity extends AppCompatActivity {
 
     private void setupListAdapter() {
         RecyclerView recyclerView = findViewById(R.id.rv_movie_list);
-        recyclerView.setLayoutManager(
-                new GridLayoutManager(this, 3));
         GlideRequests glideRequests = GlideApp.with(this);
         final MoviesAdapter moviesAdapter = new MoviesAdapter(glideRequests, viewModel);
         recyclerView.setAdapter(moviesAdapter);
+
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        // span network status and errors to fit the whole row(3 spans)
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                switch (moviesAdapter.getItemViewType(position)) {
+                    case R.layout.item_network_state:
+                        return 3;
+                    default:
+                        return 1;
+                }
+            }
+        });
+        recyclerView.setLayoutManager(layoutManager);
 
         // observe paged list
         viewModel.getPagedList().observe(this, new Observer<PagedList<Movie>>() {
