@@ -4,6 +4,7 @@ import com.ajdi.yassin.popularmoviespart1.data.api.MovieApiService;
 import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 import com.ajdi.yassin.popularmoviespart1.utils.AppExecutors;
 
 import androidx.arch.core.util.Function;
@@ -32,13 +33,13 @@ public class MovieRepository implements DataSource {
     }
 
     @Override
-    public RepoMoviesResult getPopularMovies() {
-        MovieDataSourceFactory sourceFactory = new MovieDataSourceFactory(mMovieApiService);
+    public RepoMoviesResult getFilteredMoviesBy(MoviesFilterType sortBy) {
+        MovieDataSourceFactory sourceFactory = new MovieDataSourceFactory(mMovieApiService, sortBy);
 
         // paging configuration
         PagedList.Config config = new PagedList.Config.Builder()
                 .setEnablePlaceholders(false)
-                .setPageSize(20)
+                .setPageSize(PAGE_SIZE)
                 .build();
 
         // Get the paged list

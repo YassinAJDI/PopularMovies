@@ -17,6 +17,6 @@ public interface MovieApiService {
     Call<MoviesResponse> getPopularMovies(@Query("page") int page);
 
     @GET("movie/top_rated")
-    Call<MoviesResponse> getTopRatedMovies();
+    Call<MoviesResponse> getTopRatedMovies(@Query("page") int page);
 
 }
