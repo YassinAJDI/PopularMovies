@@ -35,12 +35,18 @@ public class MovieListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
+        if (viewModel.getCurrentSorting() == MoviesFilterType.POPULAR) {
+            menu.findItem(R.id.action_popular_movies).setChecked(true);
+        } else {
+            menu.findItem(R.id.action_top_rated).setChecked(true);
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getGroupId() == R.id.menu_sort_group){
+        if (item.getGroupId() == R.id.menu_sort_group) {
             viewModel.setSortMoviesBy(item.getItemId());
             item.setChecked(true);
         }

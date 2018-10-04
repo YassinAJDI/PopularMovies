@@ -1,6 +1,6 @@
 package com.ajdi.yassin.popularmoviespart1.data.model;
 
-import com.ajdi.yassin.popularmoviespart1.data.MoviePageKeyedDataSource;
+import com.ajdi.yassin.popularmoviespart1.data.paging.MoviePageKeyedDataSource;
 import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 
 import androidx.lifecycle.LiveData;

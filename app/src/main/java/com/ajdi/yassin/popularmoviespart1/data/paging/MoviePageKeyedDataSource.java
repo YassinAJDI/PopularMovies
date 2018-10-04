@@ -1,4 +1,4 @@
-package com.ajdi.yassin.popularmoviespart1.data;
+package com.ajdi.yassin.popularmoviespart1.data.paging;
 
 import com.ajdi.yassin.popularmoviespart1.data.api.MovieApiService;
 import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;

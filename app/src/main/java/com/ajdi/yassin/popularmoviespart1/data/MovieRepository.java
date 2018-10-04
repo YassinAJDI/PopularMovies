@@ -4,6 +4,8 @@ import com.ajdi.yassin.popularmoviespart1.data.api.MovieApiService;
 import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
+import com.ajdi.yassin.popularmoviespart1.data.paging.MovieDataSourceFactory;
+import com.ajdi.yassin.popularmoviespart1.data.paging.MoviePageKeyedDataSource;
 import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 import com.ajdi.yassin.popularmoviespart1.utils.AppExecutors;
 

@@ -14,12 +14,12 @@
                 android:checkableBehavior="single">
 
                 <item
-                    android:id="@+id/popular_movies"
+                    android:id="@+id/action_popular_movies"
                     android:checked="true"
                     android:title="@string/action_popular" />
 
                 <item
-                    android:id="@+id/top_rated"
+                    android:id="@+id/action_top_rated"
                     android:title="@string/action_top_rated" />
             </group>
         </menu>

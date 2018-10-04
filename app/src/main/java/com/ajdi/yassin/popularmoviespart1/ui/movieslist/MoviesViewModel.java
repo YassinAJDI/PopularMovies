@@ -62,10 +62,14 @@ public class MoviesViewModel extends ViewModel {
         return networkState;
     }
 
+    MoviesFilterType getCurrentSorting() {
+        return sortBy.getValue();
+    }
+
     void setSortMoviesBy(int id) {
         MoviesFilterType sort = null;
         switch (id) {
-            case R.id.popular_movies: {
+            case R.id.action_popular_movies: {
                 // check if already selected. no need to request API
                 if (sortBy.getValue() == MoviesFilterType.POPULAR)
                     return;
@@ -73,7 +77,7 @@ public class MoviesViewModel extends ViewModel {
                 sort = MoviesFilterType.POPULAR;
                 break;
             }
-            case R.id.top_rated: {
+            case R.id.action_top_rated: {
                 if (sortBy.getValue() == MoviesFilterType.TOP_RATED)
                     return;
 
