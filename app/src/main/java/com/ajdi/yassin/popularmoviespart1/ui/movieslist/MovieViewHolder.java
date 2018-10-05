@@ -13,7 +13,7 @@ import com.ajdi.yassin.popularmoviespart1.utils.GlideRequests;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesAdapter.IMAGE_URL;
+import static com.ajdi.yassin.popularmoviespart1.utils.Constants.IMAGE_URL;
 
 /**
  * @author Yassin Ajdi.

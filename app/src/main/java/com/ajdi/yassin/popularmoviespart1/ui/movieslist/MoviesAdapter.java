@@ -19,10 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class MoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHolder> {
 
-    public static final String IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
-    public static final String IMAGE_SIZE = "w185";
-    public static final String IMAGE_URL = IMAGE_BASE_URL + IMAGE_SIZE;
-
     private GlideRequests glide;
 
     private MoviesViewModel mViewModel;

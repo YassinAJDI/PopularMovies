@@ -17,7 +17,6 @@
             android:id="@+id/image_movie_poster"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
             android:scaleType="centerCrop" />
 
     </androidx.cardview.widget.CardView>

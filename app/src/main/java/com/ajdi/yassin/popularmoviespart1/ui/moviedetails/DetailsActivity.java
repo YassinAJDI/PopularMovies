@@ -5,10 +5,14 @@ import android.os.Bundle;
 
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.databinding.ActivityDetailsBinding;
+import com.ajdi.yassin.popularmoviespart1.utils.Constants;
+import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
 import com.ajdi.yassin.popularmoviespart1.utils.Injection;
 import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -17,10 +21,12 @@ public class DetailsActivity extends AppCompatActivity {
     public static final String EXTRA_MOVIE_ID = "extra_movie_id";
     private static final int DEFAULT_ID = -1;
 
+    private ActivityDetailsBinding mBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -48,9 +54,24 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void updateUi(Movie movie) {
+        // movie backdrop
+        GlideApp.with(this)
+                .load(Constants.BACKDROP_URL + movie.getBackdrop())
+                .into(mBinding.imageMovieBackdrop);
+
         // movie poster
+        GlideApp.with(this)
+                .load(Constants.IMAGE_URL + movie.getImageUrl())
+                .into(mBinding.imagePoster);
 
         // movie title
+        mBinding.textTitle.setText(movie.getTitle());
+
+        // movie release date
+        mBinding.textReleaseDate.setText(movie.getReleaseDate());
+
+        // movie overview
+        mBinding.textOverview.setText(movie.getOverview());
     }
 
     private MovieDetailsViewModel obtainViewModel() {

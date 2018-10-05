@@ -18,6 +18,9 @@ public class Movie {
     @SerializedName("poster_path")
     private String imageUrl;
 
+    @SerializedName("backdrop_path")
+    private String backdrop;
+
     @SerializedName("overview")
     private String overview;
 
@@ -52,6 +55,14 @@ public class Movie {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getBackdrop() {
+        return backdrop;
+    }
+
+    public void setBackdrop(String backdrop) {
+        this.backdrop = backdrop;
     }
 
     public String getOverview() {
