@@ -19,7 +19,7 @@ import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MovieListActivity extends AppCompatActivity {
+public class MoviesActivity extends AppCompatActivity {
 
     MoviesViewModel viewModel;
 
@@ -95,10 +95,4 @@ public class MovieListActivity extends AppCompatActivity {
             }
         });
     }
-
-//    private void launchDetailActivity(long movieId) {
-//        Intent intent = new Intent(this, DetailActivity.class);
-//        intent.putExtra(DetailActivity.EXTRA_POSITION, position);
-//        startActivity(intent);
-//    }
 }

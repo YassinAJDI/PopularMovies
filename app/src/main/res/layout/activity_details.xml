@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.movieslist.MoviesActivity">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_movie_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
+    tools:context=".ui.moviedetails.DetailsActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

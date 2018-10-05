@@ -16,7 +16,7 @@ public class MovieDetailsViewModel extends ViewModel {
 
     private final MovieRepository repository;
 
-    private MutableLiveData<Long> movieId;
+    private MutableLiveData<Long> movieId = new MutableLiveData<>();
 
     private LiveData<Movie> movieLiveData;
 

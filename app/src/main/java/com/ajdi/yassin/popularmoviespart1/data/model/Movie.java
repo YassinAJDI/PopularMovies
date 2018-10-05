@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Movie {
 
     @SerializedName("id")
-    private int id;
+    private long id;
 
     @SerializedName("title")
     private String title;
@@ -30,11 +30,11 @@ public class Movie {
     @SerializedName("release_date")
     private String releaseDate;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
