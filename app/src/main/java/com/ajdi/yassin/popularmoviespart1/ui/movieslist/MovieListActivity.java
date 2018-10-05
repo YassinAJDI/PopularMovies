@@ -95,4 +95,10 @@ public class MovieListActivity extends AppCompatActivity {
             }
         });
     }
+
+//    private void launchDetailActivity(long movieId) {
+//        Intent intent = new Intent(this, DetailActivity.class);
+//        intent.putExtra(DetailActivity.EXTRA_POSITION, position);
+//        startActivity(intent);
+//    }
 }
