@@ -81,7 +81,7 @@ public class MoviesActivity extends AppCompatActivity {
         recyclerView.setAdapter(moviesAdapter);
 
         final GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        // draw network status and errors to fit the whole row(3 spans)
+        // draw network status and errors to fit the whole row(2 spans)
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
