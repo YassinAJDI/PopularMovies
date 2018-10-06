@@ -10,9 +10,12 @@ import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideRequests;
 import com.ajdi.yassin.popularmoviespart1.utils.Injection;
+import com.ajdi.yassin.popularmoviespart1.utils.ItemOffsetDecoration;
+import com.ajdi.yassin.popularmoviespart1.utils.UiUtils;
 import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
@@ -29,12 +32,25 @@ public class MoviesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         viewModel = obtainViewModel();
+        setupToolbar();
         setupListAdapter();
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        viewModel.getCurrentTitle().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                setTitle(integer);
+            }
+        });
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        UiUtils.tintMenuIcon(this, menu.findItem(R.id.action_sort_by), R.color.md_white_1000);
 
         if (viewModel.getCurrentSorting() == MoviesFilterType.POPULAR) {
             menu.findItem(R.id.action_popular_movies).setChecked(true);
@@ -64,7 +80,7 @@ public class MoviesActivity extends AppCompatActivity {
         final MoviesAdapter moviesAdapter = new MoviesAdapter(glideRequests, viewModel);
         recyclerView.setAdapter(moviesAdapter);
 
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         // draw network status and errors to fit the whole row(3 spans)
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
@@ -78,6 +94,9 @@ public class MoviesActivity extends AppCompatActivity {
             }
         });
         recyclerView.setLayoutManager(layoutManager);
+        ItemOffsetDecoration itemDecoration =
+                new ItemOffsetDecoration(this, R.dimen.item_offset);
+        recyclerView.addItemDecoration(itemDecoration);
 
         // observe paged list
         viewModel.getPagedList().observe(this, new Observer<PagedList<Movie>>() {

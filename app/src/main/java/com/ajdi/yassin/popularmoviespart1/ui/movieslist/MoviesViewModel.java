@@ -26,12 +26,15 @@ public class MoviesViewModel extends ViewModel {
 
     private LiveData<NetworkState> networkState;
 
+    private MutableLiveData<Integer> currentTitle = new MutableLiveData<>();
+
     private MutableLiveData<MoviesFilterType> sortBy = new MutableLiveData<>();
 
     public MoviesViewModel(final MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
         // By default show popular movies
         sortBy.setValue(MoviesFilterType.POPULAR);
+        currentTitle.setValue(R.string.action_popular);
         repoMoviesResult = Transformations.map(sortBy, new Function<MoviesFilterType, RepoMoviesResult>() {
             @Override
             public RepoMoviesResult apply(MoviesFilterType sort) {
@@ -66,8 +69,13 @@ public class MoviesViewModel extends ViewModel {
         return sortBy.getValue();
     }
 
+    public LiveData<Integer> getCurrentTitle() {
+        return currentTitle;
+    }
+
     void setSortMoviesBy(int id) {
         MoviesFilterType sort = null;
+        Integer title = null;
         switch (id) {
             case R.id.action_popular_movies: {
                 // check if already selected. no need to request API
@@ -75,6 +83,7 @@ public class MoviesViewModel extends ViewModel {
                     return;
 
                 sort = MoviesFilterType.POPULAR;
+                title = R.string.action_popular;
                 break;
             }
             case R.id.action_top_rated: {
@@ -82,10 +91,12 @@ public class MoviesViewModel extends ViewModel {
                     return;
 
                 sort = MoviesFilterType.TOP_RATED;
+                title = R.string.action_top_rated;
                 break;
             }
         }
         sortBy.setValue(sort);
+        currentTitle.setValue(title);
     }
 
     // retry any failed requests.
