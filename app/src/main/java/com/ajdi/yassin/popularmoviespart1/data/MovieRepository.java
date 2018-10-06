@@ -3,6 +3,7 @@ package com.ajdi.yassin.popularmoviespart1.data;
 import com.ajdi.yassin.popularmoviespart1.data.api.MovieApiService;
 import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
 import com.ajdi.yassin.popularmoviespart1.data.paging.MovieDataSourceFactory;
 import com.ajdi.yassin.popularmoviespart1.data.paging.MoviePageKeyedDataSource;
@@ -39,20 +40,24 @@ public class MovieRepository implements DataSource {
     }
 
     @Override
-    public MutableLiveData<Movie> getMovie(final long movieId) {
+    public RepoMovieDetailsResult getMovie(final long movieId) {
+        final MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
         final MutableLiveData<Movie> movieLiveData = new MutableLiveData<>();
+        networkState.setValue(NetworkState.LOADING);
         mExecutors.networkIO().execute(new Runnable() {
             @Override
             public void run() {
                 try {
                     Response<Movie> response = mMovieApiService.getMovieDetails(movieId).execute();
+                    networkState.postValue(NetworkState.LOADED);
                     movieLiveData.postValue(response.body());
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    NetworkState error = NetworkState.error(e.getMessage());
+                    networkState.postValue(error);
                 }
             }
         });
-        return movieLiveData;
+        return new RepoMovieDetailsResult(movieLiveData, networkState);
     }
 
     @Override
