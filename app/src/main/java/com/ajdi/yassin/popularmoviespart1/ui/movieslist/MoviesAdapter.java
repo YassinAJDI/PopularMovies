@@ -67,6 +67,11 @@ public class MoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHold
         }
     }
 
+    @Override
+    public int getItemCount() {
+        return super.getItemCount() + (hasExtraRow() ? 1 : 0);
+    }
+
     private boolean hasExtraRow() {
         return networkState != null && networkState != NetworkState.LOADED;
     }

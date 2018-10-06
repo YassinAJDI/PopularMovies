@@ -57,7 +57,8 @@ public class MovieRepository implements DataSource {
 
     @Override
     public RepoMoviesResult getFilteredMoviesBy(MoviesFilterType sortBy) {
-        MovieDataSourceFactory sourceFactory = new MovieDataSourceFactory(mMovieApiService, sortBy);
+        MovieDataSourceFactory sourceFactory =
+                new MovieDataSourceFactory(mMovieApiService, mExecutors.networkIO(), sortBy);
 
         // paging configuration
         PagedList.Config config = new PagedList.Config.Builder()

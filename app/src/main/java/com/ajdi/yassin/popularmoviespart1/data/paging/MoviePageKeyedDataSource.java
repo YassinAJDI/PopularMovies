@@ -9,6 +9,7 @@ import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -32,12 +33,16 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
 
     private final MovieApiService movieApiService;
 
+    private final Executor networkExecutor;
+
     private final MoviesFilterType sortBy;
 
     public RetryCallback retryCallback = null;
 
-    public MoviePageKeyedDataSource(MovieApiService movieApiService, MoviesFilterType sortBy) {
+    public MoviePageKeyedDataSource(MovieApiService movieApiService,
+                                    Executor networkExecutor, MoviesFilterType sortBy) {
         this.movieApiService = movieApiService;
+        this.networkExecutor = networkExecutor;
         this.sortBy = sortBy;
     }
 
@@ -71,7 +76,13 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
             retryCallback = new RetryCallback() {
                 @Override
                 public void invoke() {
-                    loadInitial(params, callback);
+                    networkExecutor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadInitial(params, callback);
+                        }
+                    });
+
                 }
             };
             NetworkState error = NetworkState.error(e.getMessage());
@@ -127,7 +138,12 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
                 retryCallback = new RetryCallback() {
                     @Override
                     public void invoke() {
-                        loadAfter(params, callback);
+                        networkExecutor.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                loadAfter(params, callback);
+                            }
+                        });
                     }
                 };
                 networkState.postValue(

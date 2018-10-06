@@ -15,7 +15,7 @@ public class AppExecutors {
 
     private static volatile AppExecutors sInstance;
 
-    private static final int THREAD_COUNT = 3;
+    private static final int THREAD_COUNT = 5;
 
     private final Executor diskIO;
 

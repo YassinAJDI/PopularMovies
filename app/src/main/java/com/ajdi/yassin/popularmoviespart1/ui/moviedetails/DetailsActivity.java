@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 public class DetailsActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE_ID = "extra_movie_id";
+
     private static final int DEFAULT_ID = -1;
 
     private ActivityDetailsBinding mBinding;
@@ -44,7 +45,6 @@ public class DetailsActivity extends AppCompatActivity {
 
         setupToolbar();
         mViewModel = obtainViewModel();
-
         if (savedInstanceState == null) {
             // trigger loading movie details, only once the activity created
             mViewModel.setMovieId(movieId);

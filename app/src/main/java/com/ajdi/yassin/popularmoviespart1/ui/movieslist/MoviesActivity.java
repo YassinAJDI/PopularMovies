@@ -39,6 +39,7 @@ public class MoviesActivity extends AppCompatActivity {
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         viewModel.getCurrentTitle().observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
@@ -94,8 +95,7 @@ public class MoviesActivity extends AppCompatActivity {
             }
         });
         recyclerView.setLayoutManager(layoutManager);
-        ItemOffsetDecoration itemDecoration =
-                new ItemOffsetDecoration(this, R.dimen.item_offset);
+        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(this, R.dimen.item_offset);
         recyclerView.addItemDecoration(itemDecoration);
 
         // observe paged list

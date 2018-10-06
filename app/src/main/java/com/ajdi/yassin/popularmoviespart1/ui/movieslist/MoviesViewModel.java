@@ -35,6 +35,7 @@ public class MoviesViewModel extends ViewModel {
         // By default show popular movies
         sortBy.setValue(MoviesFilterType.POPULAR);
         currentTitle.setValue(R.string.action_popular);
+        
         repoMoviesResult = Transformations.map(sortBy, new Function<MoviesFilterType, RepoMoviesResult>() {
             @Override
             public RepoMoviesResult apply(MoviesFilterType sort) {
