@@ -10,6 +10,7 @@ import com.ajdi.yassin.popularmoviespart1.utils.Constants;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
 import com.ajdi.yassin.popularmoviespart1.utils.Injection;
 import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
+import com.google.android.material.appbar.AppBarLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,6 +24,8 @@ public class DetailsActivity extends AppCompatActivity {
     private static final int DEFAULT_ID = -1;
 
     private ActivityDetailsBinding mBinding;
+
+    private MovieDetailsViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +43,13 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         setupToolbar();
-        MovieDetailsViewModel viewModel = obtainViewModel();
+        mViewModel = obtainViewModel();
 
         if (savedInstanceState == null) {
             // trigger loading movie details, only once the activity created
-            viewModel.setMovieId(movieId);
+            mViewModel.setMovieId(movieId);
         }
-        viewModel.getMovieLiveData().observe(this, new Observer<Movie>() {
+        mViewModel.getMovieLiveData().observe(this, new Observer<Movie>() {
             @Override
             public void onChanged(Movie movie) {
                 updateUi(movie);
@@ -60,7 +63,7 @@ public class DetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            handleCollapsedToolbarTitle();
         }
     }
 
@@ -95,6 +98,34 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void closeOnError() {
         throw new RuntimeException("Access denied.");
+    }
+
+    /**
+     * sets the title on the toolbar only if the toolbar is collapsed
+     */
+    private void handleCollapsedToolbarTitle() {
+        mBinding.appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            boolean isShow = true;
+            int scrollRange = -1;
+
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.getTotalScrollRange();
+                }
+                //verify if the toolbar is completely collapsed and set the movie name as the title
+                if (scrollRange + verticalOffset == 0) {
+                    mBinding.collapsingToolbar.setTitle(
+                            mViewModel.getMovieLiveData().getValue().getTitle());
+                    isShow = true;
+                } else if (isShow) {
+                    //display an empty string when toolbar is expanded
+                    mBinding.collapsingToolbar.setTitle(" ");
+                    isShow = false;
+                }
+
+            }
+        });
     }
 
 }
