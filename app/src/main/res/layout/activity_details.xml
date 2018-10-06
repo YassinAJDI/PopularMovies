@@ -42,7 +42,9 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin" />
+                    android:theme="@style/AppBarOverlay"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/PopupOverlay" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
@@ -59,43 +61,68 @@
                 <ImageView
                     android:id="@+id/image_poster"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_height="200dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:contentDescription="@string/movie_poster"
                     android:scaleType="centerCrop"
                     app:layout_constraintDimensionRatio="w,2:3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic"
-                    android:contentDescription="@string/movie_poster" />
+                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
                 <TextView
                     android:id="@+id/text_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/image_poster"
-                    app:layout_constraintTop_toTopOf="@+id/image_poster"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="@tools:sample/full_names" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/release_date"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    app:layout_constraintStart_toStartOf="@+id/text_title"
+                    app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
                 <TextView
                     android:id="@+id/text_release_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="@+id/text_title"
-                    app:layout_constraintTop_toBottomOf="@+id/text_title"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    app:layout_constraintStart_toStartOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
                     tools:text="@tools:sample/date/mmddyy" />
 
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
+                <TextView
+                    android:id="@+id/vote_average"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toEndOf="@+id/image_poster"
+                    android:text="@string/vote_average"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                    app:layout_constraintStart_toStartOf="@+id/text_release_date"
                     app:layout_constraintTop_toBottomOf="@+id/text_release_date" />
+
+                <TextView
+                    android:id="@+id/text_vote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    app:layout_constraintStart_toStartOf="@+id/vote_average"
+                    app:layout_constraintTop_toBottomOf="@+id/vote_average"
+                    tools:text="7/10" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -104,6 +131,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/label_overview"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_poster" />
 
@@ -112,8 +140,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView3"

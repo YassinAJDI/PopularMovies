@@ -7,4 +7,6 @@
     <string name="movie_backdrop_content_description">Movie backdrop</string>
     <string name="movie_poster">Movie poster</string>
     <string name="label_overview">Overview:</string>
+    <string name="release_date">Release date:</string>
+    <string name="vote_average">Vote average:</string>
 </resources>

@@ -12,6 +12,7 @@ import com.ajdi.yassin.popularmoviespart1.utils.Injection;
 import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -38,6 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
             closeOnError();
         }
 
+        setupToolbar();
         MovieDetailsViewModel viewModel = obtainViewModel();
 
         if (savedInstanceState == null) {
@@ -51,6 +53,15 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setupToolbar() {
+        Toolbar toolbar = mBinding.toolbar;
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
     }
 
     private void updateUi(Movie movie) {
@@ -69,6 +80,9 @@ public class DetailsActivity extends AppCompatActivity {
 
         // movie release date
         mBinding.textReleaseDate.setText(movie.getReleaseDate());
+
+        // vote average
+        mBinding.textVote.setText(String.valueOf(movie.getUserRating()));
 
         // movie overview
         mBinding.textOverview.setText(movie.getOverview());
