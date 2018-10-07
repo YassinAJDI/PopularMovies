@@ -1,4 +1,6 @@
 # Popular Movies Stage 1
+<a href="https://codeclimate.com/github/YassinAJDI/popular-movies-part1/maintainability"><img src="https://api.codeclimate.com/v1/badges/c2e41f498389bc3088c9/maintainability" /></a>
+
 Popular Movies is created as a part of Udacity Android Developer Nanodegree Program, is an app which helps you to discover the latest popular and top rated movies. You can flip through movie posters, check movie details. The application fetches movie data using themoviedb.org API.
 
 ## Features:
@@ -9,6 +11,7 @@ Popular Movies is created as a part of Udacity Android Developer Nanodegree Prog
 * Material design.
 
 ## Screenshots
+<img src="../master/screenshots/Phone%20Screenshot%201.jpg" width="280"> <img src="../master/screenshots/Phone%20Screenshot%202.jpg" width="280"> <img src="../master/screenshots/Phone%20Screenshot%203.jpg" width="280">
 
 ## Getting Started
 
