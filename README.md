@@ -1,8 +1,4 @@
 <h1 align="center">Popular Movies Stage 1</h1>
-<h4 align="center">
-Popular Movies is created as a part of Udacity Android Developer Nanodegree Program, is an app which helps you to discover the latest popular and top rated movies. You can flip through movie posters, check movie details. The application fetches movie data using themoviedb.org API.
-</h4>
-
 <p align="center">
 <a href="./LICENSE">
 	<img src="https://img.shields.io/github/license/mashape/apistatus.svg" />
@@ -10,6 +6,9 @@ Popular Movies is created as a part of Udacity Android Developer Nanodegree Prog
 <a class="badge-align" href="https://www.codacy.com/app/YassinAJDI/popular-movies-part1?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=YassinAJDI/popular-movies-part1&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/762f1405d7b245d792ff3442b15a2a50"/></a>
 <a href="https://codeclimate.com/github/YassinAJDI/popular-movies-part1/maintainability"><img src="https://api.codeclimate.com/v1/badges/c2e41f498389bc3088c9/maintainability" /></a>
 </p>
+<h4 align="center">
+Popular Movies is created as a part of Udacity Android Developer Nanodegree Program, is an app which helps you to discover the latest popular and top rated movies. You can flip through movie posters, check movie details. The application fetches movie data using themoviedb.org API.
+</h4>
 
 <h2 align="center">Screenshots</h2>
 <h4 align="center">
@@ -18,7 +17,7 @@ Popular Movies is created as a part of Udacity Android Developer Nanodegree Prog
 <img src="screenshots/Phone%20Screenshot%203.jpg" width=240>
 </h4>
 
-## Features:
+## Features
 *   Discover the most popular and the most rated movies
 *   MVVM with Android Architecture Components
 *   Pagination and endless scrolling using Android paging library.
