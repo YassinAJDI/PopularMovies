@@ -21,7 +21,8 @@ public interface MovieApiService {
     @GET("movie/top_rated")
     Call<MoviesResponse> getTopRatedMovies(@Query("page") int page);
 
-    @GET("movie/{id}")
+    // Instead of using 2 separate requests we use append_to_response
+    // to eliminate duplicate requests and save network bandwidth data
+    @GET("movie/{id}?append_to_response=videos")
     Call<Movie> getMovieDetails(@Path("id") long id);
-
 }

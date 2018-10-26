@@ -54,134 +54,17 @@
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/image_poster"
-                    android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:contentDescription="@string/movie_poster"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintDimensionRatio="w,2:3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                <TextView
-                    android:id="@+id/text_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/image_poster"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="@tools:sample/full_names" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/release_date"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-                    app:layout_constraintStart_toStartOf="@+id/text_title"
-                    app:layout_constraintTop_toBottomOf="@+id/text_title" />
-
-                <TextView
-                    android:id="@+id/text_release_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                    app:layout_constraintStart_toStartOf="@+id/textView"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
-                    tools:text="@tools:sample/date/mmddyy" />
-
-                <TextView
-                    android:id="@+id/vote_average"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/vote_average"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-                    app:layout_constraintStart_toStartOf="@+id/text_release_date"
-                    app:layout_constraintTop_toBottomOf="@+id/text_release_date" />
-
-                <TextView
-                    android:id="@+id/text_vote"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                    app:layout_constraintStart_toStartOf="@+id/vote_average"
-                    app:layout_constraintTop_toBottomOf="@+id/vote_average"
-                    tools:text="7/10" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/label_overview"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_poster" />
-
-                <TextView
-                    android:id="@+id/text_overview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3"
-                    tools:text="@tools:sample/lorem" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/movie_details_info"
+                layout="@layout/partial_details_info" />
         </androidx.core.widget.NestedScrollView>
 
-        <LinearLayout
+        <include
             android:id="@+id/network_state"
+            layout="@layout/item_network_state"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_gravity="center" />
 
-            <TextView
-                android:id="@+id/error_msg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-
-            <Button
-                android:id="@+id/retry_button"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/action_retry" />
-        </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

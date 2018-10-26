@@ -33,6 +33,17 @@ public class Movie {
     @SerializedName("release_date")
     private String releaseDate;
 
+    @SerializedName("videos")
+    private TrailersResponse trailersResponse;
+
+    public TrailersResponse getTrailersResponse() {
+        return trailersResponse;
+    }
+
+    public void setTrailersResponse(TrailersResponse trailersResponse) {
+        this.trailersResponse = trailersResponse;
+    }
+
     public long getId() {
         return id;
     }

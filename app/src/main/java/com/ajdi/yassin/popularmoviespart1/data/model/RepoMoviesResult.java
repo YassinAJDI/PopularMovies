@@ -15,7 +15,8 @@ public class RepoMoviesResult {
     public LiveData<NetworkState> networkState;
     public MutableLiveData<MoviePageKeyedDataSource> sourceLiveData;
 
-    public RepoMoviesResult(LiveData<PagedList<Movie>> data, LiveData<NetworkState> networkState,
+    public RepoMoviesResult(LiveData<PagedList<Movie>> data,
+                            LiveData<NetworkState> networkState,
                             MutableLiveData<MoviePageKeyedDataSource> sourceLiveData) {
         this.data = data;
         this.networkState = networkState;

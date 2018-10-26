@@ -7,6 +7,7 @@ import android.view.View;
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.data.model.Trailer;
 import com.ajdi.yassin.popularmoviespart1.databinding.ActivityDetailsBinding;
 import com.ajdi.yassin.popularmoviespart1.utils.Constants;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
@@ -14,11 +15,15 @@ import com.ajdi.yassin.popularmoviespart1.utils.Injection;
 import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
 import com.google.android.material.appbar.AppBarLayout;
 
+import java.util.List;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import static com.ajdi.yassin.popularmoviespart1.data.api.Status.FAILED;
 import static com.ajdi.yassin.popularmoviespart1.data.api.Status.RUNNING;
@@ -69,7 +74,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
         // handle retry event in case of network failure
-        mBinding.retryButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.networkState.retryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mViewModel.retry(movieId);
@@ -91,25 +96,30 @@ public class DetailsActivity extends AppCompatActivity {
         GlideApp.with(this)
                 .load(Constants.BACKDROP_URL + movie.getBackdrop())
                 .into(mBinding.imageMovieBackdrop);
-
         // movie poster
         GlideApp.with(this)
                 .load(Constants.IMAGE_URL + movie.getImageUrl())
-                .into(mBinding.imagePoster);
-
+                .into(mBinding.movieDetailsInfo.imagePoster);
         // movie title
-        mBinding.textTitle.setText(movie.getTitle());
-
+        mBinding.movieDetailsInfo.textTitle.setText(movie.getTitle());
         // movie release date
-        mBinding.textReleaseDate.setText(movie.getReleaseDate());
-
+        mBinding.movieDetailsInfo.textReleaseDate.setText(movie.getReleaseDate());
         // vote average
-        mBinding.textVote.setText(String.valueOf(movie.getUserRating()));
-
+        mBinding.movieDetailsInfo.textVote.setText(String.valueOf(movie.getUserRating()));
         // movie overview
-        mBinding.textOverview.setText(movie.getOverview());
+        mBinding.movieDetailsInfo.textOverview.setText(movie.getOverview());
+        // movie trailers
+        setupTrailersAdapter(movie.getTrailersResponse().getTrailers());
 
         mBinding.executePendingBindings();
+    }
+
+    private void setupTrailersAdapter(List<Trailer> trailers) {
+        RecyclerView listTrailers = mBinding.movieDetailsInfo.listTrailers;
+        listTrailers.setLayoutManager(
+                new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        listTrailers.setHasFixedSize(true);
+        listTrailers.setAdapter(new TrailersAdapter(trailers, GlideApp.with(this)));
     }
 
     private MovieDetailsViewModel obtainViewModel() {
@@ -144,7 +154,6 @@ public class DetailsActivity extends AppCompatActivity {
                     mBinding.collapsingToolbar.setTitle(" ");
                     isShow = false;
                 }
-
             }
         });
     }
@@ -153,13 +162,13 @@ public class DetailsActivity extends AppCompatActivity {
         boolean isLoaded = networkState == NetworkState.LOADED;
         mBinding.appbar.setVisibility(isVisible(isLoaded));
         mBinding.movieDetails.setVisibility(isVisible(isLoaded));
-        mBinding.progressBar.setVisibility(
+        mBinding.networkState.progressBar.setVisibility(
                 isVisible(networkState.getStatus() == RUNNING));
-        mBinding.retryButton.setVisibility(
+        mBinding.networkState.retryButton.setVisibility(
                 isVisible(networkState.getStatus() == FAILED));
-        mBinding.errorMsg.setVisibility(
+        mBinding.networkState.errorMsg.setVisibility(
                 isVisible(networkState.getMsg() != null));
-        mBinding.errorMsg.setText(networkState.getMsg());
+        mBinding.networkState.errorMsg.setText(networkState.getMsg());
     }
 
     private int isVisible(boolean condition) {
@@ -168,5 +177,4 @@ public class DetailsActivity extends AppCompatActivity {
         else
             return View.GONE;
     }
-
 }
