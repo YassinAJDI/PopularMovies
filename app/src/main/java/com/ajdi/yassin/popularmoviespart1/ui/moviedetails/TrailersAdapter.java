@@ -17,17 +17,14 @@ public class TrailersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<Trailer> trailers;
 
-    private GlideRequests glide;
-
     public TrailersAdapter(List<Trailer> trailers, GlideRequests glide) {
         this.trailers = trailers;
-        this.glide = glide;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return TrailerViewHolder.create(parent, glide);
+        return TrailerViewHolder.create(parent);
     }
 
     @Override

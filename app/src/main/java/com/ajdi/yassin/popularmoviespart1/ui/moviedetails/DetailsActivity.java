@@ -95,10 +95,12 @@ public class DetailsActivity extends AppCompatActivity {
         // movie backdrop
         GlideApp.with(this)
                 .load(Constants.BACKDROP_URL + movie.getBackdrop())
+                .placeholder(R.color.md_grey_200)
                 .into(mBinding.imageMovieBackdrop);
         // movie poster
         GlideApp.with(this)
                 .load(Constants.IMAGE_URL + movie.getImageUrl())
+                .placeholder(R.color.md_grey_200)
                 .into(mBinding.movieDetailsInfo.imagePoster);
         // movie title
         mBinding.movieDetailsInfo.textTitle.setText(movie.getTitle());
@@ -128,7 +130,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void closeOnError() {
-        throw new RuntimeException("Access denied.");
+        throw new IllegalArgumentException("Access denied.");
     }
 
     /**

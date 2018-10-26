@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/trailer"
         android:layout_width="190dp"
         android:layout_height="140dp">
 
