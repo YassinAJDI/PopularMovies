@@ -9,4 +9,5 @@
     <string name="label_overview">Overview:</string>
     <string name="release_date">Release date:</string>
     <string name="vote_average">Vote average:</string>
+    <string name="action_share">Share trailer</string>
 </resources>

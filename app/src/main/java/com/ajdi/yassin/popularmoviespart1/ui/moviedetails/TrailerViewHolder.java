@@ -1,6 +1,5 @@
 package com.ajdi.yassin.popularmoviespart1.ui.moviedetails;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.model.Trailer;
 import com.ajdi.yassin.popularmoviespart1.databinding.ItemTrailerBinding;
+import com.ajdi.yassin.popularmoviespart1.utils.Constants;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
 
 import androidx.annotation.NonNull;
@@ -46,10 +46,10 @@ public class TrailerViewHolder extends RecyclerView.ViewHolder {
                 Intent appIntent = new Intent(Intent.ACTION_VIEW,
                         Uri.parse("vnd.youtube:" + trailer.getKey()));
                 Intent webIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://www.youtube.com/watch?v=" + trailer.getKey()));
-                try {
+                        Uri.parse(Constants.YOUTUBE_WEB_URL + trailer.getKey()));
+                if (appIntent.resolveActivity(context.getPackageManager()) != null) {
                     context.startActivity(appIntent);
-                } catch (ActivityNotFoundException ex) {
+                } else {
                     context.startActivity(webIntent);
                 }
             }
@@ -58,7 +58,7 @@ public class TrailerViewHolder extends RecyclerView.ViewHolder {
         binding.executePendingBindings();
     }
 
-    static TrailerViewHolder create(ViewGroup parent) {
+    public static TrailerViewHolder create(ViewGroup parent) {
         // Inflate
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         // Create the binding
