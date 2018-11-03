@@ -2,7 +2,7 @@ package com.ajdi.yassin.popularmoviespart1.utils;
 
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
 import com.ajdi.yassin.popularmoviespart1.ui.moviedetails.MovieDetailsViewModel;
-import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.MoviesViewModel;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.DiscoverMoviesViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
@@ -26,9 +26,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if (modelClass.isAssignableFrom(MoviesViewModel.class)) {
+        if (modelClass.isAssignableFrom(DiscoverMoviesViewModel.class)) {
             //noinspection unchecked
-            return (T) new MoviesViewModel(repository);
+            return (T) new DiscoverMoviesViewModel(repository);
         } else if (modelClass.isAssignableFrom(MovieDetailsViewModel.class)) {
             //noinspection unchecked
             return (T) new MovieDetailsViewModel(repository);

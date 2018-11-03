@@ -17,7 +17,7 @@ import androidx.paging.PagedList;
 /**
  * @author Yassin Ajdi.
  */
-public class MoviesViewModel extends ViewModel {
+public class DiscoverMoviesViewModel extends ViewModel {
 
     private final MovieRepository movieRepository;
 
@@ -31,7 +31,7 @@ public class MoviesViewModel extends ViewModel {
 
     private MutableLiveData<MoviesFilterType> sortBy = new MutableLiveData<>();
 
-    public MoviesViewModel(final MovieRepository movieRepository) {
+    public DiscoverMoviesViewModel(final MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
         // By default show popular movies
         sortBy.setValue(MoviesFilterType.POPULAR);

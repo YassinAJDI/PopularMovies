@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/movies_list"
+        layout="@layout/fragment_discover_movies" />
+
+    <TextView
+        android:layout_marginTop="200dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Empty no favorites yet!" />
+
+    <!--add empty state layout here-->
+
+</LinearLayout>

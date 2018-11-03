@@ -5,8 +5,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ajdi.yassin.popularmoviespart1.R;
-import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.MoviesFragment;
-import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.MoviesViewModel;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.DiscoverMoviesFragment;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.DiscoverMoviesViewModel;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.favorites.FavoritesFragment;
 import com.ajdi.yassin.popularmoviespart1.utils.ActivityUtils;
 import com.ajdi.yassin.popularmoviespart1.utils.Injection;
 import com.ajdi.yassin.popularmoviespart1.utils.UiUtils;
@@ -22,7 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class MoviesActivity extends AppCompatActivity {
 
-    MoviesViewModel viewModel;
+    DiscoverMoviesViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +60,16 @@ public class MoviesActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static MoviesViewModel obtainViewModel(FragmentActivity activity) {
+    public static DiscoverMoviesViewModel obtainViewModel(FragmentActivity activity) {
         ViewModelFactory factory = ViewModelFactory.getInstance(Injection.provideMovieRepository());
-        return ViewModelProviders.of(activity, factory).get(MoviesViewModel.class);
+        return ViewModelProviders.of(activity, factory).get(DiscoverMoviesViewModel.class);
     }
 
     private void setupViewFragment() {
         // show discover movies fragment by default
-        MoviesFragment moviesFragment = MoviesFragment.newInstance();
+        DiscoverMoviesFragment discoverMoviesFragment = DiscoverMoviesFragment.newInstance();
         ActivityUtils.replaceFragmentInActivity(
-                getSupportFragmentManager(), moviesFragment, R.id.fragment_container);
+                getSupportFragmentManager(), discoverMoviesFragment, R.id.fragment_container);
     }
 
     private void setupBottomNavigation() {
@@ -78,8 +79,14 @@ public class MoviesActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.action_discover:
+                        ActivityUtils.replaceFragmentInActivity(
+                                getSupportFragmentManager(), DiscoverMoviesFragment.newInstance(),
+                                R.id.fragment_container);
                         return true;
                     case R.id.action_favorites:
+                        ActivityUtils.replaceFragmentInActivity(
+                                getSupportFragmentManager(), FavoritesFragment.newInstance(),
+                                R.id.fragment_container);
                         return true;
                 }
                 return false;

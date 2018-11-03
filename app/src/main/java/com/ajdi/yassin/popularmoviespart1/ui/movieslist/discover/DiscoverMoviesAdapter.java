@@ -18,15 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
  *
  * @author Yassin Ajdi.
  */
-public class MoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHolder> {
+public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHolder> {
 
     private GlideRequests glide;
 
-    private MoviesViewModel mViewModel;
+    private DiscoverMoviesViewModel mViewModel;
 
     private NetworkState networkState = null;
 
-    MoviesAdapter(GlideRequests glide, MoviesViewModel viewModel) {
+    DiscoverMoviesAdapter(GlideRequests glide, DiscoverMoviesViewModel viewModel) {
         super(MOVIE_COMPARATOR);
 
         this.glide = glide;

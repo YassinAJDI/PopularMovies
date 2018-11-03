@@ -24,18 +24,18 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * @author Yassin Ajdi.
  */
-public class MoviesFragment extends Fragment {
+public class DiscoverMoviesFragment extends Fragment {
 
-    private MoviesViewModel viewModel;
+    private DiscoverMoviesViewModel viewModel;
 
-    public static MoviesFragment newInstance() {
-        return new MoviesFragment();
+    public static DiscoverMoviesFragment newInstance() {
+        return new DiscoverMoviesFragment();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_movies_list, container, false);
+        return inflater.inflate(R.layout.fragment_discover_movies, container, false);
     }
 
     @Override
@@ -48,15 +48,14 @@ public class MoviesFragment extends Fragment {
     private void setupListAdapter() {
         RecyclerView recyclerView = getActivity().findViewById(R.id.rv_movie_list);
         GlideRequests glideRequests = GlideApp.with(this);
-        final MoviesAdapter moviesAdapter = new MoviesAdapter(glideRequests, viewModel);
-        recyclerView.setAdapter(moviesAdapter);
-
+        final DiscoverMoviesAdapter discoverMoviesAdapter = new DiscoverMoviesAdapter(glideRequests, viewModel);
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+
         // draw network status and errors to fit the whole row(2 spans)
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-                switch (moviesAdapter.getItemViewType(position)) {
+                switch (discoverMoviesAdapter.getItemViewType(position)) {
                     case R.layout.item_network_state:
                         return layoutManager.getSpanCount();
                     default:
@@ -64,6 +63,9 @@ public class MoviesFragment extends Fragment {
                 }
             }
         });
+
+        // setup recyclerView
+        recyclerView.setAdapter(discoverMoviesAdapter);
         recyclerView.setLayoutManager(layoutManager);
         ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(getActivity(), R.dimen.item_offset);
         recyclerView.addItemDecoration(itemDecoration);
@@ -72,7 +74,7 @@ public class MoviesFragment extends Fragment {
         viewModel.getPagedList().observe(this, new Observer<PagedList<Movie>>() {
             @Override
             public void onChanged(PagedList<Movie> movies) {
-                moviesAdapter.submitList(movies);
+                discoverMoviesAdapter.submitList(movies);
             }
         });
 
@@ -80,7 +82,7 @@ public class MoviesFragment extends Fragment {
         viewModel.getNetWorkState().observe(this, new Observer<NetworkState>() {
             @Override
             public void onChanged(NetworkState networkState) {
-                moviesAdapter.setNetworkState(networkState);
+                discoverMoviesAdapter.setNetworkState(networkState);
             }
         });
     }

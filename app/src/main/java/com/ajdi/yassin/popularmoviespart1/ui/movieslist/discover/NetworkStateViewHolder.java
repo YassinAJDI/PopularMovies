@@ -24,7 +24,7 @@ public class NetworkStateViewHolder extends RecyclerView.ViewHolder {
     private ItemNetworkStateBinding binding;
 
     public NetworkStateViewHolder(@NonNull ItemNetworkStateBinding binding,
-                                  final MoviesViewModel viewModel) {
+                                  final DiscoverMoviesViewModel viewModel) {
         super(binding.getRoot());
         this.binding = binding;
 
@@ -37,7 +37,7 @@ public class NetworkStateViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public static NetworkStateViewHolder create(ViewGroup parent, MoviesViewModel viewModel) {
+    public static NetworkStateViewHolder create(ViewGroup parent, DiscoverMoviesViewModel viewModel) {
         // Inflate
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         // Create the binding
