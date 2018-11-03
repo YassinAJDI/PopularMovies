@@ -8,7 +8,7 @@
         android:title="Discover" />
 
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_favorites"
         android:icon="@drawable/ic_favorite_black_24dp"
         android:title="Favorites" />
 

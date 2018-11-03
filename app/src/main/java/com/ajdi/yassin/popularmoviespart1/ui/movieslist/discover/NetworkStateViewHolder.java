@@ -1,4 +1,4 @@
-package com.ajdi.yassin.popularmoviespart1.ui.movieslist;
+package com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +37,7 @@ public class NetworkStateViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    static NetworkStateViewHolder create(ViewGroup parent, MoviesViewModel viewModel) {
+    public static NetworkStateViewHolder create(ViewGroup parent, MoviesViewModel viewModel) {
         // Inflate
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         // Create the binding
@@ -46,7 +46,7 @@ public class NetworkStateViewHolder extends RecyclerView.ViewHolder {
         return new NetworkStateViewHolder(binding, viewModel);
     }
 
-    void bindTo(NetworkState networkState) {
+    public void bindTo(NetworkState networkState) {
         binding.progressBar.setVisibility(
                 isVisible(networkState.getStatus() == RUNNING));
         binding.retryButton.setVisibility(

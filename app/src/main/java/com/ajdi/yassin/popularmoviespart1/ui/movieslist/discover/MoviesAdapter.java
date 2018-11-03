@@ -1,10 +1,11 @@
-package com.ajdi.yassin.popularmoviespart1.ui.movieslist;
+package com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover;
 
 import android.view.ViewGroup;
 
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MovieViewHolder;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideRequests;
 
 import androidx.annotation.NonNull;
@@ -76,7 +77,7 @@ public class MoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHold
         return networkState != null && networkState != NetworkState.LOADED;
     }
 
-    void setNetworkState(NetworkState newNetworkState) {
+    public void setNetworkState(NetworkState newNetworkState) {
         NetworkState previousState = this.networkState;
         boolean hadExtraRow = hasExtraRow();
         this.networkState = newNetworkState;

@@ -5,22 +5,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ajdi.yassin.popularmoviespart1.R;
-import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
-import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
-import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
-import com.ajdi.yassin.popularmoviespart1.utils.GlideRequests;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.MoviesFragment;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.MoviesViewModel;
+import com.ajdi.yassin.popularmoviespart1.utils.ActivityUtils;
 import com.ajdi.yassin.popularmoviespart1.utils.Injection;
-import com.ajdi.yassin.popularmoviespart1.utils.ItemOffsetDecoration;
 import com.ajdi.yassin.popularmoviespart1.utils.UiUtils;
 import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.paging.PagedList;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class MoviesActivity extends AppCompatActivity {
 
@@ -31,21 +29,12 @@ public class MoviesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        viewModel = obtainViewModel();
+        viewModel = obtainViewModel(this);
         setupToolbar();
-        setupListAdapter();
-    }
-
-    private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        viewModel.getCurrentTitle().observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                setTitle(integer);
-            }
-        });
+        if (savedInstanceState == null) {
+            setupViewFragment();
+        }
+        setupBottomNavigation();
     }
 
     @Override
@@ -70,47 +59,42 @@ public class MoviesActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private MoviesViewModel obtainViewModel() {
+    public static MoviesViewModel obtainViewModel(FragmentActivity activity) {
         ViewModelFactory factory = ViewModelFactory.getInstance(Injection.provideMovieRepository());
-        return ViewModelProviders.of(this, factory).get(MoviesViewModel.class);
+        return ViewModelProviders.of(activity, factory).get(MoviesViewModel.class);
     }
 
-    private void setupListAdapter() {
-        RecyclerView recyclerView = findViewById(R.id.rv_movie_list);
-        GlideRequests glideRequests = GlideApp.with(this);
-        final MoviesAdapter moviesAdapter = new MoviesAdapter(glideRequests, viewModel);
-        recyclerView.setAdapter(moviesAdapter);
+    private void setupViewFragment() {
+        // show discover movies fragment by default
+        MoviesFragment moviesFragment = MoviesFragment.newInstance();
+        ActivityUtils.replaceFragmentInActivity(
+                getSupportFragmentManager(), moviesFragment, R.id.fragment_container);
+    }
 
-        final GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        // draw network status and errors to fit the whole row(2 spans)
-        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+    private void setupBottomNavigation() {
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        bottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public int getSpanSize(int position) {
-                switch (moviesAdapter.getItemViewType(position)) {
-                    case R.layout.item_network_state:
-                        return layoutManager.getSpanCount();
-                    default:
-                        return 1;
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_discover:
+                        return true;
+                    case R.id.action_favorites:
+                        return true;
                 }
+                return false;
             }
         });
-        recyclerView.setLayoutManager(layoutManager);
-        ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(this, R.dimen.item_offset);
-        recyclerView.addItemDecoration(itemDecoration);
+    }
 
-        // observe paged list
-        viewModel.getPagedList().observe(this, new Observer<PagedList<Movie>>() {
-            @Override
-            public void onChanged(PagedList<Movie> movies) {
-                moviesAdapter.submitList(movies);
-            }
-        });
+    private void setupToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        // observe network state
-        viewModel.getNetWorkState().observe(this, new Observer<NetworkState>() {
+        viewModel.getCurrentTitle().observe(this, new Observer<Integer>() {
             @Override
-            public void onChanged(NetworkState networkState) {
-                moviesAdapter.setNetworkState(networkState);
+            public void onChanged(Integer title) {
+                setTitle(title);
             }
         });
     }

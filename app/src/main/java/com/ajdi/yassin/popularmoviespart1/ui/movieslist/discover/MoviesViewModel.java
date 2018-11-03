@@ -1,10 +1,11 @@
-package com.ajdi.yassin.popularmoviespart1.ui.movieslist;
+package com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover;
 
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
 import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
@@ -35,7 +36,7 @@ public class MoviesViewModel extends ViewModel {
         // By default show popular movies
         sortBy.setValue(MoviesFilterType.POPULAR);
         currentTitle.setValue(R.string.action_popular);
-        
+
         repoMoviesResult = Transformations.map(sortBy, new Function<MoviesFilterType, RepoMoviesResult>() {
             @Override
             public RepoMoviesResult apply(MoviesFilterType sort) {
@@ -58,15 +59,15 @@ public class MoviesViewModel extends ViewModel {
                 });
     }
 
-    LiveData<PagedList<Movie>> getPagedList() {
+    public LiveData<PagedList<Movie>> getPagedList() {
         return pagedList;
     }
 
-    LiveData<NetworkState> getNetWorkState() {
+    public LiveData<NetworkState> getNetWorkState() {
         return networkState;
     }
 
-    MoviesFilterType getCurrentSorting() {
+    public MoviesFilterType getCurrentSorting() {
         return sortBy.getValue();
     }
 
@@ -74,7 +75,7 @@ public class MoviesViewModel extends ViewModel {
         return currentTitle;
     }
 
-    void setSortMoviesBy(int id) {
+    public void setSortMoviesBy(int id) {
         MoviesFilterType sort = null;
         Integer title = null;
         switch (id) {
@@ -101,7 +102,7 @@ public class MoviesViewModel extends ViewModel {
     }
 
     // retry any failed requests.
-    void retry() {
+    public void retry() {
         repoMoviesResult.getValue().sourceLiveData.getValue().retryCallback.invoke();
     }
 }

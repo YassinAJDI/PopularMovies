@@ -30,7 +30,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
         this.glide = glide;
     }
 
-    void bindTo(final Movie movie) {
+    public void bindTo(final Movie movie) {
 
         // movie poster
         glide
@@ -51,7 +51,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
         binding.executePendingBindings();
     }
 
-    static MovieViewHolder create(ViewGroup parent, GlideRequests glide) {
+    public static MovieViewHolder create(ViewGroup parent, GlideRequests glide) {
         // Inflate
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         // Create the binding

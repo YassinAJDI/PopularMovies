@@ -2,7 +2,7 @@ package com.ajdi.yassin.popularmoviespart1.utils;
 
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
 import com.ajdi.yassin.popularmoviespart1.ui.moviedetails.MovieDetailsViewModel;
-import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesViewModel;
+import com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover.MoviesViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
