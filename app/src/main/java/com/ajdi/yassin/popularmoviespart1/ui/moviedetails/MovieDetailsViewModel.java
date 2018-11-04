@@ -1,7 +1,7 @@
 package com.ajdi.yassin.popularmoviespart1.ui.moviedetails;
 
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
-import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
 

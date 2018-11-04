@@ -1,6 +1,6 @@
 package com.ajdi.yassin.popularmoviespart1.data.model;
 
-import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 
 import androidx.lifecycle.LiveData;
 

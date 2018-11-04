@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ajdi.yassin.popularmoviespart1.R;
-import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.Trailer;
 import com.ajdi.yassin.popularmoviespart1.databinding.ActivityDetailsBinding;
@@ -31,8 +31,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.ajdi.yassin.popularmoviespart1.data.api.Status.FAILED;
-import static com.ajdi.yassin.popularmoviespart1.data.api.Status.RUNNING;
+import static com.ajdi.yassin.popularmoviespart1.data.remote.api.Status.FAILED;
+import static com.ajdi.yassin.popularmoviespart1.data.remote.api.Status.RUNNING;
 
 public class DetailsActivity extends AppCompatActivity {
 

@@ -1,6 +1,6 @@
-package com.ajdi.yassin.popularmoviespart1.data.paging;
+package com.ajdi.yassin.popularmoviespart1.data.remote.paging;
 
-import com.ajdi.yassin.popularmoviespart1.data.api.MovieApiService;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieApiService;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 

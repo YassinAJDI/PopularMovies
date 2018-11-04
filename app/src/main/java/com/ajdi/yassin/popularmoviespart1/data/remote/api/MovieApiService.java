@@ -1,4 +1,4 @@
-package com.ajdi.yassin.popularmoviespart1.data.api;
+package com.ajdi.yassin.popularmoviespart1.data.remote.api;
 
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.MoviesResponse;

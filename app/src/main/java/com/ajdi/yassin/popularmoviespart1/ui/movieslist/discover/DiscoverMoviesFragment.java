@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ajdi.yassin.popularmoviespart1.R;
-import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesActivity;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;

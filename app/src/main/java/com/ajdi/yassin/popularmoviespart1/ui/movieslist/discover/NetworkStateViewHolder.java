@@ -4,14 +4,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.databinding.ItemNetworkStateBinding;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.ajdi.yassin.popularmoviespart1.data.api.Status.FAILED;
-import static com.ajdi.yassin.popularmoviespart1.data.api.Status.RUNNING;
+import static com.ajdi.yassin.popularmoviespart1.data.remote.api.Status.FAILED;
+import static com.ajdi.yassin.popularmoviespart1.data.remote.api.Status.RUNNING;
 
 /**
  * A View Holder that can display a loading or have click action.

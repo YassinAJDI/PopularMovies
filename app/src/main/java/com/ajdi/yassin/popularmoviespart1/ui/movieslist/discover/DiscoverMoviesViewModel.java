@@ -2,7 +2,7 @@ package com.ajdi.yassin.popularmoviespart1.ui.movieslist.discover;
 
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
-import com.ajdi.yassin.popularmoviespart1.data.api.NetworkState;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
 import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;

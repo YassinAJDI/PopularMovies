@@ -1,4 +1,4 @@
-package com.ajdi.yassin.popularmoviespart1.data.api;
+package com.ajdi.yassin.popularmoviespart1.data.remote.api;
 
 /**
  * @author Yassin Ajdi.
