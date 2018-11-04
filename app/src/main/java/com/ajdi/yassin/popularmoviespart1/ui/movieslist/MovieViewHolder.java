@@ -34,7 +34,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
 
         // movie poster
         glide
-                .load(IMAGE_URL + movie.getImageUrl())
+                .load(IMAGE_URL + movie.getPosterPath())
                 .placeholder(android.R.color.holo_red_dark)
                 .into(binding.imageMoviePoster);
 

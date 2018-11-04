@@ -136,12 +136,12 @@ public class DetailsActivity extends AppCompatActivity {
     private void updateUi(Movie movie) {
         // movie backdrop
         GlideApp.with(this)
-                .load(Constants.BACKDROP_URL + movie.getBackdrop())
+                .load(Constants.BACKDROP_URL + movie.getBackdropPath())
                 .placeholder(R.color.md_grey_200)
                 .into(mBinding.imageMovieBackdrop);
         // movie poster
         GlideApp.with(this)
-                .load(Constants.IMAGE_URL + movie.getImageUrl())
+                .load(Constants.IMAGE_URL + movie.getPosterPath())
                 .placeholder(R.color.md_grey_200)
                 .into(mBinding.movieDetailsInfo.imagePoster);
         // movie title
@@ -149,7 +149,7 @@ public class DetailsActivity extends AppCompatActivity {
         // movie release date
         mBinding.movieDetailsInfo.textReleaseDate.setText(movie.getReleaseDate());
         // vote average
-        mBinding.movieDetailsInfo.textVote.setText(String.valueOf(movie.getUserRating()));
+        mBinding.movieDetailsInfo.textVote.setText(String.valueOf(movie.getVoteAverage()));
         // movie overview
         mBinding.movieDetailsInfo.textOverview.setText(movie.getOverview());
         // movie trailers

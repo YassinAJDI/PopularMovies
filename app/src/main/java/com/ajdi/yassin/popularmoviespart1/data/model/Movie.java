@@ -4,22 +4,32 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 /**
  * Created by Yassin Ajdi.
  */
+@Entity(tableName = "movie")
 public class Movie {
 
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     @SerializedName("id")
     private long id;
 
     @SerializedName("title")
     private String title;
 
+    @ColumnInfo(name = "poster_path")
     @SerializedName("poster_path")
-    private String imageUrl;
+    private String posterPath;
 
+    @ColumnInfo(name = "backdrop_path")
     @SerializedName("backdrop_path")
-    private String backdrop;
+    private String backdropPath;
 
     @SerializedName("overview")
     private String overview;
@@ -27,12 +37,18 @@ public class Movie {
     @SerializedName("popularity")
     private double popularity;
 
+    @ColumnInfo(name = "vote_average")
     @SerializedName("vote_average")
-    private double userRating;
+    private double voteAverage;
 
+    @ColumnInfo(name = "release_date")
     @SerializedName("release_date")
     private String releaseDate;
 
+    @ColumnInfo(name = "is_favorite")
+    private boolean isFavorite;
+
+    @Ignore
     @SerializedName("videos")
     private TrailersResponse trailersResponse;
 
@@ -42,6 +58,14 @@ public class Movie {
 
     public void setTrailersResponse(TrailersResponse trailersResponse) {
         this.trailersResponse = trailersResponse;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     public long getId() {
@@ -60,20 +84,20 @@ public class Movie {
         this.title = title;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
-    public String getBackdrop() {
-        return backdrop;
+    public String getBackdropPath() {
+        return backdropPath;
     }
 
-    public void setBackdrop(String backdrop) {
-        this.backdrop = backdrop;
+    public void setBackdropPath(String backdropPath) {
+        this.backdropPath = backdropPath;
     }
 
     public String getOverview() {
@@ -92,12 +116,12 @@ public class Movie {
         this.popularity = popularity;
     }
 
-    public double getUserRating() {
-        return userRating;
+    public double getVoteAverage() {
+        return voteAverage;
     }
 
-    public void setUserRating(double userRating) {
-        this.userRating = userRating;
+    public void setVoteAverage(double voteAverage) {
+        this.voteAverage = voteAverage;
     }
 
     public String getReleaseDate() {
@@ -115,9 +139,9 @@ public class Movie {
         Movie movie = (Movie) o;
         return id == movie.id &&
                 Double.compare(movie.popularity, popularity) == 0 &&
-                Double.compare(movie.userRating, userRating) == 0 &&
+                Double.compare(movie.voteAverage, voteAverage) == 0 &&
                 Objects.equals(title, movie.title) &&
-                Objects.equals(imageUrl, movie.imageUrl) &&
+                Objects.equals(posterPath, movie.posterPath) &&
                 Objects.equals(overview, movie.overview) &&
                 Objects.equals(releaseDate, movie.releaseDate);
     }
@@ -125,6 +149,6 @@ public class Movie {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, imageUrl, overview, popularity, userRating, releaseDate);
+        return Objects.hash(id, title, posterPath, overview, popularity, voteAverage, releaseDate);
     }
 }

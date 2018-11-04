@@ -4,7 +4,7 @@
     <string name="action_top_rated">Top rated</string>
     <string name="action_popular">Popular</string>
     <string name="action_sort_by">Sort by</string>
-    <string name="movie_backdrop_content_description">Movie backdrop</string>
+    <string name="movie_backdrop_content_description">Movie backdropPath</string>
     <string name="movie_poster">Movie poster</string>
     <string name="label_overview">Overview:</string>
     <string name="release_date">Release date:</string>
