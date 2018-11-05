@@ -1,7 +1,6 @@
 package com.ajdi.yassin.popularmoviespart1.data.remote;
 
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
-import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
 import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieApiService;
 import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
@@ -14,7 +13,6 @@ import java.io.IOException;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
@@ -51,17 +49,8 @@ public class MoviesRemoteDataSource {
         return sInstance;
     }
 
-    public RepoMovieDetailsResult loadMovie(final long movieId) {
-        final MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
-        final MutableLiveData<Movie> movieLiveData = new MutableLiveData<>();
-        try {
-            Response<Movie> response = mMovieApiService.getMovieDetails(movieId).execute();
-            movieLiveData.postValue(response.body());
-        } catch (IOException e) {
-            NetworkState error = NetworkState.error(e.getMessage());
-            networkState.postValue(error);
-        }
-        return new RepoMovieDetailsResult(movieLiveData, networkState);
+    public Response<Movie> loadMovie(final long movieId) throws IOException {
+        return mMovieApiService.getMovieDetails(movieId).execute();
     }
 
     public RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy) {

@@ -8,7 +8,10 @@ import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 import com.ajdi.yassin.popularmoviespart1.utils.AppExecutors;
 
+import java.io.IOException;
+
 import androidx.lifecycle.MutableLiveData;
+import retrofit2.Response;
 
 /**
  * Repository implementation that returns a paginated data and loads data directly from network.
@@ -50,16 +53,16 @@ public class MovieRepository implements DataSource {
         mExecutors.networkIO().execute(new Runnable() {
             @Override
             public void run() {
-                RepoMovieDetailsResult result = mRemoteDataSource.loadMovie(movieId);
-                Movie movie = result.data.getValue();
-                if (movie != null) {
+                try {
+                    Response<Movie> movieResponse = mRemoteDataSource.loadMovie(movieId);
                     // finished loading
-                    movieLiveData.postValue(movie);
                     networkState.postValue(NetworkState.LOADED);
-                } else {
+                    movieLiveData.postValue(movieResponse.body());
+                } catch (IOException e) {
                     // handle network exceptions(in case of no internet access)
-                    NetworkState error = result.networkState.getValue();
+                    NetworkState error = NetworkState.error(e.getMessage());
                     networkState.postValue(error);
+                    e.printStackTrace();
                 }
             }
         });
