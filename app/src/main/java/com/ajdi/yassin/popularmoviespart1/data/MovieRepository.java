@@ -1,24 +1,14 @@
 package com.ajdi.yassin.popularmoviespart1.data;
 
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieApiService;
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
-import com.ajdi.yassin.popularmoviespart1.data.remote.paging.MovieDataSourceFactory;
-import com.ajdi.yassin.popularmoviespart1.data.remote.paging.MoviePageKeyedDataSource;
+import com.ajdi.yassin.popularmoviespart1.data.remote.MoviesRemoteDataSource;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 import com.ajdi.yassin.popularmoviespart1.utils.AppExecutors;
 
-import java.io.IOException;
-
-import androidx.arch.core.util.Function;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
-import androidx.paging.LivePagedListBuilder;
-import androidx.paging.PagedList;
-import retrofit2.Response;
 
 /**
  * Repository implementation that returns a paginated data and loads data directly from network.
@@ -27,32 +17,48 @@ import retrofit2.Response;
  */
 public class MovieRepository implements DataSource {
 
-    private static final int PAGE_SIZE = 20;
+    private static volatile MovieRepository sInstance;
 
-    private final MovieApiService mMovieApiService;
+    private final MoviesRemoteDataSource mRemoteDataSource;
 
     private final AppExecutors mExecutors;
 
-    public MovieRepository(MovieApiService movieApiService,
-                           AppExecutors executors) {
-        mMovieApiService = movieApiService;
+    private MovieRepository(MoviesRemoteDataSource remoteDataSource,
+                            AppExecutors executors) {
+        mRemoteDataSource = remoteDataSource;
         mExecutors = executors;
     }
 
+    public static MovieRepository getInstance(MoviesRemoteDataSource remoteDataSource,
+                                              AppExecutors executors) {
+        if (sInstance == null) {
+            synchronized (MovieRepository.class) {
+                if (sInstance == null) {
+                    sInstance = new MovieRepository(remoteDataSource, executors);
+                }
+            }
+        }
+        return sInstance;
+    }
+
     @Override
-    public RepoMovieDetailsResult getMovie(final long movieId) {
+    public RepoMovieDetailsResult loadMovie(final long movieId) {
         final MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
         final MutableLiveData<Movie> movieLiveData = new MutableLiveData<>();
+        // Show loading bar to user
         networkState.setValue(NetworkState.LOADING);
         mExecutors.networkIO().execute(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Response<Movie> response = mMovieApiService.getMovieDetails(movieId).execute();
+                RepoMovieDetailsResult result = mRemoteDataSource.loadMovie(movieId);
+                Movie movie = result.data.getValue();
+                if (movie != null) {
+                    // finished loading
+                    movieLiveData.postValue(movie);
                     networkState.postValue(NetworkState.LOADED);
-                    movieLiveData.postValue(response.body());
-                } catch (IOException e) {
-                    NetworkState error = NetworkState.error(e.getMessage());
+                } else {
+                    // handle network exceptions(in case of no internet access)
+                    NetworkState error = result.networkState.getValue();
                     networkState.postValue(error);
                 }
             }
@@ -61,33 +67,7 @@ public class MovieRepository implements DataSource {
     }
 
     @Override
-    public RepoMoviesResult getFilteredMoviesBy(MoviesFilterType sortBy) {
-        MovieDataSourceFactory sourceFactory =
-                new MovieDataSourceFactory(mMovieApiService, mExecutors.networkIO(), sortBy);
-
-        // paging configuration
-        PagedList.Config config = new PagedList.Config.Builder()
-                .setEnablePlaceholders(false)
-                .setPageSize(PAGE_SIZE)
-                .build();
-
-        // Get the paged list
-        LiveData<PagedList<Movie>> moviesPagedList = new LivePagedListBuilder<>(sourceFactory, config)
-                .setFetchExecutor(mExecutors.networkIO())
-                .build();
-
-        LiveData<NetworkState> networkState = Transformations.switchMap(sourceFactory.sourceLiveData,
-                new Function<MoviePageKeyedDataSource, LiveData<NetworkState>>() {
-                    @Override
-                    public LiveData<NetworkState> apply(MoviePageKeyedDataSource input) {
-                        return input.networkState;
-                    }
-                });
-
-        return new RepoMoviesResult(
-                moviesPagedList,
-                networkState,
-                sourceFactory.sourceLiveData
-        );
+    public RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy) {
+        return mRemoteDataSource.loadMoviesFilteredBy(sortBy);
     }
 }

@@ -148,7 +148,6 @@ public class Movie {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id, title, posterPath, overview, popularity, voteAverage, releaseDate);
     }
 }

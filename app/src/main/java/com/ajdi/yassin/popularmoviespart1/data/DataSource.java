@@ -9,7 +9,7 @@ import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
  */
 public interface DataSource {
 
-    RepoMovieDetailsResult getMovie(long movieId);
+    RepoMovieDetailsResult loadMovie(long movieId);
 
-    RepoMoviesResult getFilteredMoviesBy(MoviesFilterType sortBy);
+    RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy);
 }

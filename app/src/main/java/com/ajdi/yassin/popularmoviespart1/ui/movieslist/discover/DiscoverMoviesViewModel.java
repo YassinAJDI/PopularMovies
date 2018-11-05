@@ -40,7 +40,7 @@ public class DiscoverMoviesViewModel extends ViewModel {
         repoMoviesResult = Transformations.map(sortBy, new Function<MoviesFilterType, RepoMoviesResult>() {
             @Override
             public RepoMoviesResult apply(MoviesFilterType sort) {
-                return movieRepository.getFilteredMoviesBy(sort);
+                return movieRepository.loadMoviesFilteredBy(sort);
             }
         });
         pagedList = Transformations.switchMap(repoMoviesResult,

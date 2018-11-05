@@ -30,27 +30,27 @@ public class MovieDetailsViewModel extends ViewModel {
         this.repository = repository;
         resultLiveData = Transformations.map(movieId, new Function<Long, RepoMovieDetailsResult>() {
             @Override
-            public RepoMovieDetailsResult apply(Long input) {
-                return repository.getMovie(input);
+            public RepoMovieDetailsResult apply(Long movieId) {
+                return repository.loadMovie(movieId);
             }
         });
         movieLiveData = Transformations.switchMap(resultLiveData,
                 new Function<RepoMovieDetailsResult, LiveData<Movie>>() {
                     @Override
-                    public LiveData<Movie> apply(RepoMovieDetailsResult input) {
-                        return input.data;
+                    public LiveData<Movie> apply(RepoMovieDetailsResult result) {
+                        return result.data;
                     }
                 });
         networkState = Transformations.switchMap(resultLiveData,
                 new Function<RepoMovieDetailsResult, LiveData<NetworkState>>() {
                     @Override
-                    public LiveData<NetworkState> apply(RepoMovieDetailsResult input) {
-                        return input.networkState;
+                    public LiveData<NetworkState> apply(RepoMovieDetailsResult result) {
+                        return result.networkState;
                     }
                 });
     }
 
-    LiveData<Movie> getMovieLiveData() {
+    public LiveData<Movie> getMovieLiveData() {
         return movieLiveData;
     }
 

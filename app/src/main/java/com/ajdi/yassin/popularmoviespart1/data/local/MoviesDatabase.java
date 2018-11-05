@@ -14,17 +14,17 @@ import androidx.room.RoomDatabase;
  * @author Yassin Ajdi.
  */
 @Database(entities = {Movie.class}, version = 1, exportSchema = false)
-public abstract class AppDatabase extends RoomDatabase {
+public abstract class MoviesDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "Movies.db";
 
     public abstract MoviesDao moviesDao();
 
-    private static AppDatabase INSTANCE;
+    private static MoviesDatabase INSTANCE;
 
     private static final Object sLock = new Object();
 
-    public static AppDatabase getInstance(Context context) {
+    public static MoviesDatabase getInstance(Context context) {
         synchronized (sLock) {
             if (INSTANCE == null) {
                 INSTANCE = buildDatabase(context);
@@ -33,8 +33,8 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     }
 
-    private static AppDatabase buildDatabase(final Context context) {
+    private static MoviesDatabase buildDatabase(final Context context) {
         return Room.databaseBuilder(context.getApplicationContext(),
-                AppDatabase.class, DATABASE_NAME).build();
+                MoviesDatabase.class, DATABASE_NAME).build();
     }
 }

@@ -14,6 +14,6 @@ public class Injection {
      * Creates an instance of MovieRepository
      */
     public static MovieRepository provideMovieRepository() {
-        return new MovieRepository(ApiClient.getInstance(), AppExecutors.getInstance());
+        return MovieRepository.getInstance(ApiClient.getInstance(), AppExecutors.getInstance());
     }
 }
