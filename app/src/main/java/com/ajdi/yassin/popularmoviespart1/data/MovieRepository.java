@@ -1,5 +1,6 @@
 package com.ajdi.yassin.popularmoviespart1.data;
 
+import com.ajdi.yassin.popularmoviespart1.data.local.MoviesLocalDataSource;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
@@ -22,22 +23,27 @@ public class MovieRepository implements DataSource {
 
     private static volatile MovieRepository sInstance;
 
+    private final MoviesLocalDataSource mLocalDataSource;
+
     private final MoviesRemoteDataSource mRemoteDataSource;
 
     private final AppExecutors mExecutors;
 
-    private MovieRepository(MoviesRemoteDataSource remoteDataSource,
+    private MovieRepository(MoviesLocalDataSource localDataSource,
+                            MoviesRemoteDataSource remoteDataSource,
                             AppExecutors executors) {
+        mLocalDataSource = localDataSource;
         mRemoteDataSource = remoteDataSource;
         mExecutors = executors;
     }
 
-    public static MovieRepository getInstance(MoviesRemoteDataSource remoteDataSource,
+    public static MovieRepository getInstance(MoviesLocalDataSource localDataSource,
+                                              MoviesRemoteDataSource remoteDataSource,
                                               AppExecutors executors) {
         if (sInstance == null) {
             synchronized (MovieRepository.class) {
                 if (sInstance == null) {
-                    sInstance = new MovieRepository(remoteDataSource, executors);
+                    sInstance = new MovieRepository(localDataSource, remoteDataSource, executors);
                 }
             }
         }
@@ -55,9 +61,14 @@ public class MovieRepository implements DataSource {
             public void run() {
                 try {
                     Response<Movie> movieResponse = mRemoteDataSource.loadMovie(movieId);
-                    // finished loading
+                    Movie movie = movieResponse.body();
+
+                    // save movie into database
+                    mLocalDataSource.saveMovie(movie);
+
+                    // finished loading, show movie details
                     networkState.postValue(NetworkState.LOADED);
-                    movieLiveData.postValue(movieResponse.body());
+                    movieLiveData.postValue(movie);
                 } catch (IOException e) {
                     // handle network exceptions(in case of no internet access)
                     NetworkState error = NetworkState.error(e.getMessage());

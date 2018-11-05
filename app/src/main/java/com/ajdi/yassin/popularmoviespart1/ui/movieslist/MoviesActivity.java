@@ -61,7 +61,7 @@ public class MoviesActivity extends AppCompatActivity {
     }
 
     public static DiscoverMoviesViewModel obtainViewModel(FragmentActivity activity) {
-        ViewModelFactory factory = ViewModelFactory.getInstance(Injection.provideMovieRepository());
+        ViewModelFactory factory = Injection.provideViewModelFactory(activity);
         return ViewModelProviders.of(activity, factory).get(DiscoverMoviesViewModel.class);
     }
 

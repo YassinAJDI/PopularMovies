@@ -6,6 +6,8 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 /**
@@ -13,6 +15,9 @@ import androidx.room.Query;
  */
 @Dao
 public interface MoviesDao {
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void saveMovie(Movie movie);
 
     @Query("SELECT * FROM movie WHERE is_favorite = 1")
     LiveData<List<Movie>> getAllFavoritedMovies();

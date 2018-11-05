@@ -167,7 +167,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private MovieDetailsViewModel obtainViewModel() {
-        ViewModelFactory factory = ViewModelFactory.getInstance(Injection.provideMovieRepository());
+        ViewModelFactory factory = Injection.provideViewModelFactory(this);
         return ViewModelProviders.of(this, factory).get(MovieDetailsViewModel.class);
     }
 

@@ -34,7 +34,9 @@ public abstract class MoviesDatabase extends RoomDatabase {
     }
 
     private static MoviesDatabase buildDatabase(final Context context) {
-        return Room.databaseBuilder(context.getApplicationContext(),
-                MoviesDatabase.class, DATABASE_NAME).build();
+        return Room.databaseBuilder(
+                context.getApplicationContext(),
+                MoviesDatabase.class,
+                DATABASE_NAME).build();
     }
 }
