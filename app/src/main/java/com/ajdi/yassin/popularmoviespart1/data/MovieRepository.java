@@ -84,4 +84,14 @@ public class MovieRepository implements DataSource {
     public RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy) {
         return mRemoteDataSource.loadMoviesFilteredBy(sortBy);
     }
+
+    @Override
+    public void favoriteMovie(final Movie movie) {
+        mExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mLocalDataSource.favoriteMovie(movie);
+            }
+        });
+    }
 }

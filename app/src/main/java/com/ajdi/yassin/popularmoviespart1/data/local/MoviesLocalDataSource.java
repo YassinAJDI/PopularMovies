@@ -30,4 +30,8 @@ public class MoviesLocalDataSource {
     public void saveMovie(Movie movie) {
         mMovieDao.saveMovie(movie);
     }
+
+    public void favoriteMovie(Movie movie) {
+        mMovieDao.favoriteMovie(movie.getId());
+    }
 }

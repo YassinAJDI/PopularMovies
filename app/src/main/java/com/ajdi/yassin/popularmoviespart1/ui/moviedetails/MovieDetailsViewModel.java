@@ -58,11 +58,18 @@ public class MovieDetailsViewModel extends ViewModel {
         return networkState;
     }
 
-    void setMovieId(long movieId) {
+    public void setMovieId(long movieId) {
         this.movieId.setValue(movieId);
     }
 
-    void retry(long movieId) {
+    public void retry(long movieId) {
         setMovieId(movieId);
+    }
+
+    public void onFavoriteClicked() {
+        Movie movie = movieLiveData.getValue();
+        if (!movie.isFavorite()) {
+            repository.favoriteMovie(movie);
+        }
     }
 }

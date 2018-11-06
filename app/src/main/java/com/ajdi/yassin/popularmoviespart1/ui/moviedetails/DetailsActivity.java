@@ -104,13 +104,16 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.movie_details, menu);
         UiUtils.tintMenuIcon(this, menu.findItem(R.id.action_share), R.color.md_white_1000);
+        UiUtils.tintMenuIcon(this, menu.findItem(R.id.action_favorite), R.color.md_white_1000);
+
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_share:
+            case R.id.action_share: {
                 Intent shareIntent = ShareCompat.IntentBuilder.from(this)
                         .setType("text/plain")
                         .setSubject(mMovie.getTitle() + " movie trailer")
@@ -128,7 +131,12 @@ public class DetailsActivity extends AppCompatActivity {
                 if (shareIntent.resolveActivity(getPackageManager()) != null) {
                     startActivity(shareIntent);
                 }
-                break;
+                return true;
+            }
+            case R.id.action_favorite: {
+                mViewModel.onFavoriteClicked();
+                return true;
+            }
         }
         return super.onOptionsItemSelected(item);
     }

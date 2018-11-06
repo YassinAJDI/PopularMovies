@@ -76,7 +76,7 @@ public class DiscoverMoviesViewModel extends ViewModel {
     }
 
     public void setSortMoviesBy(int id) {
-        MoviesFilterType sort = null;
+        MoviesFilterType filterType = null;
         Integer title = null;
         switch (id) {
             case R.id.action_popular_movies: {
@@ -84,7 +84,7 @@ public class DiscoverMoviesViewModel extends ViewModel {
                 if (sortBy.getValue() == MoviesFilterType.POPULAR)
                     return;
 
-                sort = MoviesFilterType.POPULAR;
+                filterType = MoviesFilterType.POPULAR;
                 title = R.string.action_popular;
                 break;
             }
@@ -92,12 +92,12 @@ public class DiscoverMoviesViewModel extends ViewModel {
                 if (sortBy.getValue() == MoviesFilterType.TOP_RATED)
                     return;
 
-                sort = MoviesFilterType.TOP_RATED;
+                filterType = MoviesFilterType.TOP_RATED;
                 title = R.string.action_top_rated;
                 break;
             }
         }
-        sortBy.setValue(sort);
+        sortBy.setValue(filterType);
         currentTitle.setValue(title);
     }
 
