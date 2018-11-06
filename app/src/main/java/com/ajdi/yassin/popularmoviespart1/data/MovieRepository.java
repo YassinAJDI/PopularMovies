@@ -94,4 +94,14 @@ public class MovieRepository implements DataSource {
             }
         });
     }
+
+    @Override
+    public void unfavoriteMovie(final Movie movie) {
+        mExecutors.diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mLocalDataSource.unfavoriteMovie(movie);
+            }
+        });
+    }
 }

@@ -15,4 +15,6 @@ public interface DataSource {
     RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy);
 
     void favoriteMovie(Movie movie);
+
+    void unfavoriteMovie(Movie movie);
 }

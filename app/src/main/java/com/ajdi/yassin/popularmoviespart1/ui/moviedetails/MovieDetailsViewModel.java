@@ -70,6 +70,8 @@ public class MovieDetailsViewModel extends ViewModel {
         Movie movie = movieLiveData.getValue();
         if (!movie.isFavorite()) {
             repository.favoriteMovie(movie);
+        } else {
+            repository.unfavoriteMovie(movie);
         }
     }
 }

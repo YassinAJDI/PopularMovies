@@ -34,4 +34,8 @@ public class MoviesLocalDataSource {
     public void favoriteMovie(Movie movie) {
         mMovieDao.favoriteMovie(movie.getId());
     }
+
+    public void unfavoriteMovie(Movie movie) {
+        mMovieDao.unFavoriteMovie(movie.getId());
+    }
 }
