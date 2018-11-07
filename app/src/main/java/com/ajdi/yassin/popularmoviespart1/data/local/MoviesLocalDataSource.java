@@ -3,6 +3,10 @@ package com.ajdi.yassin.popularmoviespart1.data.local;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.utils.AppExecutors;
 
+import java.util.List;
+
+import androidx.lifecycle.LiveData;
+
 /**
  * @author Yassin Ajdi.
  */
@@ -29,6 +33,10 @@ public class MoviesLocalDataSource {
 
     public void saveMovie(Movie movie) {
         mMovieDao.saveMovie(movie);
+    }
+
+    public LiveData<List<Movie>> getAllFavoriteMovies() {
+        return mMovieDao.getAllFavoriteMovies();
     }
 
     public void favoriteMovie(Movie movie) {

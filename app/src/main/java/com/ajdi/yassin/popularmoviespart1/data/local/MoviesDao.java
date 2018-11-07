@@ -20,7 +20,7 @@ public interface MoviesDao {
     void saveMovie(Movie movie);
 
     @Query("SELECT * FROM movie WHERE is_favorite = 1")
-    LiveData<List<Movie>> getAllFavoritedMovies();
+    LiveData<List<Movie>> getAllFavoriteMovies();
 
     /**
      * Favorite a movie.

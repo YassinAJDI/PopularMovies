@@ -10,7 +10,9 @@ import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 import com.ajdi.yassin.popularmoviespart1.utils.AppExecutors;
 
 import java.io.IOException;
+import java.util.List;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import retrofit2.Response;
 
@@ -83,6 +85,11 @@ public class MovieRepository implements DataSource {
     @Override
     public RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy) {
         return mRemoteDataSource.loadMoviesFilteredBy(sortBy);
+    }
+
+    @Override
+    public LiveData<List<Movie>> getAllFavoriteMovies() {
+        return mLocalDataSource.getAllFavoriteMovies();
     }
 
     @Override

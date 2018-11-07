@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <include
-        android:visibility="gone"
-        android:id="@+id/movies_list"
-        layout="@layout/fragment_discover_movies" />
-
-    <TextView
-        android:layout_marginTop="200dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:id="@+id/textView2"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Empty no favorites yet!" />
+        android:layout_height="match_parent">
 
-    <!--add empty state layout here-->
+        <include
+            android:id="@+id/movies_list"
+            layout="@layout/fragment_discover_movies" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/empty_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Empty no favorites yet!" />
+
+        <!--add empty state layout here-->
+    </FrameLayout>
+</layout>

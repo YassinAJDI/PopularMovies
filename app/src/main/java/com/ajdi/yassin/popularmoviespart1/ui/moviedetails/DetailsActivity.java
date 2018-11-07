@@ -106,7 +106,6 @@ public class DetailsActivity extends AppCompatActivity {
         UiUtils.tintMenuIcon(this, menu.findItem(R.id.action_share), R.color.md_white_1000);
         UiUtils.tintMenuIcon(this, menu.findItem(R.id.action_favorite), R.color.md_white_1000);
 
-
         return true;
     }
 
