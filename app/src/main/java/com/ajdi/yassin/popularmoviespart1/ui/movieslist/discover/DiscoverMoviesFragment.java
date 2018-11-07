@@ -71,7 +71,7 @@ public class DiscoverMoviesFragment extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
 
         // observe paged list
-        viewModel.getPagedList().observe(this, new Observer<PagedList<Movie>>() {
+        viewModel.getPagedList().observe(getViewLifecycleOwner(), new Observer<PagedList<Movie>>() {
             @Override
             public void onChanged(PagedList<Movie> movies) {
                 discoverMoviesAdapter.submitList(movies);
@@ -79,7 +79,7 @@ public class DiscoverMoviesFragment extends Fragment {
         });
 
         // observe network state
-        viewModel.getNetWorkState().observe(this, new Observer<NetworkState>() {
+        viewModel.getNetWorkState().observe(getViewLifecycleOwner(), new Observer<NetworkState>() {
             @Override
             public void onChanged(NetworkState networkState) {
                 discoverMoviesAdapter.setNetworkState(networkState);

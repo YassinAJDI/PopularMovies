@@ -65,7 +65,7 @@ public class FavoritesFragment extends Fragment {
         recyclerView.addItemDecoration(itemDecoration);
 
         // observe favorites list
-        viewModel.getFavoriteListLiveData().observe(this, new Observer<List<Movie>>() {
+        viewModel.getFavoriteListLiveData().observe(getViewLifecycleOwner(), new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movieList) {
                 if (movieList.isEmpty()) {
