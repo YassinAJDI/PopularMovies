@@ -26,6 +26,8 @@ public class MovieDetailsViewModel extends ViewModel {
 
     private LiveData<NetworkState> networkState;
 
+    private boolean isFavorite;
+
     public MovieDetailsViewModel(final MovieRepository repository) {
         this.repository = repository;
         resultLiveData = Transformations.map(movieId, new Function<Long, RepoMovieDetailsResult>() {
@@ -38,6 +40,9 @@ public class MovieDetailsViewModel extends ViewModel {
                 new Function<RepoMovieDetailsResult, LiveData<Movie>>() {
                     @Override
                     public LiveData<Movie> apply(RepoMovieDetailsResult result) {
+                        if (result.data.getValue() != null) {
+                            isFavorite = result.data.getValue().isFavorite();
+                        }
                         return result.data;
                     }
                 });
@@ -58,6 +63,14 @@ public class MovieDetailsViewModel extends ViewModel {
         return networkState;
     }
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
     public void setMovieId(long movieId) {
         this.movieId.setValue(movieId);
     }
@@ -68,10 +81,12 @@ public class MovieDetailsViewModel extends ViewModel {
 
     public void onFavoriteClicked() {
         Movie movie = movieLiveData.getValue();
-        if (!movie.isFavorite()) {
+        if (!isFavorite) {
             repository.favoriteMovie(movie);
+            isFavorite = true;
         } else {
             repository.unfavoriteMovie(movie);
+            isFavorite = false;
         }
     }
 }

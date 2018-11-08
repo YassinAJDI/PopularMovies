@@ -10,6 +10,6 @@
     <item
         android:id="@+id/action_favorite"
         android:icon="@drawable/ic_favorite_border_black_24dp"
-        android:title="@string/action_favorite_movie"
+        android:title="@string/action_favorite"
         app:showAsAction="always" />
 </menu>

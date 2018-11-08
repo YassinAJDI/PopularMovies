@@ -9,9 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ajdi.yassin.popularmoviespart1.R;
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.Trailer;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.databinding.ActivityDetailsBinding;
 import com.ajdi.yassin.popularmoviespart1.utils.Constants;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
@@ -43,8 +43,6 @@ public class DetailsActivity extends AppCompatActivity {
     private ActivityDetailsBinding mBinding;
 
     private MovieDetailsViewModel mViewModel;
-
-    private Movie mMovie = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +76,7 @@ public class DetailsActivity extends AppCompatActivity {
         mViewModel.getMovieLiveData().observe(this, new Observer<Movie>() {
             @Override
             public void onChanged(Movie movie) {
-                mMovie = movie;
+//              mViewModel.setFavorite(movie.isFavorite());
                 updateUi(movie);
             }
         });
@@ -104,7 +102,16 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.movie_details, menu);
         UiUtils.tintMenuIcon(this, menu.findItem(R.id.action_share), R.color.md_white_1000);
-        UiUtils.tintMenuIcon(this, menu.findItem(R.id.action_favorite), R.color.md_white_1000);
+
+        MenuItem favoriteItem = menu.findItem(R.id.action_favorite);
+        if (mViewModel.isFavorite()) {
+            favoriteItem.setIcon(R.drawable.ic_favorite_black_24dp)
+                    .setTitle(R.string.action_remove_from_favorites);
+        } else {
+            favoriteItem.setIcon(R.drawable.ic_favorite_border_black_24dp)
+                    .setTitle(R.string.action_favorite);
+        }
+        UiUtils.tintMenuIcon(this, favoriteItem, R.color.md_white_1000);
 
         return true;
     }
@@ -113,12 +120,13 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share: {
+                Movie movie = mViewModel.getMovieLiveData().getValue();
                 Intent shareIntent = ShareCompat.IntentBuilder.from(this)
                         .setType("text/plain")
-                        .setSubject(mMovie.getTitle() + " movie trailer")
-                        .setText("Check out " + mMovie.getTitle() + " movie trailer at " +
+                        .setSubject(movie.getTitle() + " movie trailer")
+                        .setText("Check out " + movie.getTitle() + " movie trailer at " +
                                 Uri.parse(Constants.YOUTUBE_WEB_URL +
-                                        mMovie.getTrailersResponse().getTrailers().get(0).getKey())
+                                        movie.getTrailersResponse().getTrailers().get(0).getKey())
                         )
                         .createChooserIntent();
 
@@ -134,6 +142,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
             case R.id.action_favorite: {
                 mViewModel.onFavoriteClicked();
+                invalidateOptionsMenu();
                 return true;
             }
         }
