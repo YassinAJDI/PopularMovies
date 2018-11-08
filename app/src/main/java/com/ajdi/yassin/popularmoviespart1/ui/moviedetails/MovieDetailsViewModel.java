@@ -1,9 +1,11 @@
 package com.ajdi.yassin.popularmoviespart1.ui.moviedetails;
 
+import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
+import com.ajdi.yassin.popularmoviespart1.utils.SnackbarMessage;
 
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
@@ -25,6 +27,8 @@ public class MovieDetailsViewModel extends ViewModel {
     private LiveData<Movie> movieLiveData;
 
     private LiveData<NetworkState> networkState;
+
+    private final SnackbarMessage mSnackbarText = new SnackbarMessage();
 
     private boolean isFavorite;
 
@@ -63,12 +67,12 @@ public class MovieDetailsViewModel extends ViewModel {
         return networkState;
     }
 
-    public boolean isFavorite() {
-        return isFavorite;
+    public SnackbarMessage getSnackbarMessage() {
+        return mSnackbarText;
     }
 
-    public void setFavorite(boolean favorite) {
-        isFavorite = favorite;
+    public boolean isFavorite() {
+        return isFavorite;
     }
 
     public void setMovieId(long movieId) {
@@ -84,9 +88,15 @@ public class MovieDetailsViewModel extends ViewModel {
         if (!isFavorite) {
             repository.favoriteMovie(movie);
             isFavorite = true;
+            showSnackbarMessage(R.string.movie_added_successfully);
         } else {
             repository.unfavoriteMovie(movie);
             isFavorite = false;
+            showSnackbarMessage(R.string.movie_removed_successfully);
         }
+    }
+
+    private void showSnackbarMessage(Integer message) {
+        mSnackbarText.setValue(message);
     }
 }

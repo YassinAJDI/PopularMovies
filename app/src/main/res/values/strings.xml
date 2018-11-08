@@ -12,4 +12,6 @@
     <string name="action_share">Share trailer</string>
     <string name="action_favorite">Add to favorites</string>
     <string name="action_remove_from_favorites">Delete from favorites</string>
+    <string name="movie_added_successfully">Movie added to your favorites successfully</string>
+    <string name="movie_removed_successfully">Movie removed from your favorites successfully</string>
 </resources>

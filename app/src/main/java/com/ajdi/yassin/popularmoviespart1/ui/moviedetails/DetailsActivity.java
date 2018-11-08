@@ -19,6 +19,7 @@ import com.ajdi.yassin.popularmoviespart1.utils.Injection;
 import com.ajdi.yassin.popularmoviespart1.utils.UiUtils;
 import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -76,7 +77,6 @@ public class DetailsActivity extends AppCompatActivity {
         mViewModel.getMovieLiveData().observe(this, new Observer<Movie>() {
             @Override
             public void onChanged(Movie movie) {
-//              mViewModel.setFavorite(movie.isFavorite());
                 updateUi(movie);
             }
         });
@@ -85,6 +85,13 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mViewModel.retry(movieId);
+            }
+        });
+        // Observe snackbar messages
+        mViewModel.getSnackbarMessage().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer message) {
+                Snackbar.make(mBinding.getRoot(), message, Snackbar.LENGTH_SHORT).show();
             }
         });
     }
