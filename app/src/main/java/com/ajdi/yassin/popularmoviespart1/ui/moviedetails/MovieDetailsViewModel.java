@@ -1,5 +1,7 @@
 package com.ajdi.yassin.popularmoviespart1.ui.moviedetails;
 
+import android.util.Log;
+
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
@@ -22,7 +24,7 @@ public class MovieDetailsViewModel extends ViewModel {
 
     private LiveData<RepoMovieDetailsResult> resultLiveData;
 
-    private MutableLiveData<Long> movieId = new MutableLiveData<>();
+    private MutableLiveData<Long> movieIdLiveData = new MutableLiveData<>();
 
     private LiveData<Movie> movieLiveData;
 
@@ -34,7 +36,15 @@ public class MovieDetailsViewModel extends ViewModel {
 
     public MovieDetailsViewModel(final MovieRepository repository) {
         this.repository = repository;
-        resultLiveData = Transformations.map(movieId, new Function<Long, RepoMovieDetailsResult>() {
+    }
+
+    public void init(long movieId) {
+        if (movieLiveData != null) {
+            return; // trigger loading movie details, only once the activity created
+        }
+        Log.d(getClass().getSimpleName(), "Initializing viewModel");
+
+        resultLiveData = Transformations.map(movieIdLiveData, new Function<Long, RepoMovieDetailsResult>() {
             @Override
             public RepoMovieDetailsResult apply(Long movieId) {
                 return repository.loadMovie(movieId);
@@ -57,6 +67,8 @@ public class MovieDetailsViewModel extends ViewModel {
                         return result.networkState;
                     }
                 });
+
+        setMovieIdLiveData(movieId);
     }
 
     public LiveData<Movie> getMovieLiveData() {
@@ -75,12 +87,12 @@ public class MovieDetailsViewModel extends ViewModel {
         return isFavorite;
     }
 
-    public void setMovieId(long movieId) {
-        this.movieId.setValue(movieId);
+    private void setMovieIdLiveData(long movieId) {
+        movieIdLiveData.setValue(movieId);
     }
 
     public void retry(long movieId) {
-        setMovieId(movieId);
+        setMovieIdLiveData(movieId);
     }
 
     public void onFavoriteClicked() {

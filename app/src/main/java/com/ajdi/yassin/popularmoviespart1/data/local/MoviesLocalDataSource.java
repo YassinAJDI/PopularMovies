@@ -35,6 +35,10 @@ public class MoviesLocalDataSource {
         mMovieDao.saveMovie(movie);
     }
 
+    public Movie getMovieById(long movieId) {
+        return mMovieDao.getMovieById(movieId);
+    }
+
     public LiveData<List<Movie>> getAllFavoriteMovies() {
         return mMovieDao.getAllFavoriteMovies();
     }

@@ -19,6 +19,9 @@ public interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void saveMovie(Movie movie);
 
+    @Query("SELECT * FROM movie WHERE id = :movieId")
+    Movie getMovieById(long movieId);
+
     @Query("SELECT * FROM movie WHERE is_favorite = 1")
     LiveData<List<Movie>> getAllFavoriteMovies();
 

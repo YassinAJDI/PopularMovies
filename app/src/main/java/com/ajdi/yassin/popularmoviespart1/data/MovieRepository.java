@@ -58,27 +58,40 @@ public class MovieRepository implements DataSource {
         final MutableLiveData<Movie> movieLiveData = new MutableLiveData<>();
         // Show loading bar to user
         networkState.setValue(NetworkState.LOADING);
-        mExecutors.networkIO().execute(new Runnable() {
+        // check if movie exist in local database
+        mExecutors.diskIO().execute(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Response<Movie> movieResponse = mRemoteDataSource.loadMovie(movieId);
-                    Movie movie = movieResponse.body();
-
-                    // save movie into database
-                    mLocalDataSource.saveMovie(movie);
-
-                    // finished loading, show movie details
+                Movie movie = mLocalDataSource.getMovieById(movieId);
+                if (movie != null) {
+                    // awesome, movie exist in database. show movie details
                     networkState.postValue(NetworkState.LOADED);
                     movieLiveData.postValue(movie);
-                } catch (IOException e) {
-                    // handle network exceptions(in case of no internet access)
-                    NetworkState error = NetworkState.error(e.getMessage());
-                    networkState.postValue(error);
-                    e.printStackTrace();
+                } else { // movie doesn't exist, lets fetch movie from network
+                    mExecutors.networkIO().execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Response<Movie> movieResponse = mRemoteDataSource.loadMovie(movieId);
+                                Movie movie = movieResponse.body();
+                                // insert movie into database
+                                mLocalDataSource.saveMovie(movie);
+                                // TODO: 11/9/2018 insert trailers and reviews
+                                // finished loading, show movie details
+                                networkState.postValue(NetworkState.LOADED);
+                                movieLiveData.postValue(movie);
+                            } catch (IOException e) {
+                                // handle network exceptions(in case of no internet access)
+                                NetworkState error = NetworkState.error(e.getMessage());
+                                networkState.postValue(error);
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
             }
         });
+
         return new RepoMovieDetailsResult(movieLiveData, networkState);
     }
 

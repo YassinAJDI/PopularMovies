@@ -50,22 +50,14 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
 
-        Intent intent = getIntent();
-        if (intent == null) {
-            closeOnError();
-        }
-
-        final long movieId = intent.getLongExtra(EXTRA_MOVIE_ID, DEFAULT_ID);
+        final long movieId = getIntent().getLongExtra(EXTRA_MOVIE_ID, DEFAULT_ID);
         if (movieId == DEFAULT_ID) {
             closeOnError();
         }
 
         setupToolbar();
         mViewModel = obtainViewModel();
-        if (savedInstanceState == null) {
-            // trigger loading movie details, only once the activity created
-            mViewModel.setMovieId(movieId);
-        }
+        mViewModel.init(movieId);
         // observe network state
         mViewModel.getNetworkState().observe(this, new Observer<NetworkState>() {
             @Override
