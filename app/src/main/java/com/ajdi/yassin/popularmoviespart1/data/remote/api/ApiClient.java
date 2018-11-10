@@ -1,5 +1,7 @@
 package com.ajdi.yassin.popularmoviespart1.data.remote.api;
 
+import com.ajdi.yassin.popularmoviespart1.utils.LiveDataCallAdapterFactory;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -14,7 +16,7 @@ public class ApiClient {
 
     private static final OkHttpClient client;
 
-    private static MovieApiService sInstance;
+    private static MovieService sInstance;
 
     private static final Object sLock = new Object();
 
@@ -28,10 +30,10 @@ public class ApiClient {
                 .build();
     }
 
-    public static MovieApiService getInstance() {
+    public static MovieService getInstance() {
         synchronized (sLock) {
             if (sInstance == null) {
-                sInstance = getRetrofitInstance().create(MovieApiService.class);
+                sInstance = getRetrofitInstance().create(MovieService.class);
             }
             return sInstance;
         }
@@ -41,6 +43,7 @@ public class ApiClient {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 .client(client)
                 .build();
     }

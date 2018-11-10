@@ -3,17 +3,18 @@ package com.ajdi.yassin.popularmoviespart1.data.remote.api;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.MoviesResponse;
 
+import androidx.lifecycle.LiveData;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
- * TheMovieDB API communication setup via Retrofit.
+ * TheMovieDB REST API access points.
  * <p>
  * Created by Yassin Ajdi.
  */
-public interface MovieApiService {
+public interface MovieService {
 
     @GET("movie/popular")
     Call<MoviesResponse> getPopularMovies(@Query("page") int page);
@@ -22,7 +23,7 @@ public interface MovieApiService {
     Call<MoviesResponse> getTopRatedMovies(@Query("page") int page);
 
     // Instead of using 2 separate requests we use append_to_response
-    // to eliminate duplicate requests and save network bandwidth data
+    // to eliminate duplicate requests and save network bandwidth
     @GET("movie/{id}?append_to_response=videos")
-    Call<Movie> getMovieDetails(@Path("id") long id);
+    LiveData<ApiResponse<Movie>> getMovieDetails(@Path("id") long id);
 }

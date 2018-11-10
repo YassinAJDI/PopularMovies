@@ -6,6 +6,7 @@ import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
+import com.ajdi.yassin.popularmoviespart1.data.model.Resource;
 import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.utils.SnackbarMessage;
 
@@ -23,6 +24,7 @@ public class MovieDetailsViewModel extends ViewModel {
     private final MovieRepository repository;
 
     private LiveData<RepoMovieDetailsResult> resultLiveData;
+    public LiveData<Resource<Movie>> result;
 
     private MutableLiveData<Long> movieIdLiveData = new MutableLiveData<>();
 
@@ -44,29 +46,35 @@ public class MovieDetailsViewModel extends ViewModel {
         }
         Log.d(getClass().getSimpleName(), "Initializing viewModel");
 
-        resultLiveData = Transformations.map(movieIdLiveData, new Function<Long, RepoMovieDetailsResult>() {
+//        resultLiveData = Transformations.map(movieIdLiveData, new Function<Long, RepoMovieDetailsResult>() {
+//            @Override
+//            public RepoMovieDetailsResult apply(Long movieId) {
+//                return repository.loadMovie(movieId);
+//            }
+//        });
+        result = Transformations.switchMap(movieIdLiveData, new Function<Long, LiveData<Resource<Movie>>>() {
             @Override
-            public RepoMovieDetailsResult apply(Long movieId) {
-                return repository.loadMovie(movieId);
+            public LiveData<Resource<Movie>> apply(Long movieId) {
+                return repository.load(movieId);
             }
         });
-        movieLiveData = Transformations.switchMap(resultLiveData,
-                new Function<RepoMovieDetailsResult, LiveData<Movie>>() {
-                    @Override
-                    public LiveData<Movie> apply(RepoMovieDetailsResult result) {
-                        if (result.data.getValue() != null) {
-                            isFavorite = result.data.getValue().isFavorite();
-                        }
-                        return result.data;
-                    }
-                });
-        networkState = Transformations.switchMap(resultLiveData,
-                new Function<RepoMovieDetailsResult, LiveData<NetworkState>>() {
-                    @Override
-                    public LiveData<NetworkState> apply(RepoMovieDetailsResult result) {
-                        return result.networkState;
-                    }
-                });
+//        movieLiveData = Transformations.switchMap(resultLiveData,
+//                new Function<RepoMovieDetailsResult, LiveData<Movie>>() {
+//                    @Override
+//                    public LiveData<Movie> apply(RepoMovieDetailsResult result) {
+//                        if (result.data.getValue() != null) {
+//                            isFavorite = result.data.getValue().isFavorite();
+//                        }
+//                        return result.data;
+//                    }
+//                });
+//        networkState = Transformations.switchMap(resultLiveData,
+//                new Function<RepoMovieDetailsResult, LiveData<NetworkState>>() {
+//                    @Override
+//                    public LiveData<NetworkState> apply(RepoMovieDetailsResult result) {
+//                        return result.networkState;
+//                    }
+//                });
 
         setMovieIdLiveData(movieId);
     }

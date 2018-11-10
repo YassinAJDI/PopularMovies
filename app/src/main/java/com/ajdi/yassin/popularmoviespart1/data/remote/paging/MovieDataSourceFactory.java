@@ -1,6 +1,6 @@
 package com.ajdi.yassin.popularmoviespart1.data.remote.paging;
 
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieApiService;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieService;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.ui.movieslist.MoviesFilterType;
 
@@ -18,13 +18,13 @@ public class MovieDataSourceFactory extends DataSource.Factory<Integer, Movie> {
 
     public MutableLiveData<MoviePageKeyedDataSource> sourceLiveData = new MutableLiveData<>();
 
-    private final MovieApiService movieApiService;
+    private final MovieService movieService;
     private final Executor networkExecutor;
     private final MoviesFilterType sortBy;
 
-    public MovieDataSourceFactory(MovieApiService movieApiService,
+    public MovieDataSourceFactory(MovieService movieService,
                                   Executor networkExecutor, MoviesFilterType sortBy) {
-        this.movieApiService = movieApiService;
+        this.movieService = movieService;
         this.sortBy = sortBy;
         this.networkExecutor = networkExecutor;
     }
@@ -32,7 +32,7 @@ public class MovieDataSourceFactory extends DataSource.Factory<Integer, Movie> {
     @Override
     public DataSource<Integer, Movie> create() {
         MoviePageKeyedDataSource movieDataSource =
-                new MoviePageKeyedDataSource(movieApiService, networkExecutor, sortBy);
+                new MoviePageKeyedDataSource(movieService, networkExecutor, sortBy);
         sourceLiveData.postValue(movieDataSource);
         return movieDataSource;
     }

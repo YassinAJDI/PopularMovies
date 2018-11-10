@@ -10,8 +10,8 @@ import android.view.View;
 
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.data.model.Resource;
 import com.ajdi.yassin.popularmoviespart1.data.model.Trailer;
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.databinding.ActivityDetailsBinding;
 import com.ajdi.yassin.popularmoviespart1.utils.Constants;
 import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
@@ -32,9 +32,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.ajdi.yassin.popularmoviespart1.data.remote.api.Status.FAILED;
-import static com.ajdi.yassin.popularmoviespart1.data.remote.api.Status.RUNNING;
-
 public class DetailsActivity extends AppCompatActivity {
 
     public static final String EXTRA_MOVIE_ID = "extra_movie_id";
@@ -53,23 +50,42 @@ public class DetailsActivity extends AppCompatActivity {
         final long movieId = getIntent().getLongExtra(EXTRA_MOVIE_ID, DEFAULT_ID);
         if (movieId == DEFAULT_ID) {
             closeOnError();
+            return;
         }
 
         setupToolbar();
         mViewModel = obtainViewModel();
         mViewModel.init(movieId);
         // observe network state
-        mViewModel.getNetworkState().observe(this, new Observer<NetworkState>() {
-            @Override
-            public void onChanged(NetworkState networkState) {
-                handleNetworkState(networkState);
-            }
-        });
+//        mViewModel.getNetworkState().observe(this, new Observer<NetworkState>() {
+//            @Override
+//            public void onChanged(NetworkState networkState) {
+//                handleNetworkState(networkState);
+//            }
+//        });
         // observe movie data
-        mViewModel.getMovieLiveData().observe(this, new Observer<Movie>() {
+//        mViewModel.getMovieLiveData().observe(this, new Observer<Movie>() {
+//            @Override
+//            public void onChanged(Movie movie) {
+//                updateUi(movie);
+//            }
+//        });
+        mViewModel.result.observe(this, new Observer<Resource<Movie>>() {
             @Override
-            public void onChanged(Movie movie) {
-                updateUi(movie);
+            public void onChanged(Resource<Movie> movieResource) {
+                handleNetworkState(movieResource);
+                switch (movieResource.status) {
+                    case LOADING: // handleNetworkState() takes care of this
+                        break;
+                    case SUCCESS:
+                        if (movieResource.data == null)
+                            return;
+                        updateUi(movieResource.data);
+                        break;
+                    case ERROR: // handleNetworkState() takes care of this
+                        break;
+
+                }
             }
         });
         // handle retry event in case of network failure
@@ -217,21 +233,21 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
 
-    private void handleNetworkState(NetworkState networkState) {
-        boolean isLoaded = networkState == NetworkState.LOADED;
-        mBinding.appbar.setVisibility(isVisible(isLoaded));
-        mBinding.movieDetails.setVisibility(isVisible(isLoaded));
+    private void handleNetworkState(Resource resource) {
+        Resource.Status status = resource.status;
+        mBinding.appbar.setVisibility(showOrHide(status == Resource.Status.SUCCESS));
+        mBinding.movieDetails.setVisibility(showOrHide(status == Resource.Status.SUCCESS));
         mBinding.networkState.progressBar.setVisibility(
-                isVisible(networkState.getStatus() == RUNNING));
+                showOrHide(status == Resource.Status.LOADING));
         mBinding.networkState.retryButton.setVisibility(
-                isVisible(networkState.getStatus() == FAILED));
+                showOrHide(status == Resource.Status.ERROR));
         mBinding.networkState.errorMsg.setVisibility(
-                isVisible(networkState.getMsg() != null));
-        mBinding.networkState.errorMsg.setText(networkState.getMsg());
+                showOrHide(resource.message != null));
+        mBinding.networkState.errorMsg.setText(resource.message);
     }
 
-    private int isVisible(boolean condition) {
-        if (condition)
+    private int showOrHide(boolean show) {
+        if (show)
             return View.VISIBLE;
         else
             return View.GONE;

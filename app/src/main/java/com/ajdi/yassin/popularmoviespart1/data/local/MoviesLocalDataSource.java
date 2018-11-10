@@ -35,7 +35,7 @@ public class MoviesLocalDataSource {
         mMovieDao.saveMovie(movie);
     }
 
-    public Movie getMovieById(long movieId) {
+    public LiveData<Movie> getMovieById(long movieId) {
         return mMovieDao.getMovieById(movieId);
     }
 

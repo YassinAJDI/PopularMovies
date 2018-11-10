@@ -1,6 +1,6 @@
 package com.ajdi.yassin.popularmoviespart1.data.remote.paging;
 
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieApiService;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieService;
 import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.data.model.MoviesResponse;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
@@ -31,7 +31,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
     public MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
     public MutableLiveData<NetworkState> initialLoad = new MutableLiveData<>();
 
-    private final MovieApiService movieApiService;
+    private final MovieService movieService;
 
     private final Executor networkExecutor;
 
@@ -39,9 +39,9 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
 
     public RetryCallback retryCallback = null;
 
-    public MoviePageKeyedDataSource(MovieApiService movieApiService,
+    public MoviePageKeyedDataSource(MovieService movieService,
                                     Executor networkExecutor, MoviesFilterType sortBy) {
-        this.movieApiService = movieApiService;
+        this.movieService = movieService;
         this.networkExecutor = networkExecutor;
         this.sortBy = sortBy;
     }
@@ -55,9 +55,9 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
         // load data from API
         Call<MoviesResponse> request;
         if (sortBy == MoviesFilterType.POPULAR) {
-            request = movieApiService.getPopularMovies(FIRST_PAGE);
+            request = movieService.getPopularMovies(FIRST_PAGE);
         } else {
-            request = movieApiService.getTopRatedMovies(FIRST_PAGE);
+            request = movieService.getTopRatedMovies(FIRST_PAGE);
         }
 
         // we execute sync since this is triggered by refresh
@@ -105,9 +105,9 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
         // load data from API
         Call<MoviesResponse> request;
         if (sortBy == MoviesFilterType.POPULAR) {
-            request = movieApiService.getPopularMovies(params.key);
+            request = movieService.getPopularMovies(params.key);
         } else {
-            request = movieApiService.getTopRatedMovies(params.key);
+            request = movieService.getTopRatedMovies(params.key);
         }
 
         request.enqueue(new Callback<MoviesResponse>() {

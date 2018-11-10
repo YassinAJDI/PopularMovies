@@ -7,7 +7,7 @@ import com.ajdi.yassin.popularmoviespart1.data.local.MoviesDatabase;
 import com.ajdi.yassin.popularmoviespart1.data.local.MoviesLocalDataSource;
 import com.ajdi.yassin.popularmoviespart1.data.remote.MoviesRemoteDataSource;
 import com.ajdi.yassin.popularmoviespart1.data.remote.api.ApiClient;
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieApiService;
+import com.ajdi.yassin.popularmoviespart1.data.remote.api.MovieService;
 
 /**
  * Class that handles object creation.
@@ -20,7 +20,7 @@ public class Injection {
      * Creates an instance of MoviesRemoteDataSource
      */
     public static MoviesRemoteDataSource provideMoviesRemoteDataSource() {
-        MovieApiService apiService = ApiClient.getInstance();
+        MovieService apiService = ApiClient.getInstance();
         AppExecutors executors = AppExecutors.getInstance();
         return MoviesRemoteDataSource.getInstance(apiService, executors);
     }
