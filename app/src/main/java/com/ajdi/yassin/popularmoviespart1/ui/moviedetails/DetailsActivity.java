@@ -45,13 +45,14 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
-
         final long movieId = getIntent().getLongExtra(EXTRA_MOVIE_ID, DEFAULT_ID);
         if (movieId == DEFAULT_ID) {
             closeOnError();
             return;
         }
+
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
+        mBinding.setLifecycleOwner(this);
 
         setupToolbar();
         mViewModel = obtainViewModel();
@@ -70,10 +71,12 @@ public class DetailsActivity extends AppCompatActivity {
 //                updateUi(movie);
 //            }
 //        });
-        mViewModel.result.observe(this, new Observer<Resource<Movie>>() {
+        mViewModel.getResult().observe(this, new Observer<Resource<Movie>>() {
             @Override
             public void onChanged(Resource<Movie> movieResource) {
-                handleNetworkState(movieResource);
+                mBinding.setMovieResource(movieResource);
+                mBinding.setMovie(movieResource.data);
+//                handleNetworkState(movieResource);
                 switch (movieResource.status) {
                     case LOADING: // handleNetworkState() takes care of this
                         break;
@@ -84,7 +87,6 @@ public class DetailsActivity extends AppCompatActivity {
                         break;
                     case ERROR: // handleNetworkState() takes care of this
                         break;
-
                 }
             }
         });
@@ -165,26 +167,12 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void updateUi(Movie movie) {
-        // movie backdrop
-        GlideApp.with(this)
-                .load(Constants.BACKDROP_URL + movie.getBackdropPath())
-                .placeholder(R.color.md_grey_200)
-                .into(mBinding.imageMovieBackdrop);
-        // movie poster
-        GlideApp.with(this)
-                .load(Constants.IMAGE_URL + movie.getPosterPath())
-                .placeholder(R.color.md_grey_200)
-                .into(mBinding.movieDetailsInfo.imagePoster);
-        // movie title
-        mBinding.movieDetailsInfo.textTitle.setText(movie.getTitle());
-        // movie release date
-        mBinding.movieDetailsInfo.textReleaseDate.setText(movie.getReleaseDate());
-        // vote average
-        mBinding.movieDetailsInfo.textVote.setText(String.valueOf(movie.getVoteAverage()));
-        // movie overview
-        mBinding.movieDetailsInfo.textOverview.setText(movie.getOverview());
         // movie trailers
-        setupTrailersAdapter(movie.getTrailersResponse().getTrailers());
+        if (movie.getTrailersResponse() != null) {
+            setupTrailersAdapter(movie.getTrailersResponse().getTrailers());
+        } else {
+            mBinding.movieDetailsInfo.listTrailers.setVisibility(View.GONE);
+        }
 
         mBinding.executePendingBindings();
     }
@@ -222,7 +210,7 @@ public class DetailsActivity extends AppCompatActivity {
                 //verify if the toolbar is completely collapsed and set the movie name as the title
                 if (scrollRange + verticalOffset == 0) {
                     mBinding.collapsingToolbar.setTitle(
-                            mViewModel.getMovieLiveData().getValue().getTitle());
+                            mViewModel.getResult().getValue().data.getTitle());
                     isShow = true;
                 } else if (isShow) {
                     //display an empty string when toolbar is expanded

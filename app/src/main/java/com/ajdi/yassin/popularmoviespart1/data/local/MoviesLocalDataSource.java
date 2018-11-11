@@ -16,8 +16,11 @@ public class MoviesLocalDataSource {
 
     private final MoviesDao mMovieDao;
 
+//    private final TrailersDao mTrailersDao;
+
     private MoviesLocalDataSource(MoviesDao moviesDao) {
         mMovieDao = moviesDao;
+//        mTrailersDao = trailersDao;
     }
 
     public static MoviesLocalDataSource getInstance(MoviesDao moviesDao) {
@@ -33,6 +36,7 @@ public class MoviesLocalDataSource {
 
     public void saveMovie(Movie movie) {
         mMovieDao.saveMovie(movie);
+//        mTrailersDao.insertAllTrailers(movie.getTrailersResponse().getTrailers());
     }
 
     public LiveData<Movie> getMovieById(long movieId) {

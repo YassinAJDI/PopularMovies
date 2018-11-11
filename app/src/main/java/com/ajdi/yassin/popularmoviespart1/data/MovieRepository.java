@@ -79,7 +79,7 @@ public class MovieRepository implements DataSource {
             @NonNull
             @Override
             protected LiveData<ApiResponse<Movie>> createCall() {
-                Timber.d("downloading movie from network");
+                Timber.d("Downloading movie from network");
                 return mRemoteDataSource.loadMovie(movieId);
             }
 

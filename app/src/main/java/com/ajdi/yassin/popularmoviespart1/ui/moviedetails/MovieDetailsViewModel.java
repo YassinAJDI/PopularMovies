@@ -1,7 +1,5 @@
 package com.ajdi.yassin.popularmoviespart1.ui.moviedetails;
 
-import android.util.Log;
-
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
@@ -15,6 +13,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
+import timber.log.Timber;
 
 /**
  * @author Yassin Ajdi.
@@ -24,7 +23,8 @@ public class MovieDetailsViewModel extends ViewModel {
     private final MovieRepository repository;
 
     private LiveData<RepoMovieDetailsResult> resultLiveData;
-    public LiveData<Resource<Movie>> result;
+
+    private LiveData<Resource<Movie>> result;
 
     private MutableLiveData<Long> movieIdLiveData = new MutableLiveData<>();
 
@@ -44,7 +44,7 @@ public class MovieDetailsViewModel extends ViewModel {
         if (movieLiveData != null) {
             return; // trigger loading movie details, only once the activity created
         }
-        Log.d(getClass().getSimpleName(), "Initializing viewModel");
+        Timber.d("Initializing viewModel");
 
 //        resultLiveData = Transformations.map(movieIdLiveData, new Function<Long, RepoMovieDetailsResult>() {
 //            @Override
@@ -77,6 +77,10 @@ public class MovieDetailsViewModel extends ViewModel {
 //                });
 
         setMovieIdLiveData(movieId);
+    }
+
+    public LiveData<Resource<Movie>> getResult() {
+        return result;
     }
 
     public LiveData<Movie> getMovieLiveData() {

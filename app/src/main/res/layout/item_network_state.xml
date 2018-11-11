@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.ajdi.yassin.popularmoviespart1.data.model.Resource.Status" />
+
+        <variable
+            name="resource"
+            type="com.ajdi.yassin.popularmoviespart1.data.model.Resource" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:visibleGone="@{resource.data == null}">
 
         <TextView
             android:id="@+id/error_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:text="@{resource.message}"
+            app:visibleGone="@{resource.status == Status.ERROR}" />
 
         <ProgressBar
             android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            app:visibleGone="@{resource.status == Status.LOADING}" />
 
         <Button
             android:id="@+id/retry_button"
@@ -27,6 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/action_retry" />
+            android:text="@string/action_retry"
+            app:visibleGone="@{resource.status == Status.ERROR}" />
     </LinearLayout>
 </layout>

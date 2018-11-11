@@ -2,13 +2,33 @@ package com.ajdi.yassin.popularmoviespart1.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
+
+import static androidx.room.ForeignKey.CASCADE;
+
 /**
  * @author Yassin Ajdi.
  */
+@Entity(tableName = "trailer",
+        foreignKeys = @ForeignKey(
+                entity = Movie.class,
+                parentColumns = "id",
+                childColumns = "movie_id",
+                onDelete = CASCADE,
+                onUpdate = CASCADE
+        )
+)
 public class Trailer {
 
+    @PrimaryKey
     @SerializedName("id")
     private String id;
+
+    @ColumnInfo(name = "movie_id")
+    private int movieId;
 
     @SerializedName("key")
     private String key;
@@ -18,7 +38,6 @@ public class Trailer {
 
     @SerializedName("name")
     private String title;
-
 
     public String getId() {
         return id;
