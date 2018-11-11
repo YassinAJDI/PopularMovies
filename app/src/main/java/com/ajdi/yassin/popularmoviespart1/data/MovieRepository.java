@@ -150,6 +150,7 @@ public class MovieRepository implements DataSource {
         mExecutors.diskIO().execute(new Runnable() {
             @Override
             public void run() {
+                Timber.d("Adding movie to favorites");
                 mLocalDataSource.favoriteMovie(movie);
             }
         });
@@ -160,6 +161,7 @@ public class MovieRepository implements DataSource {
         mExecutors.diskIO().execute(new Runnable() {
             @Override
             public void run() {
+                Timber.d("Removing movie from favorites");
                 mLocalDataSource.unfavoriteMovie(movie);
             }
         });

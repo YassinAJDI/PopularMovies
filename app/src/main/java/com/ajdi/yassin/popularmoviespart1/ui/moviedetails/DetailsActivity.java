@@ -59,6 +59,9 @@ public class DetailsActivity extends AppCompatActivity {
         mViewModel.getResult().observe(this, new Observer<Resource<Movie>>() {
             @Override
             public void onChanged(Resource<Movie> movieResource) {
+                if (movieResource.data != null) {
+                    mViewModel.setFavorite(movieResource.data.isFavorite());
+                }
                 mBinding.setMovieResource(movieResource);
                 mBinding.setMovie(movieResource.data);
             }
@@ -110,7 +113,7 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share: {
-                Movie movie = mViewModel.getMovieLiveData().getValue();
+                Movie movie = mViewModel.getResult().getValue().data;
                 Intent shareIntent = ShareCompat.IntentBuilder.from(this)
                         .setType("text/plain")
                         .setSubject(movie.getTitle() + " movie trailer")

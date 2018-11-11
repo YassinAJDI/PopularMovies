@@ -3,9 +3,7 @@ package com.ajdi.yassin.popularmoviespart1.ui.moviedetails;
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.MovieRepository;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
-import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
 import com.ajdi.yassin.popularmoviespart1.data.model.Resource;
-import com.ajdi.yassin.popularmoviespart1.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmoviespart1.utils.SnackbarMessage;
 
 import androidx.arch.core.util.Function;
@@ -22,15 +20,9 @@ public class MovieDetailsViewModel extends ViewModel {
 
     private final MovieRepository repository;
 
-    private LiveData<RepoMovieDetailsResult> resultLiveData;
-
     private LiveData<Resource<Movie>> result;
 
     private MutableLiveData<Long> movieIdLiveData = new MutableLiveData<>();
-
-    private LiveData<Movie> movieLiveData;
-
-    private LiveData<NetworkState> networkState;
 
     private final SnackbarMessage mSnackbarText = new SnackbarMessage();
 
@@ -41,40 +33,17 @@ public class MovieDetailsViewModel extends ViewModel {
     }
 
     public void init(long movieId) {
-        if (movieLiveData != null) {
+        if (result != null) {
             return; // trigger loading movie details, only once the activity created
         }
         Timber.d("Initializing viewModel");
 
-//        resultLiveData = Transformations.map(movieIdLiveData, new Function<Long, RepoMovieDetailsResult>() {
-//            @Override
-//            public RepoMovieDetailsResult apply(Long movieId) {
-//                return repository.loadMovie(movieId);
-//            }
-//        });
         result = Transformations.switchMap(movieIdLiveData, new Function<Long, LiveData<Resource<Movie>>>() {
             @Override
             public LiveData<Resource<Movie>> apply(Long movieId) {
                 return repository.load(movieId);
             }
         });
-//        movieLiveData = Transformations.switchMap(resultLiveData,
-//                new Function<RepoMovieDetailsResult, LiveData<Movie>>() {
-//                    @Override
-//                    public LiveData<Movie> apply(RepoMovieDetailsResult result) {
-//                        if (result.data.getValue() != null) {
-//                            isFavorite = result.data.getValue().isFavorite();
-//                        }
-//                        return result.data;
-//                    }
-//                });
-//        networkState = Transformations.switchMap(resultLiveData,
-//                new Function<RepoMovieDetailsResult, LiveData<NetworkState>>() {
-//                    @Override
-//                    public LiveData<NetworkState> apply(RepoMovieDetailsResult result) {
-//                        return result.networkState;
-//                    }
-//                });
 
         setMovieIdLiveData(movieId);
     }
@@ -83,20 +52,16 @@ public class MovieDetailsViewModel extends ViewModel {
         return result;
     }
 
-    public LiveData<Movie> getMovieLiveData() {
-        return movieLiveData;
-    }
-
-    public LiveData<NetworkState> getNetworkState() {
-        return networkState;
-    }
-
     public SnackbarMessage getSnackbarMessage() {
         return mSnackbarText;
     }
 
     public boolean isFavorite() {
         return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
     }
 
     private void setMovieIdLiveData(long movieId) {
@@ -108,7 +73,7 @@ public class MovieDetailsViewModel extends ViewModel {
     }
 
     public void onFavoriteClicked() {
-        Movie movie = movieLiveData.getValue();
+        Movie movie = result.getValue().data;
         if (!isFavorite) {
             repository.favoriteMovie(movie);
             isFavorite = true;
