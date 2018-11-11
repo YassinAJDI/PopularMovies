@@ -1,4 +1,4 @@
-package com.ajdi.yassin.popularmoviespart1.ui.moviedetails;
+package com.ajdi.yassin.popularmoviespart1.ui.moviedetails.trailers;
 
 import android.content.Context;
 import android.content.Intent;

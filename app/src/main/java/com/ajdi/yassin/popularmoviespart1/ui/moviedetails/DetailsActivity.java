@@ -11,17 +11,14 @@ import android.view.View;
 import com.ajdi.yassin.popularmoviespart1.R;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
 import com.ajdi.yassin.popularmoviespart1.data.model.Resource;
-import com.ajdi.yassin.popularmoviespart1.data.model.Trailer;
 import com.ajdi.yassin.popularmoviespart1.databinding.ActivityDetailsBinding;
+import com.ajdi.yassin.popularmoviespart1.ui.moviedetails.trailers.TrailersAdapter;
 import com.ajdi.yassin.popularmoviespart1.utils.Constants;
-import com.ajdi.yassin.popularmoviespart1.utils.GlideApp;
 import com.ajdi.yassin.popularmoviespart1.utils.Injection;
 import com.ajdi.yassin.popularmoviespart1.utils.UiUtils;
 import com.ajdi.yassin.popularmoviespart1.utils.ViewModelFactory;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
-
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -54,40 +51,16 @@ public class DetailsActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
         mBinding.setLifecycleOwner(this);
 
-        setupToolbar();
         mViewModel = obtainViewModel();
         mViewModel.init(movieId);
-        // observe network state
-//        mViewModel.getNetworkState().observe(this, new Observer<NetworkState>() {
-//            @Override
-//            public void onChanged(NetworkState networkState) {
-//                handleNetworkState(networkState);
-//            }
-//        });
-        // observe movie data
-//        mViewModel.getMovieLiveData().observe(this, new Observer<Movie>() {
-//            @Override
-//            public void onChanged(Movie movie) {
-//                updateUi(movie);
-//            }
-//        });
+        setupToolbar();
+        setupTrailersAdapter();
+        // observe result
         mViewModel.getResult().observe(this, new Observer<Resource<Movie>>() {
             @Override
             public void onChanged(Resource<Movie> movieResource) {
                 mBinding.setMovieResource(movieResource);
                 mBinding.setMovie(movieResource.data);
-//                handleNetworkState(movieResource);
-                switch (movieResource.status) {
-                    case LOADING: // handleNetworkState() takes care of this
-                        break;
-                    case SUCCESS:
-                        if (movieResource.data == null)
-                            return;
-                        updateUi(movieResource.data);
-                        break;
-                    case ERROR: // handleNetworkState() takes care of this
-                        break;
-                }
             }
         });
         // handle retry event in case of network failure
@@ -166,23 +139,12 @@ public class DetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void updateUi(Movie movie) {
-        // movie trailers
-        if (movie.getTrailersResponse() != null) {
-            setupTrailersAdapter(movie.getTrailersResponse().getTrailers());
-        } else {
-            mBinding.movieDetailsInfo.listTrailers.setVisibility(View.GONE);
-        }
-
-        mBinding.executePendingBindings();
-    }
-
-    private void setupTrailersAdapter(List<Trailer> trailers) {
+    private void setupTrailersAdapter() {
         RecyclerView listTrailers = mBinding.movieDetailsInfo.listTrailers;
         listTrailers.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         listTrailers.setHasFixedSize(true);
-        listTrailers.setAdapter(new TrailersAdapter(trailers, GlideApp.with(this)));
+        listTrailers.setAdapter(new TrailersAdapter());
     }
 
     private MovieDetailsViewModel obtainViewModel() {
@@ -219,25 +181,5 @@ public class DetailsActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void handleNetworkState(Resource resource) {
-        Resource.Status status = resource.status;
-        mBinding.appbar.setVisibility(showOrHide(status == Resource.Status.SUCCESS));
-        mBinding.movieDetails.setVisibility(showOrHide(status == Resource.Status.SUCCESS));
-        mBinding.networkState.progressBar.setVisibility(
-                showOrHide(status == Resource.Status.LOADING));
-        mBinding.networkState.retryButton.setVisibility(
-                showOrHide(status == Resource.Status.ERROR));
-        mBinding.networkState.errorMsg.setVisibility(
-                showOrHide(resource.message != null));
-        mBinding.networkState.errorMsg.setText(resource.message);
-    }
-
-    private int showOrHide(boolean show) {
-        if (show)
-            return View.VISIBLE;
-        else
-            return View.GONE;
     }
 }
