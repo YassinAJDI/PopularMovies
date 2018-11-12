@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ajdi.yassin.popularmoviespart1.R;
-import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.data.model.MovieAndTrailers;
 import com.ajdi.yassin.popularmoviespart1.data.model.Resource;
 import com.ajdi.yassin.popularmoviespart1.databinding.ActivityDetailsBinding;
 import com.ajdi.yassin.popularmoviespart1.ui.moviedetails.trailers.TrailersAdapter;
@@ -56,14 +56,14 @@ public class DetailsActivity extends AppCompatActivity {
         setupToolbar();
         setupTrailersAdapter();
         // observe result
-        mViewModel.getResult().observe(this, new Observer<Resource<Movie>>() {
+        mViewModel.getResult().observe(this, new Observer<Resource<MovieAndTrailers>>() {
             @Override
-            public void onChanged(Resource<Movie> movieResource) {
-                if (movieResource.data != null) {
-                    mViewModel.setFavorite(movieResource.data.isFavorite());
+            public void onChanged(Resource<MovieAndTrailers> movieAndTrailersResource) {
+                if (movieAndTrailersResource.data != null) {
+                    mViewModel.setFavorite(movieAndTrailersResource.data.movie.isFavorite());
                 }
-                mBinding.setMovieResource(movieResource);
-                mBinding.setMovie(movieResource.data);
+                mBinding.setMovieResource(movieAndTrailersResource);
+                mBinding.setMovieFullDetails(movieAndTrailersResource.data);
             }
         });
         // handle retry event in case of network failure
@@ -113,13 +113,13 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share: {
-                Movie movie = mViewModel.getResult().getValue().data;
+                MovieAndTrailers movieDetails = mViewModel.getResult().getValue().data;
                 Intent shareIntent = ShareCompat.IntentBuilder.from(this)
                         .setType("text/plain")
-                        .setSubject(movie.getTitle() + " movie trailer")
-                        .setText("Check out " + movie.getTitle() + " movie trailer at " +
+                        .setSubject(movieDetails.movie.getTitle() + " movie trailer")
+                        .setText("Check out " + movieDetails.movie.getTitle() + " movie trailer at " +
                                 Uri.parse(Constants.YOUTUBE_WEB_URL +
-                                        movie.getTrailersResponse().getTrailers().get(0).getKey())
+                                        movieDetails.trailers.get(0).getKey())
                         )
                         .createChooserIntent();
 
@@ -175,7 +175,7 @@ public class DetailsActivity extends AppCompatActivity {
                 //verify if the toolbar is completely collapsed and set the movie name as the title
                 if (scrollRange + verticalOffset == 0) {
                     mBinding.collapsingToolbar.setTitle(
-                            mViewModel.getResult().getValue().data.getTitle());
+                            mViewModel.getResult().getValue().data.movie.getTitle());
                     isShow = true;
                 } else if (isShow) {
                     //display an empty string when toolbar is expanded

@@ -1,6 +1,7 @@
 package com.ajdi.yassin.popularmoviespart1.data.local;
 
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.data.model.MovieAndTrailers;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 /**
  * @author Yassin Ajdi.
@@ -17,7 +19,15 @@ import androidx.room.Query;
 public interface MoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void saveMovie(Movie movie);
+    void insertMovie(Movie movie);
+
+//    @Query("SELECT * FROM movie WHERE id = :movieId")
+//    LiveData<Movie> getFullMovieDetails(long movieId);
+    //    getMovieWithTrailersAndCastingAndReviews();
+
+    @Transaction
+    @Query("SELECT * FROM movie WHERE movie.id= :movieId")
+    LiveData<MovieAndTrailers> getMovie(long movieId);
 
     @Query("SELECT * FROM movie WHERE id = :movieId")
     LiveData<Movie> getMovieById(long movieId);

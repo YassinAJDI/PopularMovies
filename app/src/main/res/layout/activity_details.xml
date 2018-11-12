@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="movie"
-            type="com.ajdi.yassin.popularmoviespart1.data.model.Movie" />
+            name="movieFullDetails"
+            type="com.ajdi.yassin.popularmoviespart1.data.model.MovieAndTrailers" />
 
         <variable
             name="movieResource"
@@ -28,7 +28,7 @@
             android:layout_height="256dp"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:visibleGone="@{movie != null}">
+            app:visibleGone="@{movieFullDetails.movie != null}">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
@@ -47,7 +47,7 @@
                     android:contentDescription="@string/movie_backdrop_content_description"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:imageUrl="@{movie.backdropPath}"
+                    app:imageUrl="@{movieFullDetails.movie.backdropPath}"
                     app:isBackdrop="@{true}"
                     app:layout_collapseMode="parallax"
                     tools:src="@tools:sample/backgrounds/scenic" />
@@ -68,12 +68,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:visibleGone="@{movie != null}">
+            app:visibleGone="@{movieFullDetails.movie != null}">
 
             <include
                 android:id="@+id/movie_details_info"
                 layout="@layout/partial_details_info"
-                app:movie="@{movie}" />
+                app:movieFullDetails="@{movieFullDetails}"/>
         </androidx.core.widget.NestedScrollView>
 
         <include

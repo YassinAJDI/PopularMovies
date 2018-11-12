@@ -30,7 +30,7 @@ public class Injection {
      */
     public static MoviesLocalDataSource provideMoviesLocalDataSource(Context context) {
         MoviesDatabase database = MoviesDatabase.getInstance(context.getApplicationContext());
-        return MoviesLocalDataSource.getInstance(database.moviesDao());
+        return MoviesLocalDataSource.getInstance(database);
     }
 
     /**

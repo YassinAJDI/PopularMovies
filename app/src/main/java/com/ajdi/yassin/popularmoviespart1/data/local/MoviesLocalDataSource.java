@@ -1,11 +1,14 @@
 package com.ajdi.yassin.popularmoviespart1.data.local;
 
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.data.model.MovieAndTrailers;
+import com.ajdi.yassin.popularmoviespart1.data.model.Trailer;
 import com.ajdi.yassin.popularmoviespart1.utils.AppExecutors;
 
 import java.util.List;
 
 import androidx.lifecycle.LiveData;
+import timber.log.Timber;
 
 /**
  * @author Yassin Ajdi.
@@ -14,20 +17,17 @@ public class MoviesLocalDataSource {
 
     private static volatile MoviesLocalDataSource sInstance;
 
-    private final MoviesDao mMovieDao;
+    private final MoviesDatabase mDatabase;
 
-//    private final TrailersDao mTrailersDao;
-
-    private MoviesLocalDataSource(MoviesDao moviesDao) {
-        mMovieDao = moviesDao;
-//        mTrailersDao = trailersDao;
+    private MoviesLocalDataSource(MoviesDatabase database) {
+        mDatabase = database;
     }
 
-    public static MoviesLocalDataSource getInstance(MoviesDao moviesDao) {
+    public static MoviesLocalDataSource getInstance(MoviesDatabase database) {
         if (sInstance == null) {
             synchronized (AppExecutors.class) {
                 if (sInstance == null) {
-                    sInstance = new MoviesLocalDataSource(moviesDao);
+                    sInstance = new MoviesLocalDataSource(database);
                 }
             }
         }
@@ -35,23 +35,36 @@ public class MoviesLocalDataSource {
     }
 
     public void saveMovie(Movie movie) {
-        mMovieDao.saveMovie(movie);
-//        mTrailersDao.insertAllTrailers(movie.getTrailersResponse().getTrailers());
+        mDatabase.moviesDao().insertMovie(movie);
+        insertTrailers(movie.getTrailersResponse().getTrailers(), movie.getId());
+    }
+
+    private void insertTrailers(List<Trailer> trailers, long movieId) {
+        for (Trailer trailer : trailers) {
+            trailer.setMovieId(movieId);
+        }
+        mDatabase.trailersDao().insertAllTrailers(trailers);
+        Timber.d("%s trailers inserted into database.", trailers.size());
     }
 
     public LiveData<Movie> getMovieById(long movieId) {
-        return mMovieDao.getMovieById(movieId);
+        return mDatabase.moviesDao().getMovieById(movieId);
+    }
+
+    public LiveData<MovieAndTrailers> getMovie(long movieId) {
+        Timber.d("Loading movie and trailers");
+        return mDatabase.moviesDao().getMovie(movieId);
     }
 
     public LiveData<List<Movie>> getAllFavoriteMovies() {
-        return mMovieDao.getAllFavoriteMovies();
+        return mDatabase.moviesDao().getAllFavoriteMovies();
     }
 
     public void favoriteMovie(Movie movie) {
-        mMovieDao.favoriteMovie(movie.getId());
+        mDatabase.moviesDao().favoriteMovie(movie.getId());
     }
 
     public void unfavoriteMovie(Movie movie) {
-        mMovieDao.unFavoriteMovie(movie.getId());
+        mDatabase.moviesDao().unFavoriteMovie(movie.getId());
     }
 }

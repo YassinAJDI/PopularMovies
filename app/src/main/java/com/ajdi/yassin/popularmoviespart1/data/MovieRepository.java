@@ -2,6 +2,7 @@ package com.ajdi.yassin.popularmoviespart1.data;
 
 import com.ajdi.yassin.popularmoviespart1.data.local.MoviesLocalDataSource;
 import com.ajdi.yassin.popularmoviespart1.data.model.Movie;
+import com.ajdi.yassin.popularmoviespart1.data.model.MovieAndTrailers;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMovieDetailsResult;
 import com.ajdi.yassin.popularmoviespart1.data.model.RepoMoviesResult;
 import com.ajdi.yassin.popularmoviespart1.data.model.Resource;
@@ -55,8 +56,8 @@ public class MovieRepository implements DataSource {
         return sInstance;
     }
 
-    public LiveData<Resource<Movie>> load(final long movieId) {
-        return new NetworkBoundResource<Movie, Movie>(mExecutors) {
+    public LiveData<Resource<MovieAndTrailers>> load(final long movieId) {
+        return new NetworkBoundResource<MovieAndTrailers, Movie>(mExecutors) {
 
             @Override
             protected void saveCallResult(@NonNull Movie item) {
@@ -65,15 +66,15 @@ public class MovieRepository implements DataSource {
             }
 
             @Override
-            protected boolean shouldFetch(@Nullable Movie data) {
+            protected boolean shouldFetch(@Nullable MovieAndTrailers data) {
                 return data == null; // only fetch fresh data if it doesn't exist in database
             }
 
             @NonNull
             @Override
-            protected LiveData<Movie> loadFromDb() {
+            protected LiveData<MovieAndTrailers> loadFromDb() {
                 Timber.d("Loading movie from database");
-                return mLocalDataSource.getMovieById(movieId);
+                return mLocalDataSource.getMovie(movieId);
             }
 
             @NonNull
@@ -115,7 +116,7 @@ public class MovieRepository implements DataSource {
 //                                Response<Movie> movieResponse = mRemoteDataSource.loadMovie(movieId);
 //                                Movie loadedMovie = movieResponse.body();
 //                                // insert movie into database
-//                                mLocalDataSource.saveMovie(loadedMovie);
+//                                mLocalDataSource.insertMovie(loadedMovie);
 //                                // TODO: 11/9/2018 insert trailers and reviews
 //                                // finished loading, show movie details
 //                                networkState.postValue(NetworkState.LOADED);
