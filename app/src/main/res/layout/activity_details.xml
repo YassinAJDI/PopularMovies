@@ -7,11 +7,11 @@
 
         <variable
             name="movieFullDetails"
-            type="com.ajdi.yassin.popularmoviespart1.data.model.MovieAndTrailers" />
+            type="com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers" />
 
         <variable
             name="movieResource"
-            type="com.ajdi.yassin.popularmoviespart1.data.model.Resource" />
+            type="com.ajdi.yassin.popularmovies.data.local.model.Resource" />
 
     </data>
 

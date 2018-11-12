@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.ajdi.yassin.popularmoviespart1">
+    package="com.ajdi.yassin.popularmovies">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".MoviesApplication"
+        android:name="com.ajdi.yassin.popularmovies.MoviesApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,7 +18,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".ui.movieslist.MoviesActivity"
+            android:name="com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,8 +27,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.moviedetails.DetailsActivity"
-            android:parentActivityName=".ui.movieslist.MoviesActivity" />
+            android:name="com.ajdi.yassin.popularmovies.ui.moviedetails.DetailsActivity"
+            android:parentActivityName="com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity" />
     </application>
 
 </manifest>

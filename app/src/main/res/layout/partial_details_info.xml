@@ -7,7 +7,7 @@
 
         <variable
             name="movieFullDetails"
-            type="com.ajdi.yassin.popularmoviespart1.data.model.MovieAndTrailers" />
+            type="com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

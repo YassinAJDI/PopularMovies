@@ -4,11 +4,11 @@
 
     <data>
 
-        <import type="com.ajdi.yassin.popularmoviespart1.data.model.Resource.Status" />
+        <import type="com.ajdi.yassin.popularmovies.data.local.model.Resource.Status" />
 
         <variable
             name="resource"
-            type="com.ajdi.yassin.popularmoviespart1.data.model.Resource" />
+            type="com.ajdi.yassin.popularmovies.data.local.model.Resource" />
     </data>
 
     <LinearLayout
