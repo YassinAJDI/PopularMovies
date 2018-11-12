@@ -33,6 +33,7 @@ public class Trailer {
     @SerializedName("id")
     private String id;
 
+    @NonNull
     @ColumnInfo(name = "movie_id")
     private long movieId;
 

@@ -1,4 +1,4 @@
-package com.ajdi.yassin.popularmovies.data.local;
+package com.ajdi.yassin.popularmovies.data.local.dao;
 
 import com.ajdi.yassin.popularmovies.data.local.model.Trailer;
 
@@ -15,7 +15,7 @@ import androidx.room.OnConflictStrategy;
 @Dao
 public interface TrailersDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAllTrailers(List<Trailer> trailers);
 
 }

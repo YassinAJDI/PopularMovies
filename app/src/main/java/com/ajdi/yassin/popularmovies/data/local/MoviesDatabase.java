@@ -2,6 +2,10 @@ package com.ajdi.yassin.popularmovies.data.local;
 
 import android.content.Context;
 
+import com.ajdi.yassin.popularmovies.data.local.dao.CastsDao;
+import com.ajdi.yassin.popularmovies.data.local.dao.MoviesDao;
+import com.ajdi.yassin.popularmovies.data.local.dao.TrailersDao;
+import com.ajdi.yassin.popularmovies.data.local.model.Cast;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.Trailer;
 
@@ -14,7 +18,7 @@ import androidx.room.RoomDatabase;
  *
  * @author Yassin Ajdi.
  */
-@Database(entities = {Movie.class, Trailer.class}, version = 1, exportSchema = false)
+@Database(entities = {Movie.class, Trailer.class, Cast.class}, version = 1, exportSchema = false)
 public abstract class MoviesDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "Movies.db";
@@ -22,6 +26,8 @@ public abstract class MoviesDatabase extends RoomDatabase {
     public abstract MoviesDao moviesDao();
 
     public abstract TrailersDao trailersDao();
+
+    public abstract CastsDao castsDao();
 
     private static MoviesDatabase INSTANCE;
 

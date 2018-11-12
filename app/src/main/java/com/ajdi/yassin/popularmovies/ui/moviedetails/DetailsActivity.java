@@ -12,6 +12,7 @@ import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.databinding.ActivityDetailsBinding;
+import com.ajdi.yassin.popularmovies.ui.moviedetails.cast.CastAdapter;
 import com.ajdi.yassin.popularmovies.ui.moviedetails.trailers.TrailersAdapter;
 import com.ajdi.yassin.popularmovies.utils.Constants;
 import com.ajdi.yassin.popularmovies.utils.Injection;
@@ -55,6 +56,7 @@ public class DetailsActivity extends AppCompatActivity {
         mViewModel.init(movieId);
         setupToolbar();
         setupTrailersAdapter();
+        setupCastAdapter();
         // observe result
         mViewModel.getResult().observe(this, new Observer<Resource<MovieAndTrailers>>() {
             @Override
@@ -89,6 +91,27 @@ public class DetailsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             handleCollapsedToolbarTitle();
         }
+    }
+
+    private void setupTrailersAdapter() {
+        RecyclerView listTrailers = mBinding.movieDetailsInfo.listTrailers;
+        listTrailers.setLayoutManager(
+                new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        listTrailers.setHasFixedSize(true);
+        listTrailers.setAdapter(new TrailersAdapter());
+    }
+
+    private void setupCastAdapter() {
+        RecyclerView listCast = mBinding.movieDetailsInfo.listCast;
+        listCast.setLayoutManager(
+                new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        listCast.setHasFixedSize(true);
+        listCast.setAdapter(new CastAdapter());
+    }
+
+    private MovieDetailsViewModel obtainViewModel() {
+        ViewModelFactory factory = Injection.provideViewModelFactory(this);
+        return ViewModelProviders.of(this, factory).get(MovieDetailsViewModel.class);
     }
 
     @Override
@@ -140,19 +163,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void setupTrailersAdapter() {
-        RecyclerView listTrailers = mBinding.movieDetailsInfo.listTrailers;
-        listTrailers.setLayoutManager(
-                new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        listTrailers.setHasFixedSize(true);
-        listTrailers.setAdapter(new TrailersAdapter());
-    }
-
-    private MovieDetailsViewModel obtainViewModel() {
-        ViewModelFactory factory = Injection.provideViewModelFactory(this);
-        return ViewModelProviders.of(this, factory).get(MovieDetailsViewModel.class);
     }
 
     private void closeOnError() {

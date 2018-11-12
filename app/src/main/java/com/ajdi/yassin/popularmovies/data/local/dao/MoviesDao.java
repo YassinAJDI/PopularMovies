@@ -1,4 +1,4 @@
-package com.ajdi.yassin.popularmovies.data.local;
+package com.ajdi.yassin.popularmovies.data.local.dao;
 
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;

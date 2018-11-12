@@ -24,6 +24,6 @@ public interface MovieService {
 
     // Instead of using 2 separate requests we use append_to_response
     // to eliminate duplicate requests and save network bandwidth
-    @GET("movie/{id}?append_to_response=videos")
+    @GET("movie/{id}?append_to_response=videos,credits")
     LiveData<ApiResponse<Movie>> getMovieDetails(@Path("id") long id);
 }

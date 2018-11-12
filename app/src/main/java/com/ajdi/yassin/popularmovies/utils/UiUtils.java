@@ -12,7 +12,7 @@ import androidx.core.graphics.drawable.DrawableCompat;
  */
 public class UiUtils {
 
-    // this method is used to tint menu icons for toolbars
+    // this method is used to tint menu icons for toolbars and other components
     public static void tintMenuIcon(Context context, MenuItem item, @ColorRes int color) {
         Drawable itemIcon = item.getIcon();
         Drawable iconWrapper = DrawableCompat.wrap(itemIcon);

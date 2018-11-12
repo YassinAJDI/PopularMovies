@@ -1,5 +1,6 @@
 package com.ajdi.yassin.popularmovies.data.local;
 
+import com.ajdi.yassin.popularmovies.data.local.model.Cast;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
 import com.ajdi.yassin.popularmovies.data.local.model.Trailer;
@@ -37,6 +38,15 @@ public class MoviesLocalDataSource {
     public void saveMovie(Movie movie) {
         mDatabase.moviesDao().insertMovie(movie);
         insertTrailers(movie.getTrailersResponse().getTrailers(), movie.getId());
+        insertCastList(movie.getCreditsResponse().getCast(), movie.getId());
+    }
+
+    private void insertCastList(List<Cast> castList, long movieId) {
+        for (Cast cast : castList) {
+            cast.setMovieId(movieId);
+        }
+        mDatabase.castsDao().insertAllCasts(castList);
+        Timber.d("%s cast inserted into database.", castList.size());
     }
 
     private void insertTrailers(List<Trailer> trailers, long movieId) {

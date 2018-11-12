@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -15,6 +16,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "movie")
 public class Movie {
 
+    @NonNull
     @PrimaryKey
     @ColumnInfo(name = "id")
     @SerializedName("id")
@@ -52,12 +54,24 @@ public class Movie {
     @SerializedName("videos")
     private TrailersResponse trailersResponse;
 
+    @Ignore
+    @SerializedName("credits")
+    private CreditsResponse creditsResponse;
+
     public TrailersResponse getTrailersResponse() {
         return trailersResponse;
     }
 
     public void setTrailersResponse(TrailersResponse trailersResponse) {
         this.trailersResponse = trailersResponse;
+    }
+
+    public CreditsResponse getCreditsResponse() {
+        return creditsResponse;
+    }
+
+    public void setCreditsResponse(CreditsResponse creditsResponse) {
+        this.creditsResponse = creditsResponse;
     }
 
     public boolean isFavorite() {
