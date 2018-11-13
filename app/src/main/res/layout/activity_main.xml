@@ -22,28 +22,43 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior = "@string/appbar_scrolling_view_behavior"
-        android:layout_marginBottom="?attr/actionBarSize"/>
+        android:layout_marginBottom="?attr/actionBarSize"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/colorPrimaryDark"
-        app:itemIconTint="@color/md_white_1000"
-        app:itemTextColor="@color/md_white_1000"
-        app:menu="@menu/bottom_navigation" />
+        android:layout_gravity="bottom">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:src="@drawable/ic_filter_list_black_24dp"
-        android:tint="@color/md_white_1000"
-        app:elevation="12dp"
-        app:fabSize="normal"
-        app:layout_anchor="@id/bottom_navigation"
-        app:layout_anchorGravity="bottom|center" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimaryDark"
+            app:itemIconTint="@color/md_white_1000"
+            app:itemTextColor="@color/md_white_1000"
+            app:menu="@menu/bottom_navigation" />
+
+        <!--This border vector was inspired by Chris Banes tivi app-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_marginBottom="54dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bottom_nav_border" />
+    </FrameLayout>
+
+
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="24dp"-->
+    <!--android:src="@drawable/ic_filter_list_black_24dp"-->
+    <!--android:tint="@color/md_white_1000"-->
+    <!--app:elevation="12dp"-->
+    <!--app:fabSize="normal"-->
+    <!--app:layout_anchor="@id/bottom_navigation"-->
+    <!--app:layout_anchorGravity="bottom|center" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

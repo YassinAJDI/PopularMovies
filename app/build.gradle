@@ -32,7 +32,7 @@ dependencies {
 
     // Support libs
     def support_lib_version = '1.0.0'
-    implementation "androidx.appcompat:appcompat:$support_lib_version"
+    implementation "androidx.appcompat:appcompat:1.0.2"
     implementation "com.google.android.material:material:$support_lib_version"
     implementation "androidx.recyclerview:recyclerview:$support_lib_version"
     implementation "androidx.cardview:cardview:$support_lib_version"
