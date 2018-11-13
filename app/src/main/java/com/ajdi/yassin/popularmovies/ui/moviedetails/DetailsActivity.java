@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ShareCompat;
+import androidx.core.view.ViewCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -116,6 +117,7 @@ public class DetailsActivity extends AppCompatActivity {
         listReviews.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         listReviews.setAdapter(new ReviewsAdapter());
+        ViewCompat.setNestedScrollingEnabled(listReviews, false);
     }
 
     private MovieDetailsViewModel obtainViewModel() {
