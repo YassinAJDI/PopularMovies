@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_sort_by"
-        android:icon="@drawable/ic_filter_list_black_24dp"
+        android:icon="@drawable/ic_sort_black_24dp"
         android:title="@string/action_sort_by"
         app:showAsAction="always">
         <!-- movies submenu -->
