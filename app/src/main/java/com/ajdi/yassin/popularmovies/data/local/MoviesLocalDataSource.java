@@ -3,6 +3,7 @@ package com.ajdi.yassin.popularmovies.data.local;
 import com.ajdi.yassin.popularmovies.data.local.model.Cast;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
+import com.ajdi.yassin.popularmovies.data.local.model.Review;
 import com.ajdi.yassin.popularmovies.data.local.model.Trailer;
 import com.ajdi.yassin.popularmovies.utils.AppExecutors;
 
@@ -39,6 +40,15 @@ public class MoviesLocalDataSource {
         mDatabase.moviesDao().insertMovie(movie);
         insertTrailers(movie.getTrailersResponse().getTrailers(), movie.getId());
         insertCastList(movie.getCreditsResponse().getCast(), movie.getId());
+        insertReviews(movie.getReviewsResponse().getReviews(), movie.getId());
+    }
+
+    private void insertReviews(List<Review> reviews, long movieId) {
+        for (Review review : reviews) {
+            review.setMovieId(movieId);
+        }
+        mDatabase.reviewsDao().insertAllReviews(reviews);
+        Timber.d("%s reviews inserted into database.", reviews.size());
     }
 
     private void insertCastList(List<Cast> castList, long movieId) {
@@ -62,7 +72,7 @@ public class MoviesLocalDataSource {
     }
 
     public LiveData<MovieAndTrailers> getMovie(long movieId) {
-        Timber.d("Loading movie and trailers");
+        Timber.d("Loading movie and trailers.");
         return mDatabase.moviesDao().getMovie(movieId);
     }
 

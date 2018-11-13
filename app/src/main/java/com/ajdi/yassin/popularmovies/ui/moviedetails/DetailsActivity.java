@@ -13,6 +13,7 @@ import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.databinding.ActivityDetailsBinding;
 import com.ajdi.yassin.popularmovies.ui.moviedetails.cast.CastAdapter;
+import com.ajdi.yassin.popularmovies.ui.moviedetails.reviews.ReviewsAdapter;
 import com.ajdi.yassin.popularmovies.ui.moviedetails.trailers.TrailersAdapter;
 import com.ajdi.yassin.popularmovies.utils.Constants;
 import com.ajdi.yassin.popularmovies.utils.Injection;
@@ -57,6 +58,7 @@ public class DetailsActivity extends AppCompatActivity {
         setupToolbar();
         setupTrailersAdapter();
         setupCastAdapter();
+        setupReviewsAdapter();
         // observe result
         mViewModel.getResult().observe(this, new Observer<Resource<MovieAndTrailers>>() {
             @Override
@@ -107,6 +109,13 @@ public class DetailsActivity extends AppCompatActivity {
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         listCast.setHasFixedSize(true);
         listCast.setAdapter(new CastAdapter());
+    }
+
+    private void setupReviewsAdapter() {
+        RecyclerView listReviews = mBinding.movieDetailsInfo.listReviews;
+        listReviews.setLayoutManager(
+                new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        listReviews.setAdapter(new ReviewsAdapter());
     }
 
     private MovieDetailsViewModel obtainViewModel() {

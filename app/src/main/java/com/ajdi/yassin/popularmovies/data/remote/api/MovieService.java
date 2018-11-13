@@ -22,8 +22,9 @@ public interface MovieService {
     @GET("movie/top_rated")
     Call<MoviesResponse> getTopRatedMovies(@Query("page") int page);
 
-    // Instead of using 2 separate requests we use append_to_response
+    // Instead of using 4 separate requests we use append_to_response
     // to eliminate duplicate requests and save network bandwidth
-    @GET("movie/{id}?append_to_response=videos,credits")
+    // this request return full movie details, trailers, reviews and cast
+    @GET("movie/{id}?append_to_response=videos,credits,reviews")
     LiveData<ApiResponse<Movie>> getMovieDetails(@Path("id") long id);
 }

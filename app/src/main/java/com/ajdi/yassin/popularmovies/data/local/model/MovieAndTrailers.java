@@ -22,4 +22,7 @@ public class MovieAndTrailers {
 
     @Relation(parentColumn = "id", entityColumn = "movie_id")
     public List<Cast> castList = new ArrayList<>();
+
+    @Relation(parentColumn = "id", entityColumn = "movie_id")
+    public List<Review> reviews = new ArrayList<>();
 }

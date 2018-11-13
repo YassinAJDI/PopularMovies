@@ -58,6 +58,10 @@ public class Movie {
     @SerializedName("credits")
     private CreditsResponse creditsResponse;
 
+    @Ignore
+    @SerializedName("reviews")
+    private ReviewsResponse reviewsResponse;
+
     public TrailersResponse getTrailersResponse() {
         return trailersResponse;
     }
@@ -72,6 +76,14 @@ public class Movie {
 
     public void setCreditsResponse(CreditsResponse creditsResponse) {
         this.creditsResponse = creditsResponse;
+    }
+
+    public ReviewsResponse getReviewsResponse() {
+        return reviewsResponse;
+    }
+
+    public void setReviewsResponse(ReviewsResponse reviewsResponse) {
+        this.reviewsResponse = reviewsResponse;
     }
 
     public boolean isFavorite() {

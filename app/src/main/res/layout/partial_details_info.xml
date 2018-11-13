@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:showIn="@layout/activity_details">
 
         <ImageView
@@ -159,5 +159,30 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2"
             app:visibleGone="@{movieFullDetails.castList != null}" />
 
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Reviews"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_cast"
+            app:visibleGone="@{movieFullDetails.reviews != null}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_reviews"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:items="@{movieFullDetails.reviews}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5"
+            app:visibleGone="@{movieFullDetails.reviews != null}" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

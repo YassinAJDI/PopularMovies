@@ -31,10 +31,10 @@ public class CastViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindTo(final Cast cast) {
-        String proifleImage =
+        String profileImage =
                 Constants.IMAGE_BASE_URL + Constants.PROFILE_SIZE_W185 + cast.getProfileImagePath();
         GlideApp.with(context)
-                .load(proifleImage)
+                .load(profileImage)
                 .placeholder(R.color.md_grey_200)
                 .into(binding.imageCastProfile);
 
