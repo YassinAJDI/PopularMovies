@@ -49,7 +49,8 @@ public class DiscoverMoviesFragment extends Fragment {
         RecyclerView recyclerView = getActivity().findViewById(R.id.rv_movie_list);
         GlideRequests glideRequests = GlideApp.with(this);
         final DiscoverMoviesAdapter discoverMoviesAdapter = new DiscoverMoviesAdapter(glideRequests, viewModel);
-        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),
+                getResources().getInteger(R.integer.span_count));
 
         // draw network status and errors to fit the whole row(2 spans)
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {

@@ -13,13 +13,23 @@
         card_view:cardCornerRadius="2dp"
         card_view:cardElevation="2dp">
 
-        <ImageView
-            android:id="@+id/image_movie_poster"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:contentDescription="@string/movie_poster"
-            android:scaleType="centerCrop"
-            tools:background="@color/colorAccent" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_movie_poster"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:contentDescription="@string/movie_poster"
+                android:scaleType="centerCrop"
+                card_view:layout_constraintDimensionRatio="w,1.5:1"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 </layout>
