@@ -1,6 +1,7 @@
 <resources>
 
     <style name="AppTheme" parent="BaseTheme" />
+    <style name="AppThemeLight" parent="BaseTheme.Light" />
 
     <!-- Base application theme. -->
     <style name="BaseTheme" parent="Theme.MaterialComponents.NoActionBar">
@@ -8,6 +9,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Light theme. -->
+    <style name="BaseTheme.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
     </style>
 
     <!--Toolbar-->

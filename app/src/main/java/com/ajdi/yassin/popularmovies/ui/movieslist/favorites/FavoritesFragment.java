@@ -57,7 +57,7 @@ public class FavoritesFragment extends Fragment {
         GlideRequests glideRequests = GlideApp.with(this);
         final FavoritesAdapter favoritesAdapter = new FavoritesAdapter(glideRequests);
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),
-                getResources().getInteger(R.integer.span_count));
+                2);
 
         // setup recyclerView
         recyclerView.setAdapter(favoritesAdapter);

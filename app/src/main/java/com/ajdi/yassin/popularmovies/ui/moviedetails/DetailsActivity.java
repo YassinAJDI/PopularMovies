@@ -44,6 +44,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppThemeLight);
         super.onCreate(savedInstanceState);
         final long movieId = getIntent().getLongExtra(EXTRA_MOVIE_ID, DEFAULT_ID);
         if (movieId == DEFAULT_ID) {
@@ -64,8 +65,10 @@ public class DetailsActivity extends AppCompatActivity {
         mViewModel.getResult().observe(this, new Observer<Resource<MovieAndTrailers>>() {
             @Override
             public void onChanged(Resource<MovieAndTrailers> movieAndTrailersResource) {
-                if (movieAndTrailersResource.data != null) {
+                if (movieAndTrailersResource.data != null &&
+                        movieAndTrailersResource.data.movie != null) {
                     mViewModel.setFavorite(movieAndTrailersResource.data.movie.isFavorite());
+                    invalidateOptionsMenu();
                 }
                 mBinding.setMovieResource(movieAndTrailersResource);
                 mBinding.setMovieFullDetails(movieAndTrailersResource.data);
