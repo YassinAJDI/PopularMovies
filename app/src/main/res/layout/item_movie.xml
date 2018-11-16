@@ -23,7 +23,7 @@
                 android:layout_height="0dp"
                 android:contentDescription="@string/movie_poster"
                 android:scaleType="centerCrop"
-                card_view:layout_constraintDimensionRatio="w,1.5:1"
+                card_view:layout_constraintDimensionRatio="w,3:2"
                 card_view:layout_constraintEnd_toEndOf="parent"
                 card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent"
