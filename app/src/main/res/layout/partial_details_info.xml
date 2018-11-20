@@ -44,6 +44,21 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Movie title here" />
 
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/flexboxLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:flexWrap="wrap"
+            app:items="@{movieFullDetails.movie.genres}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/text_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_title"
+            app:visibleGone="@{movieFullDetails.movie.genres != null}">
+
+        </com.google.android.flexbox.FlexboxLayout>
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -52,7 +67,7 @@
             android:text="@string/release_date"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintStart_toStartOf="@+id/text_title"
-            app:layout_constraintTop_toBottomOf="@+id/text_title" />
+            app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
 
         <TextView
             android:id="@+id/text_release_date"

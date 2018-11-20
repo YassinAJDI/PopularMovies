@@ -1,11 +1,17 @@
 package com.ajdi.yassin.popularmovies.ui.moviedetails;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ajdi.yassin.popularmovies.R;
+import com.ajdi.yassin.popularmovies.data.local.model.Genre;
 import com.ajdi.yassin.popularmovies.utils.Constants;
 import com.ajdi.yassin.popularmovies.utils.GlideApp;
+import com.google.android.flexbox.FlexboxLayout;
+
+import java.util.List;
 
 import androidx.databinding.BindingAdapter;
 
@@ -34,6 +40,23 @@ public class BindingAdapters {
     public static void showHide(View view, Boolean show) {
         if (show) view.setVisibility(View.VISIBLE);
         else view.setVisibility(View.GONE);
+    }
+
+    @BindingAdapter("items")
+    public static void setItems(FlexboxLayout view, List<Genre> genres) {
+        if (genres == null)
+            return;
+
+        // Programmatically create & add genres
+        for (Genre genre : genres) {
+            TextView textView = new TextView(view.getContext());
+            textView.setText(genre.getName());
+            FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(0, 0, 8, 8);
+            textView.setLayoutParams(layoutParams);
+            view.addView(textView);
+        }
     }
 
 }

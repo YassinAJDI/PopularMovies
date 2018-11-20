@@ -2,6 +2,7 @@ package com.ajdi.yassin.popularmovies.data.local.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
@@ -50,6 +51,10 @@ public class Movie {
     @ColumnInfo(name = "is_favorite")
     private boolean isFavorite;
 
+    @ColumnInfo(name = "genres")
+    @SerializedName("genres")
+    private List<Genre> genres;
+
     @Ignore
     @SerializedName("videos")
     private TrailersResponse trailersResponse;
@@ -84,6 +89,14 @@ public class Movie {
 
     public void setReviewsResponse(ReviewsResponse reviewsResponse) {
         this.reviewsResponse = reviewsResponse;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     public boolean isFavorite() {
