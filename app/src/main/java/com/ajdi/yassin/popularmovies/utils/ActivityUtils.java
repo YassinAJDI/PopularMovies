@@ -18,10 +18,8 @@ public class ActivityUtils {
      */
     public static void replaceFragmentInActivity(@NonNull FragmentManager fragmentManager,
                                                  @NonNull Fragment fragment, int frameId) {
-//        fragmentManager.popBackStack();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(frameId, fragment);
-//        transaction.addToBackStack(null);
         transaction.commit();
     }
 }

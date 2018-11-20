@@ -52,7 +52,7 @@ public class DiscoverMoviesFragment extends Fragment {
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),
                 getResources().getInteger(R.integer.span_count));
 
-        // draw network status and errors to fit the whole row(2 spans)
+        // draw network status and errors messages to fit the whole row(3 spans)
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {

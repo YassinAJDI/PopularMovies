@@ -69,4 +69,7 @@ dependencies {
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Circle ImageView
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }

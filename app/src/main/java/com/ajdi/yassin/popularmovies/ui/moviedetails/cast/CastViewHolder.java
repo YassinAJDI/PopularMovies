@@ -36,6 +36,7 @@ public class CastViewHolder extends RecyclerView.ViewHolder {
         GlideApp.with(context)
                 .load(profileImage)
                 .placeholder(R.color.md_grey_200)
+                .dontAnimate()
                 .into(binding.imageCastProfile);
 
         binding.textCastName.setText(cast.getActorName());
