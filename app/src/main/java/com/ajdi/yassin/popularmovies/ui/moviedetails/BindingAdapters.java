@@ -49,7 +49,10 @@ public class BindingAdapters {
 
     @BindingAdapter("items")
     public static void setItems(FlexboxLayout view, List<Genre> genres) {
-        if (genres == null)
+        if (genres == null
+                // Since we are using liveData to observe data, any changes in that table
+                // will trigger the observer and hence rebinding data, which can lead to duplicates.
+                || view.getChildCount() > 0)
             return;
 
         // Programmatically create & add genres
