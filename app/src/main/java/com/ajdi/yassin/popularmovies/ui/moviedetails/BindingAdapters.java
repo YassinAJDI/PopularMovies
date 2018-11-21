@@ -9,6 +9,9 @@ import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Genre;
 import com.ajdi.yassin.popularmovies.utils.Constants;
 import com.ajdi.yassin.popularmovies.utils.GlideApp;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.List;
@@ -33,6 +36,8 @@ public class BindingAdapters {
         GlideApp.with(imageView.getContext())
                 .load(baseUrl + imagePath)
                 .placeholder(R.color.md_grey_200)
+                .apply(new RequestOptions().transforms(
+                        new CenterCrop(), new RoundedCorners(16)))
                 .into(imageView);
     }
 

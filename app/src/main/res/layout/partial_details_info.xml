@@ -13,22 +13,40 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipChildren="false"
         tools:showIn="@layout/activity_details">
 
-        <ImageView
-            android:id="@+id/image_poster"
+        <Space
+            android:id="@+id/space"
             android:layout_width="0dp"
-            android:layout_height="200dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_poster"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/movie_poster"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{movieFullDetails.movie.posterPath}"
-            app:isBackdrop="@{false}"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardElevation="16dp"
             app:layout_constraintDimensionRatio="w,2:3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            app:layout_constraintTop_toTopOf="@+id/space">
+
+            <ImageView
+                android:id="@+id/image_poster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/movie_poster"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{movieFullDetails.movie.posterPath}"
+                app:isBackdrop="@{false}"
+                tools:background="@tools:sample/backgrounds/scenic" />
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/text_title"
@@ -40,7 +58,7 @@
             android:text="@{movieFullDetails.movie.title}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_poster"
+            app:layout_constraintStart_toEndOf="@+id/card_poster"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Movie title here" />
 
@@ -110,7 +128,7 @@
             android:text="@string/label_overview"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_poster" />
+            app:layout_constraintTop_toBottomOf="@+id/card_poster" />
 
         <TextView
             android:id="@+id/text_overview"
@@ -179,7 +197,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Reviews"
+            android:text="User Reviews"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/list_trailers"
             app:visibleGone="@{movieFullDetails.reviews != null}" />

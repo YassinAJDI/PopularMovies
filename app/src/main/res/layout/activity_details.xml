@@ -19,6 +19,7 @@
         style="@style/Widget.Support.CoordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipChildren="false"
         android:fitsSystemWindows="true"
         tools:context=".ui.moviedetails.DetailsActivity">
 
@@ -67,13 +68,14 @@
             android:id="@+id/movie_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipChildren="false"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:visibleGone="@{movieFullDetails.movie != null}">
 
             <include
                 android:id="@+id/movie_details_info"
                 layout="@layout/partial_details_info"
-                app:movieFullDetails="@{movieFullDetails}"/>
+                app:movieFullDetails="@{movieFullDetails}" />
         </androidx.core.widget.NestedScrollView>
 
         <include
