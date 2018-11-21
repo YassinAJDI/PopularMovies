@@ -13,13 +13,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
         tools:showIn="@layout/activity_details">
 
         <Space
             android:id="@+id/space"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
