@@ -196,13 +196,13 @@ public class DetailsActivity extends AppCompatActivity {
                 if (scrollRange == -1) {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
-                //verify if the toolbar is completely collapsed and set the movie name as the title
+                // verify if the toolbar is completely collapsed and set the movie name as the title
                 if (scrollRange + verticalOffset == 0) {
                     mBinding.collapsingToolbar.setTitle(
                             mViewModel.getResult().getValue().data.movie.getTitle());
                     isShow = true;
                 } else if (isShow) {
-                    //display an empty string when toolbar is expanded
+                    // display an empty string when toolbar is expanded
                     mBinding.collapsingToolbar.setTitle(" ");
                     isShow = false;
                 }

@@ -19,7 +19,6 @@
         style="@style/Widget.Support.CoordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipChildren="false"
         android:fitsSystemWindows="true"
         tools:context=".ui.moviedetails.DetailsActivity">
 
