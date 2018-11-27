@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
         tools:showIn="@layout/activity_details">
 
         <Space
@@ -81,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="text_title,flexboxLayout,card_poster"/>
+            app:constraint_referenced_ids="text_title,flexboxLayout,card_poster" />
 
         <TextView
             android:id="@+id/textView"
