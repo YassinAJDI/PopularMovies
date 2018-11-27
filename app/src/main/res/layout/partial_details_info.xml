@@ -76,6 +76,13 @@
 
         </com.google.android.flexbox.FlexboxLayout>
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="text_title,flexboxLayout,card_poster"/>
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -83,8 +90,8 @@
             android:layout_marginTop="16dp"
             android:text="@string/release_date"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-            app:layout_constraintStart_toStartOf="@+id/text_title"
-            app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
+            app:layout_constraintStart_toStartOf="@+id/card_poster"
+            app:layout_constraintTop_toTopOf="@+id/barrier2" />
 
         <TextView
             android:id="@+id/text_release_date"
@@ -123,6 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="@string/label_overview"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintStart_toStartOf="parent"
