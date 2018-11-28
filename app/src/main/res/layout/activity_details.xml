@@ -68,6 +68,8 @@
             android:id="@+id/movie_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false"
             app:behavior_overlapTop="48dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:visibleGone="@{movieFullDetails.movie != null}">

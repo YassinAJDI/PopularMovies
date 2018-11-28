@@ -105,14 +105,15 @@ public class DetailsActivity extends AppCompatActivity {
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         listTrailers.setHasFixedSize(true);
         listTrailers.setAdapter(new TrailersAdapter());
+        ViewCompat.setNestedScrollingEnabled(listTrailers, false);
     }
 
     private void setupCastAdapter() {
         RecyclerView listCast = mBinding.movieDetailsInfo.listCast;
         listCast.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        listCast.setHasFixedSize(true);
         listCast.setAdapter(new CastAdapter());
+        ViewCompat.setNestedScrollingEnabled(listCast, false);
     }
 
     private void setupReviewsAdapter() {
