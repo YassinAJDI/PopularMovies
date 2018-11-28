@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Movies items-->
-    <dimen name="item_offset">3dp</dimen>
+    <dimen name="item_offset">4dp</dimen>
     <integer name="span_count">3</integer>
 </resources>

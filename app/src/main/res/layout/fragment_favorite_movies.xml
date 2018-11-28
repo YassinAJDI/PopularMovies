@@ -9,6 +9,7 @@
             android:id="@+id/movies_list"
             layout="@layout/fragment_discover_movies" />
 
+        <!--add empty state layout here-->
         <TextView
             android:id="@+id/empty_state"
             android:layout_width="match_parent"
@@ -17,6 +18,5 @@
             android:gravity="center"
             android:text="Empty no favorites yet!" />
 
-        <!--add empty state layout here-->
     </FrameLayout>
 </layout>
