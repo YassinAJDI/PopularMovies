@@ -4,22 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/frame"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:layout_height="wrap_content">
+        android:clipChildren="false">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/image_author"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:tint="@color/md_red_200"
+                app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_account_circle_black_24dp" />
@@ -28,8 +31,7 @@
                 android:id="@+id/text_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                app:layout_constraintBottom_toBottomOf="@+id/image_author"
+                android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@+id/image_author"
                 app:layout_constraintTop_toTopOf="@+id/image_author"
                 tools:text="@tools:sample/full_names" />
@@ -38,13 +40,13 @@
                 android:id="@+id/text_content"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/image_author"
-                app:layout_constraintTop_toBottomOf="@+id/image_author"
+                app:layout_constraintStart_toStartOf="@+id/text_author"
+                app:layout_constraintTop_toBottomOf="@+id/text_author"
                 tools:text="@tools:sample/lorem" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

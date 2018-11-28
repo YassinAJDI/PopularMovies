@@ -1,6 +1,7 @@
 package com.ajdi.yassin.popularmovies.ui.moviedetails.reviews;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -18,13 +19,14 @@ public class ReviewsViewHolder extends RecyclerView.ViewHolder {
 
     private ItemReviewBinding binding;
 
-    private Context context;
-
     public ReviewsViewHolder(@NonNull ItemReviewBinding binding, Context context) {
         super(binding.getRoot());
 
         this.binding = binding;
-        this.context = context;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            binding.frame.setClipToOutline(false);
+        }
     }
 
     public void bindTo(final Review review) {
