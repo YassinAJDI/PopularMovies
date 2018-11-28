@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * @author Yassin Ajdi.
+ * https://gist.github.com/yqritc/ccca77dc42f2364777e1
  */
 public class ItemOffsetDecoration extends RecyclerView.ItemDecoration {
 
