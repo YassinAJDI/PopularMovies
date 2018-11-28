@@ -15,14 +15,6 @@
         android:layout_height="match_parent"
         tools:showIn="@layout/activity_details">
 
-        <Space
-            android:id="@+id/space"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
@@ -42,7 +34,7 @@
             app:cardElevation="16dp"
             app:layout_constraintDimensionRatio="w,2:3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/space">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/image_poster"
@@ -223,9 +215,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:clipToPadding="false"
+            android:layout_marginTop="8dp"
             app:items="@{movieFullDetails.reviews}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
