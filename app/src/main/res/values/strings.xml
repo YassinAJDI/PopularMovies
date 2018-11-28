@@ -17,4 +17,8 @@
     <string name="unknown_error">Unknown Error</string>
     <string name="play_icon">Play icon</string>
     <string name="trailer_thumbnail">Trailer thumbnail</string>
+    <string name="cast">Cast</string>
+    <string name="trailers">Trailers</string>
+    <string name="user_reviews">User Reviews</string>
+    <string name="language">Language</string>
 </resources>
