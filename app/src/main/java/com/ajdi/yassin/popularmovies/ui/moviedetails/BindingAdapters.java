@@ -1,18 +1,21 @@
 package com.ajdi.yassin.popularmovies.ui.moviedetails;
 
+import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Genre;
 import com.ajdi.yassin.popularmovies.utils.Constants;
 import com.ajdi.yassin.popularmovies.utils.GlideApp;
+import com.ajdi.yassin.popularmovies.utils.UiUtils;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.flexbox.FlexboxLayout;
+import com.google.android.material.chip.Chip;
 
 import java.util.List;
 
@@ -55,15 +58,23 @@ public class BindingAdapters {
                 || view.getChildCount() > 0)
             return;
 
-        // Programmatically create & add genres
+        // Programmatically create & add genre chips
+        Context context = view.getContext();
         for (Genre genre : genres) {
-            TextView textView = new TextView(view.getContext());
-            textView.setText(genre.getName());
+            Chip chip = new Chip(context);
+            chip.setText(genre.getName());
+            chip.setChipStrokeWidth(UiUtils.dipToPixels(context, 1));
+            chip.setChipStrokeColor(ColorStateList.valueOf(
+                    context.getResources().getColor(R.color.md_blue_grey_200)));
+            chip.setChipBackgroundColor(ColorStateList.valueOf(
+                    context.getResources().getColor(android.R.color.transparent)));
             FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(0, 0, 8, 8);
-            textView.setLayoutParams(layoutParams);
-            view.addView(textView);
+            int marginRight = (int) UiUtils.dipToPixels(context, 4);
+            int marginBottom = (int) UiUtils.dipToPixels(context, 8);
+            layoutParams.setMargins(0, 0, marginRight, marginBottom);
+            chip.setLayoutParams(layoutParams);
+            view.addView(chip);
         }
     }
 
