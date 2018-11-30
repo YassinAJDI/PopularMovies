@@ -37,6 +37,9 @@ public class Movie {
     @SerializedName("overview")
     private String overview;
 
+    @SerializedName("original_language")
+    private String originalLanguage;
+
     @SerializedName("popularity")
     private double popularity;
 
@@ -200,5 +203,13 @@ public class Movie {
     @Override
     public int hashCode() {
         return Objects.hash(id, title, posterPath, overview, popularity, voteAverage, releaseDate);
+    }
+
+    public String getOriginalLanguage() {
+        return originalLanguage.substring(0, 1).toUpperCase() + originalLanguage.substring(1);
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 }

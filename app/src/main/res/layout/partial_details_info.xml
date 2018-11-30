@@ -130,7 +130,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text='@{String.format("%s %s", movieFullDetails.movie.voteCount, @string/label_votes)}'
+            android:text="@{@string/label_votes(movieFullDetails.movie.voteCount)}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintEnd_toStartOf="@+id/label_language"
             app:layout_constraintHorizontal_bias="0.5"
@@ -170,6 +170,7 @@
             android:drawableStart="@drawable/ic_language_black_24dp"
             android:drawablePadding="8dp"
             android:gravity="center"
+            android:text="@{movieFullDetails.movie.originalLanguage}"
             app:layout_constraintEnd_toEndOf="@+id/label_language"
             app:layout_constraintStart_toStartOf="@+id/label_language"
             app:layout_constraintTop_toTopOf="@+id/text_vote"
