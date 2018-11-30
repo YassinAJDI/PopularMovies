@@ -15,13 +15,17 @@ import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
 import com.ajdi.yassin.popularmovies.utils.GlideApp;
 import com.ajdi.yassin.popularmovies.utils.GlideRequests;
+import com.ajdi.yassin.popularmovies.utils.Injection;
 import com.ajdi.yassin.popularmovies.utils.ItemOffsetDecoration;
 import com.ajdi.yassin.popularmovies.utils.UiUtils;
+import com.ajdi.yassin.popularmovies.utils.ViewModelFactory;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,8 +52,16 @@ public class DiscoverMoviesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        viewModel = MoviesActivity.obtainViewModel(getActivity());
+        viewModel = obtainViewModel(getActivity());
         setupListAdapter();
+
+        // Observe current toolbar title
+        viewModel.getCurrentTitle().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer title) {
+                ((MoviesActivity) getActivity()).getSupportActionBar().setTitle(title);
+            }
+        });
     }
 
     @Override
@@ -74,6 +86,11 @@ public class DiscoverMoviesFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static DiscoverMoviesViewModel obtainViewModel(FragmentActivity activity) {
+        ViewModelFactory factory = Injection.provideViewModelFactory(activity);
+        return ViewModelProviders.of(activity, factory).get(DiscoverMoviesViewModel.class);
     }
 
     private void setupListAdapter() {

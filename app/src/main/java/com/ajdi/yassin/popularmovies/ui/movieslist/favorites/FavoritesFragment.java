@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.databinding.FragmentFavoriteMoviesBinding;
+import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity;
 import com.ajdi.yassin.popularmovies.utils.GlideApp;
 import com.ajdi.yassin.popularmovies.utils.GlideRequests;
 import com.ajdi.yassin.popularmovies.utils.Injection;
@@ -48,6 +49,7 @@ public class FavoritesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        ((MoviesActivity) getActivity()).getSupportActionBar().setTitle(getString(R.string.favorites));
         viewModel = obtainViewModel(getActivity());
         setupListAdapter();
     }
