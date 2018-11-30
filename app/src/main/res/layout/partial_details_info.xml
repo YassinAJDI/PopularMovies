@@ -62,27 +62,26 @@
             app:layout_constraintTop_toTopOf="@+id/guideline"
             tools:text="Movie title here" />
 
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/flexboxLayout"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:flexWrap="wrap"
             app:items="@{movieFullDetails.movie.genres}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_title"
             app:layout_constraintTop_toBottomOf="@+id/text_title"
             app:visibleGone="@{movieFullDetails.movie.genres != null}">
 
-        </com.google.android.flexbox.FlexboxLayout>
+        </com.google.android.material.chip.ChipGroup>
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/barrier2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="text_title,flexboxLayout,card_poster" />
+            app:constraint_referenced_ids="text_title,chip_group,card_poster" />
 
         <View
             android:id="@+id/view_divider"
