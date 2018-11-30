@@ -1,7 +1,6 @@
 package com.ajdi.yassin.popularmovies.ui.movieslist;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ajdi.yassin.popularmovies.R;
@@ -10,7 +9,6 @@ import com.ajdi.yassin.popularmovies.ui.movieslist.discover.DiscoverMoviesViewMo
 import com.ajdi.yassin.popularmovies.ui.movieslist.favorites.FavoritesFragment;
 import com.ajdi.yassin.popularmovies.utils.ActivityUtils;
 import com.ajdi.yassin.popularmovies.utils.Injection;
-import com.ajdi.yassin.popularmovies.utils.UiUtils;
 import com.ajdi.yassin.popularmovies.utils.ViewModelFactory;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -36,28 +34,6 @@ public class MoviesActivity extends AppCompatActivity {
             setupViewFragment();
         }
         setupBottomNavigation();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        UiUtils.tintMenuIcon(this, menu.findItem(R.id.action_sort_by), R.color.md_white_1000);
-
-        if (viewModel.getCurrentSorting() == MoviesFilterType.POPULAR) {
-            menu.findItem(R.id.action_popular_movies).setChecked(true);
-        } else {
-            menu.findItem(R.id.action_top_rated).setChecked(true);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getGroupId() == R.id.menu_sort_group) {
-            viewModel.setSortMoviesBy(item.getItemId());
-            item.setChecked(true);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public static DiscoverMoviesViewModel obtainViewModel(FragmentActivity activity) {
