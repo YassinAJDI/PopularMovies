@@ -23,11 +23,10 @@
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="16dp"
-                android:tint="@color/md_red_200"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+                tools:srcCompat="@drawable/ic_account_circle_black_24dp" />
 
             <TextView
                 android:id="@+id/text_author"
