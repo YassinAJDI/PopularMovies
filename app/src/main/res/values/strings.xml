@@ -8,7 +8,7 @@
     <string name="movie_poster">Movie poster</string>
     <string name="label_overview">Overview:</string>
     <string name="release_date">Release date</string>
-    <string name="vote_average">Vote average</string>
+    <string name="label_votes">votes</string>
     <string name="action_share">Share trailer</string>
     <string name="action_favorite">Add to favorites</string>
     <string name="action_remove_from_favorites">Delete from favorites</string>

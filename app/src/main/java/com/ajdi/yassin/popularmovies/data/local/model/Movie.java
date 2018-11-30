@@ -44,6 +44,10 @@ public class Movie {
     @SerializedName("vote_average")
     private double voteAverage;
 
+    @ColumnInfo(name = "vote_count")
+    @SerializedName("vote_count")
+    private int voteCount;
+
     @ColumnInfo(name = "release_date")
     @SerializedName("release_date")
     private String releaseDate;
@@ -161,6 +165,14 @@ public class Movie {
 
     public void setVoteAverage(double voteAverage) {
         this.voteAverage = voteAverage;
+    }
+
+    public int getVoteCount() {
+        return voteCount;
+    }
+
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
     }
 
     public String getReleaseDate() {

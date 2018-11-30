@@ -130,12 +130,13 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/vote_average"
+            android:text='@{String.format("%s %s", movieFullDetails.movie.voteCount, @string/label_votes)}'
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintEnd_toStartOf="@+id/label_language"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/label_release_date"
-            app:layout_constraintTop_toBottomOf="@+id/text_vote" />
+            app:layout_constraintTop_toBottomOf="@+id/text_vote"
+            tools:text="233 votes" />
 
         <TextView
             android:id="@+id/text_vote"
@@ -169,10 +170,10 @@
             android:drawableStart="@drawable/ic_language_black_24dp"
             android:drawablePadding="8dp"
             android:gravity="center"
-            tools:text="En"
             app:layout_constraintEnd_toEndOf="@+id/label_language"
             app:layout_constraintStart_toStartOf="@+id/label_language"
-            app:layout_constraintTop_toTopOf="@+id/text_vote" />
+            app:layout_constraintTop_toTopOf="@+id/text_vote"
+            tools:text="En" />
 
         <View
             android:id="@+id/view_divider_bottom"
@@ -185,7 +186,7 @@
             app:layout_constraintTop_toBottomOf="@+id/label_release_date" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/label_overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -206,7 +207,7 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/label_overview"
             tools:text="@tools:sample/lorem" />
 
         <TextView

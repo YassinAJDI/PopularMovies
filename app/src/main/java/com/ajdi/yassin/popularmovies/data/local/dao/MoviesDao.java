@@ -21,10 +21,6 @@ public interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertMovie(Movie movie);
 
-//    @Query("SELECT * FROM movie WHERE id = :movieId")
-//    LiveData<Movie> getFullMovieDetails(long movieId);
-    //    getMovieWithTrailersAndCastingAndReviews();
-
     @Transaction
     @Query("SELECT * FROM movie WHERE movie.id= :movieId")
     LiveData<MovieAndTrailers> getMovie(long movieId);
