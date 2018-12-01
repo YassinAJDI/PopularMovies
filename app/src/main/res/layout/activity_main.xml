@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="?attr/actionBarSize"
+        android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <FrameLayout
@@ -45,21 +46,10 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="6dp"
-            android:layout_marginBottom="54dp"
+            android:layout_marginBottom="?attr/actionBarSize"
+            android:contentDescription="@string/bottom_navigation_border"
             android:scaleType="fitXY"
-            android:src="@drawable/bottom_nav_border" />
+            app:srcCompat="@drawable/bottom_nav_border" />
     </FrameLayout>
-
-
-    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_margin="24dp"-->
-    <!--android:src="@drawable/ic_filter_list_black_24dp"-->
-    <!--android:tint="@color/md_white_1000"-->
-    <!--app:elevation="12dp"-->
-    <!--app:fabSize="normal"-->
-    <!--app:layout_anchor="@id/bottom_navigation"-->
-    <!--app:layout_anchorGravity="bottom|center" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

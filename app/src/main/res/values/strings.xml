@@ -22,4 +22,5 @@
     <string name="user_reviews">User Reviews</string>
     <string name="language">Language</string>
     <string name="favorites">Favorites</string>
+    <string name="bottom_navigation_border">Bottom navigation border</string>
 </resources>

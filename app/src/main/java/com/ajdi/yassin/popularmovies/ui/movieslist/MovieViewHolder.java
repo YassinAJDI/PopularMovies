@@ -31,7 +31,6 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindTo(final Movie movie) {
-
         // movie poster
         glide
                 .load(IMAGE_URL + movie.getPosterPath())
@@ -39,9 +38,6 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
                 .into(binding.imageMoviePoster);
         // movie title
         binding.textTitle.setText(movie.getTitle());
-//        binding.textRating.setText(String.valueOf(movie.getVoteAverage()));
-//        binding.textReleaseDate.setText("");
-
         // movie click event
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override

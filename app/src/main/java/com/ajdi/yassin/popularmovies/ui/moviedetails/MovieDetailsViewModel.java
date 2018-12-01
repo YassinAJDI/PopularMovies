@@ -34,7 +34,7 @@ public class MovieDetailsViewModel extends ViewModel {
 
     public void init(long movieId) {
         if (result != null) {
-            return; // trigger loading movie details, only once the activity created
+            return; // load movie details only once the activity created first time
         }
         Timber.d("Initializing viewModel");
 
@@ -46,7 +46,7 @@ public class MovieDetailsViewModel extends ViewModel {
                     }
                 });
 
-        setMovieIdLiveData(movieId);
+        setMovieIdLiveData(movieId); // trigger loading movie
     }
 
     public LiveData<Resource<MovieAndTrailers>> getResult() {
