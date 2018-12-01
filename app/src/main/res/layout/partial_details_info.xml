@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="movieFullDetails"
-            type="com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers" />
+            name="movieDetails"
+            type="com.ajdi.yassin.popularmovies.data.local.model.MovieDetails" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
                 android:layout_height="match_parent"
                 android:contentDescription="@string/movie_poster"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{movieFullDetails.movie.posterPath}"
+                app:imageUrl="@{movieDetails.movie.posterPath}"
                 app:isBackdrop="@{false}"
                 tools:background="@tools:sample/backgrounds/scenic" />
 
@@ -55,7 +55,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@{movieFullDetails.movie.title}"
+            android:text="@{movieDetails.movie.title}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/card_poster"
@@ -68,11 +68,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:items="@{movieFullDetails.movie.genres}"
+            app:items="@{movieDetails.movie.genres}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_title"
             app:layout_constraintTop_toBottomOf="@+id/text_title"
-            app:visibleGone="@{movieFullDetails.movie.genres != null}">
+            app:visibleGone="@{movieDetails.movie.genres != null}">
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -115,7 +115,7 @@
             android:drawableStart="@drawable/ic_access_time_black_24dp"
             android:drawablePadding="8dp"
             android:gravity="center"
-            android:text="@{movieFullDetails.movie.releaseDate}"
+            android:text="@{movieDetails.movie.releaseDate}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             app:layout_constraintEnd_toEndOf="@+id/label_release_date"
             app:layout_constraintStart_toStartOf="@+id/label_release_date"
@@ -129,7 +129,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{@string/label_votes(movieFullDetails.movie.voteCount)}"
+            android:text="@{@string/label_votes(movieDetails.movie.voteCount)}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintEnd_toStartOf="@+id/label_language"
             app:layout_constraintHorizontal_bias="0.5"
@@ -144,7 +144,7 @@
             android:drawableStart="@drawable/ic_star_black_24dp"
             android:drawablePadding="8dp"
             android:gravity="center"
-            android:text="@{String.valueOf(movieFullDetails.movie.voteAverage)}"
+            android:text="@{String.valueOf(movieDetails.movie.voteAverage)}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             app:layout_constraintEnd_toEndOf="@+id/label_vote"
             app:layout_constraintStart_toStartOf="@+id/label_vote"
@@ -169,7 +169,7 @@
             android:drawableStart="@drawable/ic_language_black_24dp"
             android:drawablePadding="8dp"
             android:gravity="center"
-            android:text="@{movieFullDetails.movie.originalLanguage}"
+            android:text="@{movieDetails.movie.originalLanguage}"
             app:layout_constraintEnd_toEndOf="@+id/label_language"
             app:layout_constraintStart_toStartOf="@+id/label_language"
             app:layout_constraintTop_toTopOf="@+id/text_vote"
@@ -203,7 +203,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@{movieFullDetails.movie.overview}"
+            android:text="@{movieDetails.movie.overview}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -219,7 +219,7 @@
             android:text="@string/cast"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_overview"
-            app:visibleGone="@{movieFullDetails.castList.size > 0}" />
+            app:visibleGone="@{movieDetails.castList.size > 0}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_cast"
@@ -228,11 +228,11 @@
             android:layout_marginTop="8dp"
             android:clipToPadding="false"
             android:paddingEnd="16dp"
-            app:items="@{movieFullDetails.castList}"
+            app:items="@{movieDetails.castList}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_cast"
-            app:visibleGone="@{movieFullDetails.castList.size > 0}" />
+            app:visibleGone="@{movieDetails.castList.size > 0}" />
 
         <TextView
             android:id="@+id/label_trailers"
@@ -243,7 +243,7 @@
             android:text="@string/trailers"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/list_cast"
-            app:visibleGone="@{movieFullDetails.trailers.size > 0}" />
+            app:visibleGone="@{movieDetails.trailers.size > 0}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_trailers"
@@ -252,11 +252,11 @@
             android:layout_marginTop="8dp"
             android:clipToPadding="false"
             android:paddingEnd="16dp"
-            app:items="@{movieFullDetails.trailers}"
+            app:items="@{movieDetails.trailers}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_trailers"
-            app:visibleGone="@{movieFullDetails.trailers.size > 0}" />
+            app:visibleGone="@{movieDetails.trailers.size > 0}" />
 
         <TextView
             android:id="@+id/label_reviews"
@@ -267,7 +267,7 @@
             android:text="@string/user_reviews"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/list_trailers"
-            app:visibleGone="@{movieFullDetails.reviews.size > 0}" />
+            app:visibleGone="@{movieDetails.reviews.size > 0}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_reviews"
@@ -276,11 +276,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:clipChildren="false"
-            app:items="@{movieFullDetails.reviews}"
+            app:items="@{movieDetails.reviews}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label_reviews"
-            app:visibleGone="@{movieFullDetails.reviews.size > 0}" />
+            app:visibleGone="@{movieDetails.reviews.size > 0}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

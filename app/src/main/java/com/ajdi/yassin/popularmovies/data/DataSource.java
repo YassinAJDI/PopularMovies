@@ -1,7 +1,7 @@
 package com.ajdi.yassin.popularmovies.data;
 
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
-import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
+import com.ajdi.yassin.popularmovies.data.local.model.MovieDetails;
 import com.ajdi.yassin.popularmovies.data.local.model.RepoMoviesResult;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
@@ -15,7 +15,7 @@ import androidx.lifecycle.LiveData;
  */
 public interface DataSource {
 
-    LiveData<Resource<MovieAndTrailers>> loadMovie(long movieId);
+    LiveData<Resource<MovieDetails>> loadMovie(long movieId);
 
     RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy);
 

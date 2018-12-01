@@ -2,7 +2,7 @@ package com.ajdi.yassin.popularmovies.data.local;
 
 import com.ajdi.yassin.popularmovies.data.local.model.Cast;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
-import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
+import com.ajdi.yassin.popularmovies.data.local.model.MovieDetails;
 import com.ajdi.yassin.popularmovies.data.local.model.Review;
 import com.ajdi.yassin.popularmovies.data.local.model.Trailer;
 import com.ajdi.yassin.popularmovies.utils.AppExecutors;
@@ -67,7 +67,7 @@ public class MoviesLocalDataSource {
         Timber.d("%s trailers inserted into database.", trailers.size());
     }
 
-    public LiveData<MovieAndTrailers> getMovie(long movieId) {
+    public LiveData<MovieDetails> getMovie(long movieId) {
         Timber.d("Loading movie and trailers.");
         return mDatabase.moviesDao().getMovie(movieId);
     }

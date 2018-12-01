@@ -6,11 +6,11 @@
     <data>
 
         <variable
-            name="movieFullDetails"
-            type="com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers" />
+            name="movieDetails"
+            type="com.ajdi.yassin.popularmovies.data.local.model.MovieDetails" />
 
         <variable
-            name="movieResource"
+            name="resource"
             type="com.ajdi.yassin.popularmovies.data.local.model.Resource" />
 
     </data>
@@ -29,7 +29,7 @@
             android:layout_height="256dp"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:visibleGone="@{movieFullDetails.movie != null}">
+            app:visibleGone="@{movieDetails.movie != null}">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
@@ -48,7 +48,7 @@
                     android:contentDescription="@string/movie_backdrop_content_description"
                     android:fitsSystemWindows="true"
                     android:scaleType="centerCrop"
-                    app:imageUrl="@{movieFullDetails.movie.backdropPath}"
+                    app:imageUrl="@{movieDetails.movie.backdropPath}"
                     app:isBackdrop="@{true}"
                     app:layout_collapseMode="parallax"
                     tools:src="@tools:sample/backgrounds/scenic" />
@@ -72,12 +72,12 @@
             android:paddingBottom="16dp"
             app:behavior_overlapTop="48dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:visibleGone="@{movieFullDetails.movie != null}">
+            app:visibleGone="@{movieDetails.movie != null}">
 
             <include
                 android:id="@+id/movie_details_info"
                 layout="@layout/partial_details_info"
-                app:movieFullDetails="@{movieFullDetails}" />
+                app:movieDetails="@{movieDetails}" />
         </androidx.core.widget.NestedScrollView>
 
         <include
@@ -86,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            app:resource="@{movieResource}" />
+            app:resource="@{resource}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

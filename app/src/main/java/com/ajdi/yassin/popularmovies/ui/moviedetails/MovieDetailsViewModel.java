@@ -2,7 +2,7 @@ package com.ajdi.yassin.popularmovies.ui.moviedetails;
 
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.MovieRepository;
-import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
+import com.ajdi.yassin.popularmovies.data.local.model.MovieDetails;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.utils.SnackbarMessage;
 
@@ -20,7 +20,7 @@ public class MovieDetailsViewModel extends ViewModel {
 
     private final MovieRepository repository;
 
-    private LiveData<Resource<MovieAndTrailers>> result;
+    private LiveData<Resource<MovieDetails>> result;
 
     private MutableLiveData<Long> movieIdLiveData = new MutableLiveData<>();
 
@@ -39,9 +39,9 @@ public class MovieDetailsViewModel extends ViewModel {
         Timber.d("Initializing viewModel");
 
         result = Transformations.switchMap(movieIdLiveData,
-                new Function<Long, LiveData<Resource<MovieAndTrailers>>>() {
+                new Function<Long, LiveData<Resource<MovieDetails>>>() {
                     @Override
-                    public LiveData<Resource<MovieAndTrailers>> apply(Long movieId) {
+                    public LiveData<Resource<MovieDetails>> apply(Long movieId) {
                         return repository.loadMovie(movieId);
                     }
                 });
@@ -49,7 +49,7 @@ public class MovieDetailsViewModel extends ViewModel {
         setMovieIdLiveData(movieId); // trigger loading movie
     }
 
-    public LiveData<Resource<MovieAndTrailers>> getResult() {
+    public LiveData<Resource<MovieDetails>> getResult() {
         return result;
     }
 
@@ -74,13 +74,13 @@ public class MovieDetailsViewModel extends ViewModel {
     }
 
     public void onFavoriteClicked() {
-        MovieAndTrailers movieAndTrailers = result.getValue().data;
+        MovieDetails movieDetails = result.getValue().data;
         if (!isFavorite) {
-            repository.favoriteMovie(movieAndTrailers.movie);
+            repository.favoriteMovie(movieDetails.movie);
             isFavorite = true;
             showSnackbarMessage(R.string.movie_added_successfully);
         } else {
-            repository.unfavoriteMovie(movieAndTrailers.movie);
+            repository.unfavoriteMovie(movieDetails.movie);
             isFavorite = false;
             showSnackbarMessage(R.string.movie_removed_successfully);
         }

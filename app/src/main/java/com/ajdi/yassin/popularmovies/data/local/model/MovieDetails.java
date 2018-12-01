@@ -12,7 +12,7 @@ import androidx.room.Relation;
  * @author Yassin Ajdi
  * @since 11/12/2018.
  */
-public class MovieAndTrailers {
+public class MovieDetails {
 
     @Embedded
     public Movie movie = null;

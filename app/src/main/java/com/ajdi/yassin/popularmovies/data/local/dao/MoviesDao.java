@@ -1,7 +1,7 @@
 package com.ajdi.yassin.popularmovies.data.local.dao;
 
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
-import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
+import com.ajdi.yassin.popularmovies.data.local.model.MovieDetails;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public interface MoviesDao {
 
     @Transaction
     @Query("SELECT * FROM movie WHERE movie.id= :movieId")
-    LiveData<MovieAndTrailers> getMovie(long movieId);
+    LiveData<MovieDetails> getMovie(long movieId);
 
     @Query("SELECT * FROM movie WHERE is_favorite = 1")
     LiveData<List<Movie>> getAllFavoriteMovies();

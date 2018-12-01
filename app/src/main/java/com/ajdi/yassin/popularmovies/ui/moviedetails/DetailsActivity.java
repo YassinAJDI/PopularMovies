@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.ajdi.yassin.popularmovies.R;
-import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
+import com.ajdi.yassin.popularmovies.data.local.model.MovieDetails;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.databinding.ActivityDetailsBinding;
 import com.ajdi.yassin.popularmovies.ui.moviedetails.cast.CastAdapter;
@@ -62,16 +62,16 @@ public class DetailsActivity extends AppCompatActivity {
         setupCastAdapter();
         setupReviewsAdapter();
         // observe result
-        mViewModel.getResult().observe(this, new Observer<Resource<MovieAndTrailers>>() {
+        mViewModel.getResult().observe(this, new Observer<Resource<MovieDetails>>() {
             @Override
-            public void onChanged(Resource<MovieAndTrailers> movieAndTrailersResource) {
-                if (movieAndTrailersResource.data != null &&
-                        movieAndTrailersResource.data.movie != null) {
-                    mViewModel.setFavorite(movieAndTrailersResource.data.movie.isFavorite());
+            public void onChanged(Resource<MovieDetails> resource) {
+                if (resource.data != null &&
+                        resource.data.movie != null) {
+                    mViewModel.setFavorite(resource.data.movie.isFavorite());
                     invalidateOptionsMenu();
                 }
-                mBinding.setMovieResource(movieAndTrailersResource);
-                mBinding.setMovieFullDetails(movieAndTrailersResource.data);
+                mBinding.setResource(resource);
+                mBinding.setMovieDetails(resource.data);
             }
         });
         // handle retry event in case of network failure
@@ -151,7 +151,7 @@ public class DetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share: {
-                MovieAndTrailers movieDetails = mViewModel.getResult().getValue().data;
+                MovieDetails movieDetails = mViewModel.getResult().getValue().data;
                 Intent shareIntent = ShareCompat.IntentBuilder.from(this)
                         .setType("text/plain")
                         .setSubject(movieDetails.movie.getTitle() + " movie trailer")

@@ -2,7 +2,7 @@ package com.ajdi.yassin.popularmovies.data;
 
 import com.ajdi.yassin.popularmovies.data.local.MoviesLocalDataSource;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
-import com.ajdi.yassin.popularmovies.data.local.model.MovieAndTrailers;
+import com.ajdi.yassin.popularmovies.data.local.model.MovieDetails;
 import com.ajdi.yassin.popularmovies.data.local.model.RepoMoviesResult;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.data.remote.MoviesRemoteDataSource;
@@ -54,8 +54,8 @@ public class MovieRepository implements DataSource {
     }
 
     @Override
-    public LiveData<Resource<MovieAndTrailers>> loadMovie(final long movieId) {
-        return new NetworkBoundResource<MovieAndTrailers, Movie>(mExecutors) {
+    public LiveData<Resource<MovieDetails>> loadMovie(final long movieId) {
+        return new NetworkBoundResource<MovieDetails, Movie>(mExecutors) {
 
             @Override
             protected void saveCallResult(@NonNull Movie item) {
@@ -64,13 +64,13 @@ public class MovieRepository implements DataSource {
             }
 
             @Override
-            protected boolean shouldFetch(@Nullable MovieAndTrailers data) {
+            protected boolean shouldFetch(@Nullable MovieDetails data) {
                 return data == null; // only fetch fresh data if it doesn't exist in database
             }
 
             @NonNull
             @Override
-            protected LiveData<MovieAndTrailers> loadFromDb() {
+            protected LiveData<MovieDetails> loadFromDb() {
                 Timber.d("Loading movie from database");
                 return mLocalDataSource.getMovie(movieId);
             }
