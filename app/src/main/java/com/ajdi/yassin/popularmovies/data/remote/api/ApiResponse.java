@@ -1,11 +1,10 @@
 package com.ajdi.yassin.popularmovies.data.remote.api;
 
-import android.util.Log;
-
 import java.io.IOException;
 
 import androidx.annotation.Nullable;
 import retrofit2.Response;
+import timber.log.Timber;
 
 /**
  * @author Yassin Ajdi
@@ -20,7 +19,7 @@ public class ApiResponse<T> {
     public final Throwable error;
 
 
-    public ApiResponse(Throwable error) {
+    public ApiResponse(@Nullable Throwable error) {
         code = 500;
         body = null;
         this.error = error;
@@ -37,7 +36,7 @@ public class ApiResponse<T> {
                 try {
                     message = response.errorBody().string();
                 } catch (IOException ignored) {
-                    Log.e("ERROR", "error while parsing response", ignored);
+                    Timber.e(ignored, "error while parsing response");
                 }
             }
             if (message == null || message.trim().length() == 0) {

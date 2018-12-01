@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Empty no favorites yet!" />
+            android:layout_margin="16dp"
+            android:text="@string/no_favorites" />
 
     </FrameLayout>
 </layout>

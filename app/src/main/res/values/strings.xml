@@ -23,4 +23,5 @@
     <string name="language">Language</string>
     <string name="favorites">Favorites</string>
     <string name="bottom_navigation_border">Bottom navigation border</string>
+    <string name="no_favorites">Empty. you haven\'t added any movies to your favorites yet!</string>
 </resources>

@@ -45,5 +45,6 @@ public class NetworkStateViewHolder extends RecyclerView.ViewHolder {
 
     public void bindTo(Resource resource) {
         binding.setResource(resource);
+        binding.executePendingBindings();
     }
 }

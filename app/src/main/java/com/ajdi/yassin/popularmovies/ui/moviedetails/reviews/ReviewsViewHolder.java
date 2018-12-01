@@ -1,6 +1,5 @@
 package com.ajdi.yassin.popularmovies.ui.moviedetails.reviews;
 
-import android.content.Context;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ public class ReviewsViewHolder extends RecyclerView.ViewHolder {
 
     private ItemReviewBinding binding;
 
-    public ReviewsViewHolder(@NonNull ItemReviewBinding binding, Context context) {
+    public ReviewsViewHolder(@NonNull ItemReviewBinding binding) {
         super(binding.getRoot());
 
         this.binding = binding;
@@ -56,6 +55,6 @@ public class ReviewsViewHolder extends RecyclerView.ViewHolder {
         // Create the binding
         ItemReviewBinding binding =
                 ItemReviewBinding.inflate(layoutInflater, parent, false);
-        return new ReviewsViewHolder(binding, parent.getContext());
+        return new ReviewsViewHolder(binding);
     }
 }

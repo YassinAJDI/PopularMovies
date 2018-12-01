@@ -67,10 +67,6 @@ public class MoviesLocalDataSource {
         Timber.d("%s trailers inserted into database.", trailers.size());
     }
 
-    public LiveData<Movie> getMovieById(long movieId) {
-        return mDatabase.moviesDao().getMovieById(movieId);
-    }
-
     public LiveData<MovieAndTrailers> getMovie(long movieId) {
         Timber.d("Loading movie and trailers.");
         return mDatabase.moviesDao().getMovie(movieId);

@@ -42,7 +42,7 @@
             app:itemTextColor="@color/bottom_nav_item_colors"
             app:menu="@menu/bottom_navigation" />
 
-        <!--This border vector was inspired by Chris Banes tivi app-->
+        <!--This border vector was inspired by Chris Banes's tivi app-->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="6dp"

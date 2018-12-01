@@ -42,7 +42,7 @@ public class MovieDetailsViewModel extends ViewModel {
                 new Function<Long, LiveData<Resource<MovieAndTrailers>>>() {
                     @Override
                     public LiveData<Resource<MovieAndTrailers>> apply(Long movieId) {
-                        return repository.load(movieId);
+                        return repository.loadMovie(movieId);
                     }
                 });
 

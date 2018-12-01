@@ -32,16 +32,5 @@
             app:layout_constraintTop_toBottomOf="@+id/image_cast_profile"
             tools:text="@tools:sample/full_names" />
 
-        <TextView
-            android:id="@+id/text_character_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:maxLines="2"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_cast_name"
-            tools:text="@tools:sample/first_names" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

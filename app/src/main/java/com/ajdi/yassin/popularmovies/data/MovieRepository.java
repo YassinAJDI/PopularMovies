@@ -53,7 +53,8 @@ public class MovieRepository implements DataSource {
         return sInstance;
     }
 
-    public LiveData<Resource<MovieAndTrailers>> load(final long movieId) {
+    @Override
+    public LiveData<Resource<MovieAndTrailers>> loadMovie(final long movieId) {
         return new NetworkBoundResource<MovieAndTrailers, Movie>(mExecutors) {
 
             @Override
@@ -89,49 +90,6 @@ public class MovieRepository implements DataSource {
             }
         }.getAsLiveData();
     }
-
-//    @Override
-//    public RepoMovieDetailsResult loadMovie(final long movieId) {
-//        final MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
-//        final MutableLiveData<Movie> movieLiveData = new MutableLiveData<>();
-//        // Show loading bar to user
-////        networkState.setValue(NetworkState.LOADING);
-////        // check if movie exist in local database
-////        mExecutors.diskIO().execute(new Runnable() {
-////            @Override
-////            public void run() {
-////                Movie movie = mLocalDataSource.getMovieById(movieId);
-////                if (movie != null) {
-////                    // awesome, movie exist in database. show movie details
-////                    networkState.postValue(NetworkState.LOADED);
-////                    movieLiveData.postValue(movie);
-////                } else { // movie doesn't exist, fetch movie from network
-////                    mExecutors.networkIO().execute(new Runnable() {
-////                        @Override
-////                        public void run() {
-////                            try {
-////                                Response<Movie> movieResponse = mRemoteDataSource.loadMovie(movieId);
-////                                Movie loadedMovie = movieResponse.body();
-////                                // insert movie into database
-////                                mLocalDataSource.insertMovie(loadedMovie);
-////                                // TODO: 11/9/2018 insert trailers and reviews
-////                                // finished loading, show movie details
-////                                networkState.postValue(NetworkState.LOADED);
-////                                movieLiveData.postValue(loadedMovie);
-////                            } catch (IOException e) {
-////                                // handle network exceptions(in case of no internet access)
-////                                NetworkState error = NetworkState.error(e.getMessage());
-////                                networkState.postValue(error);
-////                                e.printStackTrace();
-////                            }
-////                        }
-////                    });
-////                }
-////            }
-////        });
-//
-//        return new RepoMovieDetailsResult(movieLiveData, networkState);
-//    }
 
     @Override
     public RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy) {

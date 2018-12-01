@@ -40,7 +40,6 @@ public class CastViewHolder extends RecyclerView.ViewHolder {
                 .into(binding.imageCastProfile);
 
         binding.textCastName.setText(cast.getActorName());
-        binding.textCharacterName.setText(cast.getCharacterName());
 
         binding.executePendingBindings();
     }
