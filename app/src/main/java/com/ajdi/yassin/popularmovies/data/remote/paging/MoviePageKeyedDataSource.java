@@ -1,9 +1,9 @@
 package com.ajdi.yassin.popularmovies.data.remote.paging;
 
-import com.ajdi.yassin.popularmovies.data.remote.api.MovieService;
-import com.ajdi.yassin.popularmovies.data.remote.api.NetworkState;
-import com.ajdi.yassin.popularmovies.data.local.model.MoviesResponse;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
+import com.ajdi.yassin.popularmovies.data.local.model.MoviesResponse;
+import com.ajdi.yassin.popularmovies.data.local.model.Resource;
+import com.ajdi.yassin.popularmovies.data.remote.api.MovieService;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
 
 import java.io.IOException;
@@ -28,8 +28,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
 
     private static final int FIRST_PAGE = 1;
 
-    public MutableLiveData<NetworkState> networkState = new MutableLiveData<>();
-    public MutableLiveData<NetworkState> initialLoad = new MutableLiveData<>();
+    public MutableLiveData<Resource> networkState = new MutableLiveData<>();
 
     private final MovieService movieService;
 
@@ -49,8 +48,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
     @Override
     public void loadInitial(@NonNull final LoadInitialParams<Integer> params,
                             @NonNull final LoadInitialCallback<Integer, Movie> callback) {
-        networkState.postValue(NetworkState.LOADING);
-        initialLoad.postValue(NetworkState.LOADING);
+        networkState.postValue(Resource.loading(null));
 
         // load data from API
         Call<MoviesResponse> request;
@@ -68,8 +66,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
                     data != null ? data.getMovies() : Collections.<Movie>emptyList();
 
             retryCallback = null;
-            networkState.postValue(NetworkState.LOADED);
-            initialLoad.postValue(NetworkState.LOADED);
+            networkState.postValue(Resource.success(null));
             callback.onResult(movieList, null, FIRST_PAGE + 1);
         } catch (IOException e) {
             // publish error
@@ -85,9 +82,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
 
                 }
             };
-            NetworkState error = NetworkState.error(e.getMessage());
-            networkState.postValue(error);
-            initialLoad.postValue(error);
+            networkState.postValue(Resource.error(e.getMessage(), null));
         }
     }
 
@@ -100,7 +95,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
     @Override
     public void loadAfter(@NonNull final LoadParams<Integer> params,
                           @NonNull final LoadCallback<Integer, Movie> callback) {
-        networkState.postValue(NetworkState.LOADING);
+        networkState.postValue(Resource.loading(null));
 
         // load data from API
         Call<MoviesResponse> request;
@@ -120,7 +115,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
 
                     retryCallback = null;
                     callback.onResult(movieList, params.key + 1);
-                    networkState.postValue(NetworkState.LOADED);
+                    networkState.postValue(Resource.success(null));
                 } else {
                     retryCallback = new RetryCallback() {
                         @Override
@@ -128,8 +123,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
                             loadAfter(params, callback);
                         }
                     };
-                    networkState.postValue(
-                            NetworkState.error("error code: " + response.code()));
+                    networkState.postValue(Resource.error("error code: " + response.code(), null));
                 }
             }
 
@@ -146,8 +140,7 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
                         });
                     }
                 };
-                networkState.postValue(
-                        NetworkState.error(t != null ? t.getMessage() : "unknown error"));
+                networkState.postValue(Resource.error(t != null ? t.getMessage() : "unknown error", null));
             }
         });
     }

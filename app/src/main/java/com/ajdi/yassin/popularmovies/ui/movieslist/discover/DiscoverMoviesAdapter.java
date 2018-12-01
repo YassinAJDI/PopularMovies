@@ -3,8 +3,8 @@ package com.ajdi.yassin.popularmovies.ui.movieslist.discover;
 import android.view.ViewGroup;
 
 import com.ajdi.yassin.popularmovies.R;
-import com.ajdi.yassin.popularmovies.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
+import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MovieViewHolder;
 import com.ajdi.yassin.popularmovies.utils.GlideRequests;
 
@@ -24,7 +24,7 @@ public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.
 
     private DiscoverMoviesViewModel mViewModel;
 
-    private NetworkState networkState = null;
+    private Resource resource = null;
 
     DiscoverMoviesAdapter(GlideRequests glide, DiscoverMoviesViewModel viewModel) {
         super(MOVIE_COMPARATOR);
@@ -54,7 +54,7 @@ public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.
                 ((MovieViewHolder) holder).bindTo(getItem(position));
                 break;
             case R.layout.item_network_state:
-                ((NetworkStateViewHolder) holder).bindTo(networkState);
+                ((NetworkStateViewHolder) holder).bindTo(resource);
                 break;
         }
     }
@@ -74,13 +74,13 @@ public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.
     }
 
     private boolean hasExtraRow() {
-        return networkState != null && networkState != NetworkState.LOADED;
+        return resource != null && resource.status != Resource.Status.SUCCESS;
     }
 
-    public void setNetworkState(NetworkState newNetworkState) {
-        NetworkState previousState = this.networkState;
+    public void setNetworkState(Resource resource) {
+        Resource previousState = this.resource;
         boolean hadExtraRow = hasExtraRow();
-        this.networkState = newNetworkState;
+        this.resource = resource;
         boolean hasExtraRow = hasExtraRow();
         if (hadExtraRow != hasExtraRow) {
             if (hadExtraRow) {
@@ -88,7 +88,7 @@ public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.
             } else {
                 notifyItemInserted(super.getItemCount());
             }
-        } else if (hasExtraRow && previousState != newNetworkState) {
+        } else if (hasExtraRow && previousState != resource) {
             notifyItemChanged(getItemCount() - 1);
         }
     }

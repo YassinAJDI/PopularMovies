@@ -2,9 +2,9 @@ package com.ajdi.yassin.popularmovies.data.remote;
 
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.RepoMoviesResult;
+import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.data.remote.api.ApiResponse;
 import com.ajdi.yassin.popularmovies.data.remote.api.MovieService;
-import com.ajdi.yassin.popularmovies.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmovies.data.remote.paging.MovieDataSourceFactory;
 import com.ajdi.yassin.popularmovies.data.remote.paging.MoviePageKeyedDataSource;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
@@ -47,10 +47,13 @@ public class MoviesRemoteDataSource {
         return sInstance;
     }
 
-    public LiveData<ApiResponse<Movie>> loadMovie(final long movieId){
+    public LiveData<ApiResponse<Movie>> loadMovie(final long movieId) {
         return mMovieService.getMovieDetails(movieId);
     }
 
+    /**
+     * Load movies for certain filter.
+     */
     public RepoMoviesResult loadMoviesFilteredBy(MoviesFilterType sortBy) {
         MovieDataSourceFactory sourceFactory =
                 new MovieDataSourceFactory(mMovieService, mExecutors.networkIO(), sortBy);
@@ -66,14 +69,14 @@ public class MoviesRemoteDataSource {
                 .setFetchExecutor(mExecutors.networkIO())
                 .build();
 
-        LiveData<NetworkState> networkState = Transformations.switchMap(sourceFactory.sourceLiveData,
-                new Function<MoviePageKeyedDataSource, LiveData<NetworkState>>() {
-                    @Override
-                    public LiveData<NetworkState> apply(MoviePageKeyedDataSource input) {
-                        return input.networkState;
-                    }
-                });
+        LiveData<Resource> networkState = Transformations.switchMap(sourceFactory.sourceLiveData, new Function<MoviePageKeyedDataSource, LiveData<Resource>>() {
+            @Override
+            public LiveData<Resource> apply(MoviePageKeyedDataSource input) {
+                return input.networkState;
+            }
+        });
 
+        // Get pagedList and network errors exposed to the viewmodel
         return new RepoMoviesResult(
                 moviesPagedList,
                 networkState,

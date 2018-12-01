@@ -16,15 +16,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp"
-        app:visibleGone="@{resource.data == null}">
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/error_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@{resource.message.isEmpty() ? resource.message : @string/unknown_error}"
+            android:text="@{resource.message.isEmpty() ? @string/unknown_error : resource.message}"
             app:visibleGone="@{resource.status == Status.ERROR}" />
 
         <ProgressBar

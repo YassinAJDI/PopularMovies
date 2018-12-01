@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
-import com.ajdi.yassin.popularmovies.data.remote.api.NetworkState;
+import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
 import com.ajdi.yassin.popularmovies.utils.GlideApp;
@@ -96,9 +96,10 @@ public class DiscoverMoviesFragment extends Fragment {
     private void setupListAdapter() {
         RecyclerView recyclerView = getActivity().findViewById(R.id.rv_movie_list);
         GlideRequests glideRequests = GlideApp.with(this);
-        final DiscoverMoviesAdapter discoverMoviesAdapter = new DiscoverMoviesAdapter(glideRequests, viewModel);
-        final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),
-                getResources().getInteger(R.integer.span_count));
+        final DiscoverMoviesAdapter discoverMoviesAdapter =
+                new DiscoverMoviesAdapter(glideRequests, viewModel);
+        final GridLayoutManager layoutManager =
+                new GridLayoutManager(getActivity(), getResources().getInteger(R.integer.span_count));
 
         // draw network status and errors messages to fit the whole row(3 spans)
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -128,10 +129,10 @@ public class DiscoverMoviesFragment extends Fragment {
         });
 
         // observe network state
-        viewModel.getNetWorkState().observe(getViewLifecycleOwner(), new Observer<NetworkState>() {
+        viewModel.getNetworkState().observe(getViewLifecycleOwner(), new Observer<Resource>() {
             @Override
-            public void onChanged(NetworkState networkState) {
-                discoverMoviesAdapter.setNetworkState(networkState);
+            public void onChanged(Resource resource) {
+                discoverMoviesAdapter.setNetworkState(resource);
             }
         });
     }

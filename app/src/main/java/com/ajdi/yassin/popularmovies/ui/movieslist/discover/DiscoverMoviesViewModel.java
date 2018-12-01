@@ -2,9 +2,9 @@ package com.ajdi.yassin.popularmovies.ui.movieslist.discover;
 
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.MovieRepository;
-import com.ajdi.yassin.popularmovies.data.remote.api.NetworkState;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.RepoMoviesResult;
+import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
 
 import androidx.arch.core.util.Function;
@@ -19,20 +19,17 @@ import androidx.paging.PagedList;
  */
 public class DiscoverMoviesViewModel extends ViewModel {
 
-    private final MovieRepository movieRepository;
-
     private LiveData<RepoMoviesResult> repoMoviesResult;
 
     private LiveData<PagedList<Movie>> pagedList;
 
-    private LiveData<NetworkState> networkState;
+    private LiveData<Resource> networkState;
 
     private MutableLiveData<Integer> currentTitle = new MutableLiveData<>();
 
     private MutableLiveData<MoviesFilterType> sortBy = new MutableLiveData<>();
 
     public DiscoverMoviesViewModel(final MovieRepository movieRepository) {
-        this.movieRepository = movieRepository;
         // By default show popular movies
         sortBy.setValue(MoviesFilterType.POPULAR);
         currentTitle.setValue(R.string.action_popular);
@@ -50,20 +47,20 @@ public class DiscoverMoviesViewModel extends ViewModel {
                         return input.data;
                     }
                 });
-        networkState = Transformations.switchMap(repoMoviesResult,
-                new Function<RepoMoviesResult, LiveData<NetworkState>>() {
-                    @Override
-                    public LiveData<NetworkState> apply(RepoMoviesResult input) {
-                        return input.networkState;
-                    }
-                });
+
+        networkState = Transformations.switchMap(repoMoviesResult, new Function<RepoMoviesResult, LiveData<Resource>>() {
+            @Override
+            public LiveData<Resource> apply(RepoMoviesResult input) {
+                return input.resource;
+            }
+        });
     }
 
     public LiveData<PagedList<Movie>> getPagedList() {
         return pagedList;
     }
 
-    public LiveData<NetworkState> getNetWorkState() {
+    public LiveData<Resource> getNetworkState() {
         return networkState;
     }
 

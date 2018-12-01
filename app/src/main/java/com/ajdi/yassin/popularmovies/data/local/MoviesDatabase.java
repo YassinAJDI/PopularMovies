@@ -22,8 +22,10 @@ import androidx.room.TypeConverters;
  *
  * @author Yassin Ajdi.
  */
-@Database(entities = {Movie.class, Trailer.class, Cast.class, Review.class},
-        version = 1, exportSchema = false)
+@Database(
+        entities = {Movie.class, Trailer.class, Cast.class, Review.class},
+        version = 1,
+        exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class MoviesDatabase extends RoomDatabase {
 

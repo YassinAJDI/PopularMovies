@@ -4,14 +4,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajdi.yassin.popularmovies.data.remote.api.NetworkState;
+import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.databinding.ItemNetworkStateBinding;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static com.ajdi.yassin.popularmovies.data.remote.api.Status.FAILED;
-import static com.ajdi.yassin.popularmovies.data.remote.api.Status.RUNNING;
 
 /**
  * A View Holder that can display a loading or have click action.
@@ -46,20 +43,7 @@ public class NetworkStateViewHolder extends RecyclerView.ViewHolder {
         return new NetworkStateViewHolder(binding, viewModel);
     }
 
-    public void bindTo(NetworkState networkState) {
-        binding.progressBar.setVisibility(
-                isVisible(networkState.getStatus() == RUNNING));
-        binding.retryButton.setVisibility(
-                isVisible(networkState.getStatus() == FAILED));
-        binding.errorMsg.setVisibility(
-                isVisible(networkState.getMsg() != null));
-        binding.errorMsg.setText(networkState.getMsg());
-    }
-
-    private int isVisible(boolean condition) {
-        if (condition)
-            return View.VISIBLE;
-        else
-            return View.GONE;
+    public void bindTo(Resource resource) {
+        binding.setResource(resource);
     }
 }
