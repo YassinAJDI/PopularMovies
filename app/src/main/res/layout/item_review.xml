@@ -26,7 +26,8 @@
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/ic_account_circle_black_24dp" />
+                tools:srcCompat="@drawable/ic_account_circle_black_24dp"
+                android:contentDescription="@string/review_author_image" />
 
             <TextView
                 android:id="@+id/text_author"
