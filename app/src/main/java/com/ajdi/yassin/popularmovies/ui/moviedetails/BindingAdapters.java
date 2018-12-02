@@ -42,7 +42,7 @@ public class BindingAdapters {
     }
 
     /**
-     * Movie details image poster
+     * Movie details poster image
      */
     @BindingAdapter({"imageUrl"})
     public static void bindImage(ImageView imageView, String imagePath) {
