@@ -6,7 +6,6 @@ import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MovieViewHolder;
-import com.ajdi.yassin.popularmovies.utils.GlideRequests;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
@@ -20,16 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.ViewHolder> {
 
-    private GlideRequests glide;
-
     private DiscoverMoviesViewModel mViewModel;
 
     private Resource resource = null;
 
-    DiscoverMoviesAdapter(GlideRequests glide, DiscoverMoviesViewModel viewModel) {
+    DiscoverMoviesAdapter(DiscoverMoviesViewModel viewModel) {
         super(MOVIE_COMPARATOR);
 
-        this.glide = glide;
         mViewModel = viewModel;
     }
 
@@ -38,7 +34,7 @@ public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case R.layout.item_movie:
-                return MovieViewHolder.create(parent, glide);
+                return MovieViewHolder.create(parent);
             case R.layout.item_network_state:
                 return NetworkStateViewHolder.create(parent, mViewModel);
             default:

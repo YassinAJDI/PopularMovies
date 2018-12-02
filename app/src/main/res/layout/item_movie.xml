@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.ajdi.yassin.popularmovies.data.local.model.Movie" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -10,7 +17,6 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
-
         tools:layout_width="160dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,23 +29,26 @@
                 android:layout_height="0dp"
                 android:contentDescription="@string/movie_poster"
                 android:scaleType="centerCrop"
-                card_view:layout_constraintDimensionRatio="w,3:2"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent"
+                app:imageUrl="@{movie.posterPath}"
+                app:isBackdrop="@{false}"
+                app:layout_constraintDimensionRatio="w,3:2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
                 android:id="@+id/text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="52dp"
+                android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="2"
-                android:ellipsize="end"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toBottomOf="@+id/image_movie_poster"
+                android:text="@{movie.title}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_movie_poster"
                 tools:text="Bean Hummus with Eggplant &amp; Pine Nuts ean Hummus with Eggplant &amp; Pine Nuts" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

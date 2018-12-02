@@ -9,8 +9,6 @@ import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.databinding.FragmentFavoriteMoviesBinding;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity;
-import com.ajdi.yassin.popularmovies.utils.GlideApp;
-import com.ajdi.yassin.popularmovies.utils.GlideRequests;
 import com.ajdi.yassin.popularmovies.utils.Injection;
 import com.ajdi.yassin.popularmovies.utils.ItemOffsetDecoration;
 import com.ajdi.yassin.popularmovies.utils.ViewModelFactory;
@@ -56,8 +54,7 @@ public class FavoritesFragment extends Fragment {
 
     private void setupListAdapter() {
         RecyclerView recyclerView = binding.moviesList.rvMovieList;
-        GlideRequests glideRequests = GlideApp.with(this);
-        final FavoritesAdapter favoritesAdapter = new FavoritesAdapter(glideRequests);
+        final FavoritesAdapter favoritesAdapter = new FavoritesAdapter();
         final GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
 
         // setup recyclerView

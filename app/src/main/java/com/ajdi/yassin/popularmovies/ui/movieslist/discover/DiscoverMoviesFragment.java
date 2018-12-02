@@ -13,8 +13,6 @@ import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
-import com.ajdi.yassin.popularmovies.utils.GlideApp;
-import com.ajdi.yassin.popularmovies.utils.GlideRequests;
 import com.ajdi.yassin.popularmovies.utils.Injection;
 import com.ajdi.yassin.popularmovies.utils.ItemOffsetDecoration;
 import com.ajdi.yassin.popularmovies.utils.UiUtils;
@@ -95,9 +93,8 @@ public class DiscoverMoviesFragment extends Fragment {
 
     private void setupListAdapter() {
         RecyclerView recyclerView = getActivity().findViewById(R.id.rv_movie_list);
-        GlideRequests glideRequests = GlideApp.with(this);
         final DiscoverMoviesAdapter discoverMoviesAdapter =
-                new DiscoverMoviesAdapter(glideRequests, viewModel);
+                new DiscoverMoviesAdapter(viewModel);
         final GridLayoutManager layoutManager =
                 new GridLayoutManager(getActivity(), getResources().getInteger(R.integer.span_count));
 

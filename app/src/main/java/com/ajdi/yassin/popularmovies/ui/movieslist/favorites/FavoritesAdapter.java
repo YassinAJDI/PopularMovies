@@ -4,7 +4,6 @@ import android.view.ViewGroup;
 
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.ui.movieslist.MovieViewHolder;
-import com.ajdi.yassin.popularmovies.utils.GlideRequests;
 
 import java.util.List;
 
@@ -18,17 +17,10 @@ public class FavoritesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private List<Movie> mMoviesList;
 
-    private GlideRequests glide;
-
-    FavoritesAdapter(GlideRequests glide) {
-
-        this.glide = glide;
-    }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return MovieViewHolder.create(parent, glide);
+        return MovieViewHolder.create(parent);
     }
 
     @Override
