@@ -31,8 +31,8 @@ public class Cast {
 
     @NonNull
     @PrimaryKey
-    @SerializedName("cast_id")
-    private int castId;
+    @SerializedName("credit_id")
+    private String id;
 
     @NonNull
     @ColumnInfo(name = "movie_id")
@@ -41,14 +41,8 @@ public class Cast {
     @SerializedName("character")
     private String characterName;
 
-    @SerializedName("credit_id")
-    private String creditId;
-
     @SerializedName("gender")
     private int gender;
-
-    @SerializedName("id")
-    private int id;
 
     @SerializedName("name")
     private String actorName;
@@ -58,14 +52,6 @@ public class Cast {
 
     @SerializedName("profile_path")
     private String profileImagePath;
-
-    public int getCastId() {
-        return castId;
-    }
-
-    public void setCastId(int castId) {
-        this.castId = castId;
-    }
 
     @NonNull
     public long getMovieId() {
@@ -84,14 +70,6 @@ public class Cast {
         this.characterName = characterName;
     }
 
-    public String getCreditId() {
-        return creditId;
-    }
-
-    public void setCreditId(String creditId) {
-        this.creditId = creditId;
-    }
-
     public int getGender() {
         return gender;
     }
@@ -100,11 +78,11 @@ public class Cast {
         this.gender = gender;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

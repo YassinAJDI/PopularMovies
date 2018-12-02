@@ -15,7 +15,7 @@ import androidx.room.OnConflictStrategy;
 @Dao
 public interface CastsDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAllCasts(List<Cast> castList);
 
 }

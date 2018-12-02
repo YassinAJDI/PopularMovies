@@ -15,7 +15,7 @@ import androidx.room.OnConflictStrategy;
 @Dao
 public interface ReviewsDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAllReviews(List<Review> reviews);
 
 }

@@ -68,7 +68,7 @@ public class MoviesLocalDataSource {
     }
 
     public LiveData<MovieDetails> getMovie(long movieId) {
-        Timber.d("Loading movie and trailers.");
+        Timber.d("Loading movie details.");
         return mDatabase.moviesDao().getMovie(movieId);
     }
 

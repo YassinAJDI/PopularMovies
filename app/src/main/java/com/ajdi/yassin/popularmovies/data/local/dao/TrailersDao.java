@@ -15,7 +15,7 @@ import androidx.room.OnConflictStrategy;
 @Dao
 public interface TrailersDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAllTrailers(List<Trailer> trailers);
 
 }
