@@ -43,7 +43,6 @@
                 android:contentDescription="@string/movie_poster"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{movieDetails.movie.posterPath}"
-                app:isBackdrop="@{false}"
                 tools:background="@tools:sample/backgrounds/scenic" />
 
         </androidx.cardview.widget.CardView>

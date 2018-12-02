@@ -38,8 +38,19 @@ public class BindingAdapters {
         GlideApp.with(imageView.getContext())
                 .load(baseUrl + imagePath)
                 .placeholder(R.color.md_grey_200)
-                .apply(new RequestOptions().transforms(
-                        new CenterCrop(), new RoundedCorners(16)))
+                .into(imageView);
+    }
+
+    /**
+     * Movie details image poster
+     */
+    @BindingAdapter({"imageUrl"})
+    public static void bindImage(ImageView imageView, String imagePath) {
+        GlideApp.with(imageView.getContext())
+                .load(Constants.IMAGE_URL + imagePath)
+                .placeholder(R.color.md_grey_200)
+                .apply(new RequestOptions().transforms(new CenterCrop(),
+                        new RoundedCorners((int) UiUtils.dipToPixels(imageView.getContext(), 8))))
                 .into(imageView);
     }
 
