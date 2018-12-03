@@ -23,7 +23,7 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
-    <style name="Label" parent="TextAppearance.MaterialComponents.Subtitle1">
+    <style name="Label" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">@color/primaryText</item>
     </style>
 
