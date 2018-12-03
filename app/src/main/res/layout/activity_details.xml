@@ -29,6 +29,7 @@
             android:layout_height="256dp"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:elevation="4dp"
             app:visibleGone="@{movieDetails.movie != null}">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout

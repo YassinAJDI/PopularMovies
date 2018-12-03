@@ -4,6 +4,15 @@
     <color name="colorPrimaryDark">#06161d</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!--text colors-->
+    <color name="text_black_87">#DE000000</color>
+    <color name="text_black_60">#99000000</color>
+    <color name="text_black_54">#8A000000</color>
+    <color name="text_black_38">#61000000</color>
+    <color name="divider">#1F000000</color>
+    <color name="primaryText">@color/text_black_87</color>
+    <color name="secondaryText">@color/text_black_60</color>
+
     <!-- google's material design colours from
     http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
 
