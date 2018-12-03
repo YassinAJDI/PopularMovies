@@ -40,6 +40,8 @@ public class TrailerViewHolder extends RecyclerView.ViewHolder {
                 .placeholder(R.color.md_grey_200)
                 .into(binding.imageTrailer);
 
+        binding.trailerName.setText(trailer.getTitle());
+
         binding.trailer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
