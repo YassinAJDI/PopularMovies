@@ -191,8 +191,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            style="@style/Label"
             android:text="@string/label_overview"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_divider_bottom" />
 
@@ -212,6 +212,7 @@
 
         <TextView
             android:id="@+id/label_cast"
+            style="@style/Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -236,6 +237,7 @@
 
         <TextView
             android:id="@+id/label_trailers"
+            style="@style/Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -260,6 +262,7 @@
 
         <TextView
             android:id="@+id/label_reviews"
+            style="@style/Label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

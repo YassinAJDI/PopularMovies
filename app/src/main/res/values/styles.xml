@@ -1,6 +1,7 @@
 <resources>
 
     <style name="AppTheme" parent="BaseTheme" />
+
     <style name="AppThemeLight" parent="BaseTheme.Light" />
 
     <!-- Base application theme. -->
@@ -12,8 +13,7 @@
     </style>
 
     <!-- Light theme. -->
-    <style name="BaseTheme.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
-    </style>
+    <style name="BaseTheme.Light" parent="Theme.MaterialComponents.Light.NoActionBar"></style>
 
     <!--Toolbar-->
     <style name="AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
@@ -23,10 +23,8 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
-    <style name="Label">
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16sp</item>
-        <item name="android:fontFamily">sans-serif</item>
+    <style name="Label" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/primaryText</item>
     </style>
 
 </resources>
