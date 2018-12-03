@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/card_trailer"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -14,8 +15,7 @@
         app:cardCornerRadius="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/trailer"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
@@ -46,12 +46,11 @@
                 android:id="@+id/trailer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:ellipsize="end"
-                android:gravity="start"
                 android:maxLines="2"
+                android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
                 android:textColor="@color/primaryText"

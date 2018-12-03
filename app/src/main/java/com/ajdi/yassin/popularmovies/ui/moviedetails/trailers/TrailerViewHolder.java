@@ -42,7 +42,7 @@ public class TrailerViewHolder extends RecyclerView.ViewHolder {
 
         binding.trailerName.setText(trailer.getTitle());
 
-        binding.trailer.setOnClickListener(new View.OnClickListener() {
+        binding.cardTrailer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent appIntent = new Intent(Intent.ACTION_VIEW,
