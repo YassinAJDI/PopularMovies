@@ -1,4 +1,4 @@
-<h1 align="center">Popular Movies Stage 1</h1>
+<h1 align="center">Popular Movies Stage 1 + Stage 2</h1>
 <p align="center">
 <a href="./LICENSE">
 	<img src="https://img.shields.io/github/license/mashape/apistatus.svg" />
@@ -7,10 +7,12 @@
 <a href="https://codeclimate.com/github/YassinAJDI/popular-movies-part1/maintainability"><img src="https://api.codeclimate.com/v1/badges/c2e41f498389bc3088c9/maintainability" /></a>
 </p>
 <h4 align="center">
-Popular Movies is created as a part of Udacity Android Developer Nanodegree Program, is an app which helps you to discover the latest popular and top rated movies. You can flip through movie posters, check movie details. The application fetches movie data using themoviedb.org API.
+Popular Movies is created as part of Udacity Android Developer Nanodegree Program, is an app which allow users to discover the most popular and top rated movies playing. The application fetches movie data using themoviedb.org API while showcasing Android best practices.
 </h4>
 
 <h2 align="center">Screenshots</h2>
+
+![Screen](https://raw.githubusercontent.com/YassinAJDI/PopularMovies/master/screenshots/mockup.png)
 <h4 align="center">
 <img src="screenshots/Phone%20Screenshot%201.jpg" width=240>
 <img src="screenshots/Phone%20Screenshot%202.jpg" width=240>
@@ -36,7 +38,7 @@ Follow this steps if you want get a local copy of the project in your machine.
 
 #### 1. Clone or fork the repository by running the cammand below	
 ```
-git https://github.com/YassinAJDI/popular-movies-part1.git
+git https://github.com/YassinAJDI/PopularMovies.git
 ```
 
 #### 2. Import the project in AndroidStudio, and add API Key
@@ -51,14 +53,17 @@ TMDB_API_KEY="Your API Key here"
 
 ## Libraries
 *   [AndroidX](https://developer.android.com/jetpack/androidx/) - Previously known as 'Android support Library'
-*   [Glide](https://github.com/bumptech/glide) - An image loading and caching library for Android focused on smooth scrolling 
+*   [Glide](https://github.com/bumptech/glide) - for loading and caching images 
 *   [Retrofit 2](https://github.com/square/retrofit) - Type-safe HTTP client for Android and Java by Square, Inc. 
-*   [Gson](https://github.com/google/gson) - A Java serialization/deserialization library to convert Java Objects into JSON and back
+*   [Gson](https://github.com/google/gson) - for serialization/deserialization Java Objects into JSON and back
 *   [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
 *   [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
-*   [Paging](https://developer.android.com/topic/libraries/architecture/paging/) - The Paging Library makes it easier for you to load data gradually and gracefully
+*   [Paging](https://developer.android.com/topic/libraries/architecture/paging/)
 *   [DataBinding](https://developer.android.com/topic/libraries/data-binding/)
 *   [OkHttp](https://github.com/square/okhttp)
+*   [Timber](https://github.com/JakeWharton/timber)
+*   [CircleImageView](https://github.com/hdodenhof/CircleImageView)
+*   [TextDrawable](https://github.com/amulyakhare/TextDrawable)
 
 ## License
 ```
