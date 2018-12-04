@@ -11,6 +11,7 @@ Popular Movies is created as a part of Udacity Android Developer Nanodegree Prog
 </h4>
 
 <h2 align="center">Screenshots</h2>
+
 ![Screen](https://raw.githubusercontent.com/YassinAJDI/PopularMovies/master/screenshots/mockup.png)
 <h4 align="center">
 <img src="screenshots/Phone%20Screenshot%201.jpg" width=240>
