@@ -3,8 +3,7 @@
 <a href="./LICENSE">
 	<img src="https://img.shields.io/github/license/mashape/apistatus.svg" />
 </a>
-<a class="badge-align" href="https://www.codacy.com/app/YassinAJDI/popular-movies-part1?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=YassinAJDI/popular-movies-part1&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/762f1405d7b245d792ff3442b15a2a50"/></a>
-<a href="https://codeclimate.com/github/YassinAJDI/popular-movies-part1/maintainability"><img src="https://api.codeclimate.com/v1/badges/c2e41f498389bc3088c9/maintainability" /></a>
+	<a class="badge-align" href="https://www.codacy.com/app/YassinAJDI/PopularMovies?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=YassinAJDI/PopularMovies&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/7ead85c7910f423d9ecea73041b8dbcf"/></a>
 </p>
 <h4 align="center">
 Popular Movies is created as part of Udacity Android Developer Nanodegree Program, is an app which allow users to discover the most popular and top rated movies playing. The application fetches movie data using themoviedb.org API while showcasing Android best practices.
