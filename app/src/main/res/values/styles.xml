@@ -13,7 +13,12 @@
     </style>
 
     <!-- Light theme. -->
-    <style name="BaseTheme.Light" parent="Theme.MaterialComponents.Light.NoActionBar"></style>
+    <style name="BaseTheme.Light" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
     <!--Toolbar-->
     <style name="AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
@@ -23,7 +28,7 @@
 
     <style name="PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
-    <style name="Label" parent="TextAppearance.MaterialComponents.Subtitle2">
+    <style name="Label" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:textColor">@color/primaryText</item>
     </style>
 
