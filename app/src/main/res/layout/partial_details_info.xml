@@ -99,12 +99,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/release_date"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-            app:layout_constraintEnd_toStartOf="@+id/label_vote"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/secondaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/label_language"
             app:layout_constraintTop_toBottomOf="@+id/text_release_date" />
 
         <TextView
@@ -116,7 +117,7 @@
             android:drawablePadding="8dp"
             android:gravity="center"
             android:text="@{movieDetails.movie.releaseDate}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             app:layout_constraintEnd_toEndOf="@+id/label_release_date"
             app:layout_constraintStart_toStartOf="@+id/label_release_date"
             app:layout_constraintTop_toBottomOf="@+id/view_divider"
@@ -127,12 +128,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:text="@{@string/label_votes(movieDetails.movie.voteCount)}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/secondaryText"
             app:layout_constraintEnd_toStartOf="@+id/label_language"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/label_release_date"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_vote"
             tools:text="233 votes" />
 
@@ -140,11 +143,11 @@
             android:id="@+id/text_vote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_star_black_24dp"
+            android:drawableEnd="@drawable/ic_star_black_24dp"
             android:drawablePadding="8dp"
             android:gravity="center"
             android:text="@{String.valueOf(movieDetails.movie.voteAverage)}"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             app:layout_constraintEnd_toEndOf="@+id/label_vote"
             app:layout_constraintStart_toStartOf="@+id/label_vote"
             app:layout_constraintTop_toTopOf="@+id/text_release_date"
@@ -154,9 +157,11 @@
             android:id="@+id/label_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
             android:text="@string/language"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textColor="@color/secondaryText"
+            app:layout_constraintEnd_toStartOf="@+id/label_release_date"
             app:layout_constraintStart_toEndOf="@+id/label_vote"
             app:layout_constraintTop_toBottomOf="@+id/text_language" />
 
@@ -167,6 +172,7 @@
             android:drawableStart="@drawable/ic_language_black_24dp"
             android:drawablePadding="8dp"
             android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:text="@{movieDetails.movie.originalLanguage}"
             app:layout_constraintEnd_toEndOf="@+id/label_language"
             app:layout_constraintStart_toStartOf="@+id/label_language"
@@ -181,7 +187,7 @@
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label_release_date" />
+            app:layout_constraintTop_toBottomOf="@+id/label_vote" />
 
         <TextView
             android:id="@+id/label_overview"
