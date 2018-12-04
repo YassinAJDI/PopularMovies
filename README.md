@@ -21,10 +21,16 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 
 ## Features
 *   Discover the most popular and the most rated movies
-*   MVVM with Android Architecture Components
+*   User can view and play trailers on youtube 
+*   Show a list of reviews for each movie
+*   Users can mark a movie as favorite in the details view by tapping a heart icon 
+*   Users can share movie trailers with their network
+*   Offline support: app make use of NetworkBoundResource which use database as the single source of truth
+*   Advanced uses of Room
+*   MVVM with Android Architecture Components(Room, LiveDta, ViewModel..)
 *   Pagination and endless scrolling using Android paging library.
 *   Handle network status and network failures
-*   Material design.
+*   Material design & ConstraintLayout.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
