@@ -1,4 +1,4 @@
-<h1 align="center">Popular Movies Stage 1</h1>
+<h1 align="center">Popular Movies Stage 1 + Stage 2</h1>
 <p align="center">
 <a href="./LICENSE">
 	<img src="https://img.shields.io/github/license/mashape/apistatus.svg" />
@@ -16,6 +16,7 @@ Popular Movies is created as a part of Udacity Android Developer Nanodegree Prog
 <img src="screenshots/Phone%20Screenshot%202.jpg" width=240>
 <img src="screenshots/Phone%20Screenshot%203.jpg" width=240>
 </h4>
+![Screen](https://raw.githubusercontent.com/YassinAJDI/PopularMovies/master/screenshots/mockup.png)
 
 ## Features
 *   Discover the most popular and the most rated movies
