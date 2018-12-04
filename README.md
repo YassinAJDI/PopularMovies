@@ -20,6 +20,9 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 </h4>
 
 ## Features
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e971178486ca47e695b2a1878be703df)](https://app.codacy.com/app/YassinAJDI/PopularMovies?utm_source=github.com&utm_medium=referral&utm_content=YassinAJDI/PopularMovies&utm_campaign=Badge_Grade_Dashboard)
+
 *   Discover the most popular and the most rated movies
 *   User can view and play trailers on youtube 
 *   Show a list of reviews for each movie
