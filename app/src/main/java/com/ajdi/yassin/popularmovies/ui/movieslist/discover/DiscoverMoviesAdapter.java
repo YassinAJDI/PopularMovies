@@ -86,7 +86,7 @@ public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.
             } else {
                 notifyItemInserted(super.getItemCount());
             }
-        } else if (hasExtraRow && previousState != resource) {
+        } else if (hasExtraRow && !previousState.equals(resource)) {
             notifyItemChanged(getItemCount() - 1);
         }
     }

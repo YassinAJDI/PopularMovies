@@ -1,5 +1,7 @@
 package com.ajdi.yassin.popularmovies.data.local.model;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -45,6 +47,22 @@ public class Resource<T> {
      */
     public static <T> Resource<T> loading(@Nullable T data) {
         return new Resource<>(Status.LOADING, data, null);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Resource)) return false;
+        Resource<?> resource = (Resource<?>) o;
+        return status == resource.status &&
+                Objects.equals(data, resource.data) &&
+                Objects.equals(message, resource.message);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(status, data, message);
     }
 
     /**
