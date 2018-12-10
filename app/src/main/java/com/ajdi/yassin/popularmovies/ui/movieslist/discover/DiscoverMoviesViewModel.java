@@ -93,6 +93,8 @@ public class DiscoverMoviesViewModel extends ViewModel {
                 title = R.string.action_top_rated;
                 break;
             }
+            default:
+                throw new IllegalArgumentException("unknown sorting id");
         }
         sortBy.setValue(filterType);
         currentTitle.setValue(title);

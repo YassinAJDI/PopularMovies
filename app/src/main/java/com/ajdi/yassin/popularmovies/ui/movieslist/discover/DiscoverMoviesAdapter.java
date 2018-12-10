@@ -52,6 +52,8 @@ public class DiscoverMoviesAdapter extends PagedListAdapter<Movie, RecyclerView.
             case R.layout.item_network_state:
                 ((NetworkStateViewHolder) holder).bindTo(resource);
                 break;
+            default:
+                throw new IllegalArgumentException("unknown view type");
         }
     }
 
