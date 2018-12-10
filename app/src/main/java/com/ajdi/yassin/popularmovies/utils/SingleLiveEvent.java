@@ -21,8 +21,6 @@ import timber.log.Timber;
  */
 public class SingleLiveEvent<T> extends MutableLiveData<T> {
 
-    private static final String TAG = "SingleLiveEvent";
-
     private final AtomicBoolean mPending = new AtomicBoolean(false);
 
     @MainThread

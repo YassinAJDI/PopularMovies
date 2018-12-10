@@ -16,9 +16,6 @@ public class TrailersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<Trailer> trailerList;
 
-    public TrailersAdapter() {
-    }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
