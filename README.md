@@ -12,11 +12,9 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 <h2 align="center">Screenshots</h2>
 
 ![Screen](https://raw.githubusercontent.com/YassinAJDI/PopularMovies/master/screenshots/mockup.png)
-<h4 align="center">
-<img src="screenshots/Phone%20Screenshot%201.jpg" width=240>
-<img src="screenshots/Phone%20Screenshot%202.jpg" width=240>
-<img src="screenshots/Phone%20Screenshot%203.jpg" width=240>
-</h4>
+<img src="screenshots/Phone%20Screenshot%201.jpg" vspace="5" align= "left" width=275 >
+<img src="screenshots/Phone%20Screenshot%202.jpg" vspace="5" align= "left" width=275 >
+<img src="screenshots/Phone%20Screenshot%203.jpg" vspace="5" width=275>
 
 ## Features
 *   Discover the most popular and the most rated movies
@@ -24,12 +22,13 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 *   Show a list of reviews for each movie
 *   Users can mark a movie as favorite in the details view by tapping a heart icon 
 *   Users can share movie trailers with their network
-*   Offline support: app make use of NetworkBoundResource which use database as the single source of truth
+*   Offline support: app make use of `NetworkBoundResource` which use database as the single source of truth
 *   Advanced uses of Room
-*   MVVM with Android Architecture Components(Room, LiveDta, ViewModel..)
+*   MVVM with Android Architecture Components(Room, LiveDta, ViewModel)
 *   Pagination and endless scrolling using Android paging library.
 *   Handle network status and network failures
-*   Material design & ConstraintLayout.
+*   ConstraintLayout(guidelines, barriers... etc)
+*   Material design.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
