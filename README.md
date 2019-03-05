@@ -24,7 +24,7 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 *   Users can share movie trailers with their network
 *   Offline support: app make use of `NetworkBoundResource` which use database as the single source of truth
 *   Advanced uses of Room
-*   MVVM with Android Architecture Components(Room, LiveDta, ViewModel)
+*   MVVM with Android Architecture Components(Room, LiveData, ViewModel)
 *   Pagination and endless scrolling using Android paging library.
 *   Handle network status and network failures
 *   ConstraintLayout(guidelines, barriers... etc)
