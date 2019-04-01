@@ -6,7 +6,7 @@
 	<a class="badge-align" href="https://www.codacy.com/app/YassinAJDI/PopularMovies?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=YassinAJDI/PopularMovies&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/7ead85c7910f423d9ecea73041b8dbcf"/></a>
 </p>
 <h4 align="center">
-Popular Movies is created as part of Udacity Android Developer Nanodegree Program, is an app which allow users to discover the most popular and top rated movies playing. The application fetches movie data using themoviedb.org API while showcasing Android best practices.
+Popular Movies is created as part of Udacity Android Developer Nanodegree Program. The app allows users to discover the most popular and top rated movies playing. The application fetches movie data using themoviedb.org API while showcasing Android best practices.
 </h4>
 
 <h2 align="center">Screenshots</h2>
@@ -19,10 +19,10 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 ## Features
 *   Discover the most popular and the most rated movies
 *   User can view and play trailers on youtube 
-*   Show a list of reviews for each movie
+*   Shows a list of reviews for each movie
 *   Users can mark a movie as favorite in the details view by tapping a heart icon 
 *   Users can share movie trailers with their network
-*   Offline support: app make use of `NetworkBoundResource` which use database as the single source of truth
+*   Offline support: app makes use of `NetworkBoundResource`, which uses database as the single source of truth
 *   Advanced uses of Room
 *   MVVM with Android Architecture Components(Room, LiveData, ViewModel)
 *   Pagination and endless scrolling using Android paging library.
@@ -38,9 +38,9 @@ These instructions will get you a copy of the project up and running on your loc
 *   Java JDK
 
 ### Installing
-Follow this steps if you want get a local copy of the project in your machine.
+Follow these steps if you want to get a local copy of the project on your machine.
 
-#### 1. Clone or fork the repository by running the cammand below	
+#### 1. Clone or fork the repository by running the command below	
 ```
 git https://github.com/YassinAJDI/PopularMovies.git
 ```
@@ -48,7 +48,7 @@ git https://github.com/YassinAJDI/PopularMovies.git
 #### 2. Import the project in AndroidStudio, and add API Key
 1.  In Android Studio, go to File -> New -> Import project
 2.  Follew the dialog wizard to choose the folder where you cloned the project and click on open.
-3.  Androidstudio imports the projects and builds it for you.
+3.  Android Studio imports the projects and builds it for you.
 4.  Add TheMovieDb API Key inside `gradle.properties` file.
 
 ```
