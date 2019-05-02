@@ -1,5 +1,9 @@
 package com.ajdi.yassin.popularmovies.data.remote.paging;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+import androidx.paging.PageKeyedDataSource;
+
 import com.ajdi.yassin.popularmovies.data.local.model.Movie;
 import com.ajdi.yassin.popularmovies.data.local.model.MoviesResponse;
 import com.ajdi.yassin.popularmovies.data.local.model.Resource;
@@ -11,9 +15,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
-import androidx.paging.PageKeyedDataSource;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,8 +55,10 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
         Call<MoviesResponse> request;
         if (sortBy == MoviesFilterType.POPULAR) {
             request = movieService.getPopularMovies(FIRST_PAGE);
-        } else {
+        } else if (sortBy == MoviesFilterType.TOP_RATED){
             request = movieService.getTopRatedMovies(FIRST_PAGE);
+        } else {
+            request = movieService.getNowPlayingMovies(FIRST_PAGE);
         }
 
         // we execute sync since this is triggered by refresh
@@ -101,8 +104,10 @@ public class MoviePageKeyedDataSource extends PageKeyedDataSource<Integer, Movie
         Call<MoviesResponse> request;
         if (sortBy == MoviesFilterType.POPULAR) {
             request = movieService.getPopularMovies(params.key);
-        } else {
+        } else if (sortBy == MoviesFilterType.TOP_RATED) {
             request = movieService.getTopRatedMovies(params.key);
+        } else {
+            request = movieService.getNowPlayingMovies(params.key);
         }
 
         request.enqueue(new Callback<MoviesResponse>() {
