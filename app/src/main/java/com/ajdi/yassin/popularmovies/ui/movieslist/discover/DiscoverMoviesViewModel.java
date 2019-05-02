@@ -1,18 +1,18 @@
 package com.ajdi.yassin.popularmovies.ui.movieslist.discover;
 
-import com.ajdi.yassin.popularmovies.R;
-import com.ajdi.yassin.popularmovies.data.MovieRepository;
-import com.ajdi.yassin.popularmovies.data.local.model.Movie;
-import com.ajdi.yassin.popularmovies.data.local.model.RepoMoviesResult;
-import com.ajdi.yassin.popularmovies.data.local.model.Resource;
-import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
-
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.paging.PagedList;
+
+import com.ajdi.yassin.popularmovies.R;
+import com.ajdi.yassin.popularmovies.data.MovieRepository;
+import com.ajdi.yassin.popularmovies.data.local.model.Movie;
+import com.ajdi.yassin.popularmovies.data.local.model.RepoMoviesResult;
+import com.ajdi.yassin.popularmovies.data.local.model.Resource;
+import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
 
 /**
  * @author Yassin Ajdi.
@@ -93,6 +93,15 @@ public class DiscoverMoviesViewModel extends ViewModel {
                 title = R.string.action_top_rated;
                 break;
             }
+            case R.id.action_now_playing: {
+                if (sortBy.getValue() == MoviesFilterType.NOW_PLAYING)
+                    return;
+
+                filterType = MoviesFilterType.NOW_PLAYING;
+                title = R.string.action_now_playing;
+                break;
+            }
+
             default:
                 throw new IllegalArgumentException("unknown sorting id");
         }
