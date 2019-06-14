@@ -2,6 +2,7 @@
     <string name="app_name">PopularMovies</string>
     <string name="action_retry">Retry</string>
     <string name="action_top_rated">Top rated</string>
+    <string name="action_now_playing">Now playing</string>
     <string name="action_popular">Popular</string>
     <string name="action_sort_by">Sort by</string>
     <string name="movie_backdrop_content_description">Movie backdropPath</string>

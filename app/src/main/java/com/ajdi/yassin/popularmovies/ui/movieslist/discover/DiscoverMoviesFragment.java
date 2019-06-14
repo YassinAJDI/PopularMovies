@@ -8,16 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ajdi.yassin.popularmovies.R;
-import com.ajdi.yassin.popularmovies.data.local.model.Movie;
-import com.ajdi.yassin.popularmovies.data.local.model.Resource;
-import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity;
-import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
-import com.ajdi.yassin.popularmovies.utils.Injection;
-import com.ajdi.yassin.popularmovies.utils.ItemOffsetDecoration;
-import com.ajdi.yassin.popularmovies.utils.UiUtils;
-import com.ajdi.yassin.popularmovies.utils.ViewModelFactory;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -27,6 +17,16 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ajdi.yassin.popularmovies.R;
+import com.ajdi.yassin.popularmovies.data.local.model.Movie;
+import com.ajdi.yassin.popularmovies.data.local.model.Resource;
+import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity;
+import com.ajdi.yassin.popularmovies.ui.movieslist.MoviesFilterType;
+import com.ajdi.yassin.popularmovies.utils.Injection;
+import com.ajdi.yassin.popularmovies.utils.ItemOffsetDecoration;
+import com.ajdi.yassin.popularmovies.utils.UiUtils;
+import com.ajdi.yassin.popularmovies.utils.ViewModelFactory;
 
 /**
  * @author Yassin Ajdi.
@@ -71,8 +71,10 @@ public class DiscoverMoviesFragment extends Fragment {
 
         if (viewModel.getCurrentSorting() == MoviesFilterType.POPULAR) {
             menu.findItem(R.id.action_popular_movies).setChecked(true);
-        } else {
+        } else if (viewModel.getCurrentSorting() == MoviesFilterType.TOP_RATED) {
             menu.findItem(R.id.action_top_rated).setChecked(true);
+        } else {
+            menu.findItem(R.id.action_now_playing).setChecked(true);
         }
     }
 
