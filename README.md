@@ -16,7 +16,7 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 <img src="screenshots/Phone%20Screenshot%202.jpg" vspace="5" align= "left" width=275 >
 <img src="screenshots/Phone%20Screenshot%203.jpg" vspace="5" width=275>
 
-## Features
+## ⭐️ Features
 *   Discover the most popular and the most rated movies
 *   User can view and play trailers on youtube 
 *   Shows a list of reviews for each movie
@@ -30,11 +30,11 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 *   ConstraintLayout(guidelines, barriers... etc)
 *   Material design.
 
-## Getting Started
+## 💻 Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
-*   Android Studio 3.2 stable
+*   Android Studio 3.2+
 *   Java JDK
 
 ### Installing
@@ -55,7 +55,14 @@ git https://github.com/YassinAJDI/PopularMovies.git
 TMDB_API_KEY="Your API Key here"
 ```
 
-## Libraries
+## 👍 How to Contribute
+1. Fork it
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create new Pull Request
+
+## 📃 Libraries used
 *   [AndroidX](https://developer.android.com/jetpack/androidx/) - Previously known as 'Android support Library'
 *   [Glide](https://github.com/bumptech/glide) - for loading and caching images 
 *   [Retrofit 2](https://github.com/square/retrofit) - Type-safe HTTP client for Android and Java by Square, Inc. 
@@ -69,7 +76,10 @@ TMDB_API_KEY="Your API Key here"
 *   [CircleImageView](https://github.com/hdodenhof/CircleImageView)
 *   [TextDrawable](https://github.com/amulyakhare/TextDrawable)
 
-## License
+## 📄 License
+This project is released under the MIT license.
+See [LICENSE](./LICENSE) for details.
+
 ```
 MIT License
 
