@@ -1,7 +1,7 @@
 ![Screen](https://raw.githubusercontent.com/YassinAJDI/PopularMovies/master/screenshots/mockup.png)
 <h1 align="center">Popular Movies Stage 1 + Stage 2</h1>
 <h4 align="center">
-	Discover the most popular and top rated movies playing. Movies data fetched using <a href="https://gatsbyjs.org/tutorial/">themoviedb.org</a> API.
+	Discover the most popular and top rated movies playing. Movies data fetched using <a href="https://www.themoviedb.org/">themoviedb.org</a> API.
 </h4>
 <p align="center">
 	<a href="./LICENSE">
@@ -15,9 +15,9 @@
 ## ✨ Screenshots
 | Main Screen | Demo |  Favorites |
 |:-:|:-:|:-:|
-| ![First](screenshots/Screenshot_1.jpg?raw=true) | ![Sec](screenshots/demo_gif.gif?raw=true) | ![Sec](screenshots/Screenshot_2.jpg?raw=true) |
+| ![Fist](screenshots/Screenshot_1.jpg?raw=true) | ![3](screenshots/demo_gif.gif?raw=true) | ![3](screenshots/Screenshot_2.jpg?raw=true) |
 | Movie Details | Trailers |  Reviews |
-| ![First](screenshots/Screenshot_3.jpg?raw=true) | ![Sec](screenshots/Screenshot_5.jpg?raw=true) | ![Sec](screenshots/Screenshot_4.jpg?raw=true) |
+| ![4](screenshots/Screenshot_3.jpg?raw=true) | ![5](screenshots/Screenshot_5.jpg?raw=true) | ![6](screenshots/Screenshot_4.jpg?raw=true) |
 
 ## 🌟 Features
 *   Discover the most popular and the most rated movies
