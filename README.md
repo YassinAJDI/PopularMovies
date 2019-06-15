@@ -1,22 +1,25 @@
-<h1 align="center">Popular Movies Stage 1 + Stage 2</h1>
-<p align="center">
-<a href="./LICENSE">
-	<img src="https://img.shields.io/github/license/mashape/apistatus.svg" />
-</a>
-	<a class="badge-align" href="https://www.codacy.com/app/YassinAJDI/PopularMovies?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=YassinAJDI/PopularMovies&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/7ead85c7910f423d9ecea73041b8dbcf"/></a>
-</p>
-<h4 align="center">
-Popular Movies is created as part of Udacity Android Developer Nanodegree Program. The app allows users to discover the most popular and top rated movies playing. The application fetches movie data using themoviedb.org API while showcasing Android best practices.
-</h4>
-
-<h2 align="center">Screenshots</h2>
-
 ![Screen](https://raw.githubusercontent.com/YassinAJDI/PopularMovies/master/screenshots/mockup.png)
-<img src="screenshots/Phone%20Screenshot%201.jpg" vspace="5" align= "left" width=275 >
-<img src="screenshots/Phone%20Screenshot%202.jpg" vspace="5" align= "left" width=275 >
-<img src="screenshots/Phone%20Screenshot%203.jpg" vspace="5" width=275>
+<h1 align="center">Popular Movies Stage 1 + Stage 2</h1>
+<h4 align="center">
+	Discover the most popular and top rated movies playing. Movies data fetched using <a href="https://gatsbyjs.org/tutorial/">themoviedb.org</a> API.
+</h4>
+<p align="center">
+	<a href="./LICENSE">
+		<img src="https://img.shields.io/github/license/mashape/apistatus.svg" />
+	</a>
+	<a class="badge-align" href="https://www.codacy.com/app/YassinAJDI/PopularMovies?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=YassinAJDI/PopularMovies&amp;utm_campaign=Badge_Grade">
+		<img src="https://api.codacy.com/project/badge/Grade/7ead85c7910f423d9ecea73041b8dbcf"/>
+	</a>
+</p>
 
-## ⭐️ Features
+## ✨ Screenshots
+| Main Screen | Demo |  Favorites |
+|:-:|:-:|:-:|
+| ![First](screenshots/Screenshot_1.jpg?raw=true) | ![Sec](screenshots/demo_gif.gif?raw=true) | ![Sec](screenshots/Screenshot_2.jpg?raw=true) |
+| Movie Details | Trailers |  Reviews |
+| ![First](screenshots/Screenshot_3.jpg?raw=true) | ![Sec](screenshots/Screenshot_5.jpg?raw=true) | ![Sec](screenshots/Screenshot_4.jpg?raw=true) |
+
+## 🌟 Features
 *   Discover the most popular and the most rated movies
 *   User can view and play trailers on youtube 
 *   Shows a list of reviews for each movie
@@ -30,7 +33,7 @@ Popular Movies is created as part of Udacity Android Developer Nanodegree Progra
 *   ConstraintLayout(guidelines, barriers... etc)
 *   Material design.
 
-## 💻 Getting Started
+## 🚀 Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
@@ -55,12 +58,12 @@ git https://github.com/YassinAJDI/PopularMovies.git
 TMDB_API_KEY="Your API Key here"
 ```
 
-## 👍 How to Contribute
-1. Fork it
-2. Create your feature branch (git checkout -b my-new-feature)
-3. Commit your changes (git commit -am 'Add some feature')
-4. Push to the branch (git push origin my-new-feature)
-5. Create new Pull Request
+## 🤝 How to Contribute
+1.  Fork it
+2.  Create your feature branch (git checkout -b my-new-feature)
+3.  Commit your changes (git commit -am 'Add some feature')
+4.  Push to the branch (git push origin my-new-feature)
+5.  Create new Pull Request
 
 ## 📃 Libraries used
 *   [AndroidX](https://developer.android.com/jetpack/androidx/) - Previously known as 'Android support Library'
@@ -76,7 +79,7 @@ TMDB_API_KEY="Your API Key here"
 *   [CircleImageView](https://github.com/hdodenhof/CircleImageView)
 *   [TextDrawable](https://github.com/amulyakhare/TextDrawable)
 
-## 📄 License
+## 📝 License
 This project is released under the MIT license.
 See [LICENSE](./LICENSE) for details.
 
