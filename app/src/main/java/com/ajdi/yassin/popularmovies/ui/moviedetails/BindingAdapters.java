@@ -5,11 +5,13 @@ import android.content.res.ColorStateList;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.databinding.BindingAdapter;
+
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Genre;
 import com.ajdi.yassin.popularmovies.utils.Constants;
-import com.ajdi.yassin.popularmovies.utils.GlideApp;
 import com.ajdi.yassin.popularmovies.utils.UiUtils;
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -17,8 +19,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.List;
-
-import androidx.databinding.BindingAdapter;
 
 /**
  * @author Yassin Ajdi
@@ -35,7 +35,7 @@ public class BindingAdapters {
             baseUrl = Constants.IMAGE_URL;
         }
 
-        GlideApp.with(imageView.getContext())
+        Glide.with(imageView.getContext())
                 .load(baseUrl + imagePath)
                 .placeholder(R.color.md_grey_200)
                 .into(imageView);
@@ -46,7 +46,7 @@ public class BindingAdapters {
      */
     @BindingAdapter({"imageUrl"})
     public static void bindImage(ImageView imageView, String imagePath) {
-        GlideApp.with(imageView.getContext())
+        Glide.with(imageView.getContext())
                 .load(Constants.IMAGE_URL + imagePath)
                 .placeholder(R.color.md_grey_200)
                 .apply(new RequestOptions().transforms(new CenterCrop(),
