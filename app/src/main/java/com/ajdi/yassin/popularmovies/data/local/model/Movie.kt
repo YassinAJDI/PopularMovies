@@ -68,15 +68,15 @@ data class Movie (
 
     @SerializedName("original_language")
     var originalLanguage: String? = null
-    get() = field!!.substring(0, 1).toUpperCase() + field!!.substring(1)
+    get() = field?.substring(0, 1)?.toUpperCase() + field?.substring(1)
 
     override fun equals(o: Any?): Boolean {
         if (this === o) return true
         if (o == null || javaClass != o.javaClass) return false
-        val movie = o as Movie?
-        return id == movie!!.id &&
-                java.lang.Double.compare(movie.popularity, popularity) == 0 &&
-                java.lang.Double.compare(movie.voteAverage, voteAverage) == 0 &&
+        val movie = o as? Movie
+        return id == movie?.id &&
+                movie.popularity.compareTo(popularity) == 0 &&
+                movie.voteAverage.compareTo(voteAverage) == 0 &&
                 title == movie.title &&
                 posterPath == movie.posterPath &&
                 overview == movie.overview &&
