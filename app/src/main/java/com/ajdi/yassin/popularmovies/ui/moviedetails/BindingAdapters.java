@@ -10,8 +10,8 @@ import androidx.databinding.BindingAdapter;
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Genre;
 import com.ajdi.yassin.popularmovies.utils.Constants;
+import com.ajdi.yassin.popularmovies.utils.GlideApp;
 import com.ajdi.yassin.popularmovies.utils.UiUtils;
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
@@ -35,7 +35,7 @@ public class BindingAdapters {
             baseUrl = Constants.IMAGE_URL;
         }
 
-        Glide.with(imageView.getContext())
+        GlideApp.with(imageView.getContext())
                 .load(baseUrl + imagePath)
                 .placeholder(R.color.md_grey_200)
                 .into(imageView);
@@ -46,7 +46,7 @@ public class BindingAdapters {
      */
     @BindingAdapter({"imageUrl"})
     public static void bindImage(ImageView imageView, String imagePath) {
-        Glide.with(imageView.getContext())
+        GlideApp.with(imageView.getContext())
                 .load(Constants.IMAGE_URL + imagePath)
                 .placeholder(R.color.md_grey_200)
                 .apply(new RequestOptions().transforms(new CenterCrop(),
