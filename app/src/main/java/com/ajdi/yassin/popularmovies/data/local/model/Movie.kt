@@ -68,7 +68,7 @@ data class Movie (
 
     @SerializedName("original_language")
     var originalLanguage: String? = null
-    get() = field?.substring(0, 1)?.toUpperCase() + field?.substring(1)
+        get() = field?.substring(0, 1)?.toUpperCase() + field?.substring(1)
 
     override fun equals(o: Any?): Boolean {
         if (this === o) return true

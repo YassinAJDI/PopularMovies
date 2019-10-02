@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.ajdi.yassin.popularmovies"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 28
         versionCode 2
         versionName "1.1"
         vectorDrawables.useSupportLibrary = true
@@ -64,11 +64,11 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 
     // OkHttp
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.5'
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -78,6 +78,8 @@ dependencies {
 
     // TextDrawable
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
+    //Kotlin dependencies
     implementation "androidx.core:core-ktx:1.1.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

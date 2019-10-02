@@ -11,6 +11,7 @@ import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Cast;
 import com.ajdi.yassin.popularmovies.databinding.ItemCastBinding;
 import com.ajdi.yassin.popularmovies.utils.Constants;
+import com.ajdi.yassin.popularmovies.utils.GlideApp;
 import com.bumptech.glide.Glide;
 
 /**
@@ -33,7 +34,7 @@ public class CastViewHolder extends RecyclerView.ViewHolder {
     public void bindTo(final Cast cast) {
         String profileImage =
                 Constants.IMAGE_BASE_URL + Constants.PROFILE_SIZE_W185 + cast.getProfileImagePath();
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(profileImage)
                 .placeholder(R.color.md_grey_200)
                 .dontAnimate()

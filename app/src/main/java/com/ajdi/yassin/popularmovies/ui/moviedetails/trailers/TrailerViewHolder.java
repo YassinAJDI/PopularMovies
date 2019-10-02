@@ -14,7 +14,7 @@ import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Trailer;
 import com.ajdi.yassin.popularmovies.databinding.ItemTrailerBinding;
 import com.ajdi.yassin.popularmovies.utils.Constants;
-import com.bumptech.glide.Glide;
+import com.ajdi.yassin.popularmovies.utils.GlideApp;
 
 /**
  * @author Yassin Ajdi.
@@ -35,7 +35,7 @@ public class TrailerViewHolder extends RecyclerView.ViewHolder {
     public void bindTo(final Trailer trailer) {
         String thumbnail =
                 "https://img.youtube.com/vi/" + trailer.getKey() + "/hqdefault.jpg";
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(thumbnail)
                 .placeholder(R.color.md_grey_200)
                 .into(binding.imageTrailer);
