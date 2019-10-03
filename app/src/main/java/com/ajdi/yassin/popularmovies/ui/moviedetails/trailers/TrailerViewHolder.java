@@ -7,14 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Trailer;
 import com.ajdi.yassin.popularmovies.databinding.ItemTrailerBinding;
 import com.ajdi.yassin.popularmovies.utils.Constants;
 import com.ajdi.yassin.popularmovies.utils.GlideApp;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @author Yassin Ajdi.

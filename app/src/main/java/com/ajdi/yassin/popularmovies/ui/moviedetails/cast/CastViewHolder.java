@@ -4,14 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Cast;
 import com.ajdi.yassin.popularmovies.databinding.ItemCastBinding;
 import com.ajdi.yassin.popularmovies.utils.Constants;
 import com.ajdi.yassin.popularmovies.utils.GlideApp;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @author Yassin Ajdi

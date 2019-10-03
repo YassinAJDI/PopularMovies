@@ -66,8 +66,8 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onChanged(Resource<MovieDetails> resource) {
                 if (resource.data != null &&
-                        resource.data.movie != null) {
-                    mViewModel.setFavorite(resource.data.movie.isFavorite());
+                        resource.data.getMovie() != null) {
+                    mViewModel.setFavorite(resource.data.getMovie().isFavorite());
                     invalidateOptionsMenu();
                 }
                 mBinding.setResource(resource);
@@ -154,10 +154,10 @@ public class DetailsActivity extends AppCompatActivity {
                 MovieDetails movieDetails = mViewModel.getResult().getValue().data;
                 Intent shareIntent = ShareCompat.IntentBuilder.from(this)
                         .setType("text/plain")
-                        .setSubject(movieDetails.movie.getTitle() + " movie trailer")
-                        .setText("Check out " + movieDetails.movie.getTitle() + " movie trailer at " +
+                        .setSubject(movieDetails.getMovie().getTitle() + " movie trailer")
+                        .setText("Check out " + movieDetails.getMovie().getTitle() + " movie trailer at " +
                                 Uri.parse(Constants.YOUTUBE_WEB_URL +
-                                        movieDetails.trailers.get(0).getKey())
+                                        movieDetails.getTrailers().get(0).getKey())
                         )
                         .createChooserIntent();
 
@@ -201,7 +201,7 @@ public class DetailsActivity extends AppCompatActivity {
                 // verify if the toolbar is completely collapsed and set the movie name as the title
                 if (scrollRange + verticalOffset == 0) {
                     mBinding.collapsingToolbar.setTitle(
-                            mViewModel.getResult().getValue().data.movie.getTitle());
+                            mViewModel.getResult().getValue().data.getMovie().getTitle());
                     isShow = true;
                 } else if (isShow) {
                     // display an empty string when toolbar is expanded

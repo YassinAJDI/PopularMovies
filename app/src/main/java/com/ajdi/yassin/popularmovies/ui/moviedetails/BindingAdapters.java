@@ -5,6 +5,8 @@ import android.content.res.ColorStateList;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.databinding.BindingAdapter;
+
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.data.local.model.Genre;
 import com.ajdi.yassin.popularmovies.utils.Constants;
@@ -17,8 +19,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.List;
-
-import androidx.databinding.BindingAdapter;
 
 /**
  * @author Yassin Ajdi

@@ -76,11 +76,11 @@ public class MovieDetailsViewModel extends ViewModel {
     public void onFavoriteClicked() {
         MovieDetails movieDetails = result.getValue().data;
         if (!isFavorite) {
-            repository.favoriteMovie(movieDetails.movie);
+            repository.favoriteMovie(movieDetails.getMovie());
             isFavorite = true;
             showSnackbarMessage(R.string.movie_added_successfully);
         } else {
-            repository.unfavoriteMovie(movieDetails.movie);
+            repository.unfavoriteMovie(movieDetails.getMovie());
             isFavorite = false;
             showSnackbarMessage(R.string.movie_removed_successfully);
         }
