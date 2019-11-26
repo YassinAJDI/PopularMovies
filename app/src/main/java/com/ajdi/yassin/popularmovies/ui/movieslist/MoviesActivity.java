@@ -29,13 +29,14 @@ public class MoviesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView=(ImageView)findViewById(R.id.loading_fragment);
+        imageView=(ImageView)findViewById(R.id.image);
         if (savedInstanceState == null) {
             Glide.with(getBaseContext()).load(R.raw.marvle).into(imageView);
             Handler handler = new Handler();
             handler.postDelayed(new Runnable(){
                 @Override
                 public void run() {
+                    imageView.setVisibility(View.INVISIBLE);
                     setupViewFragment();
                 }
             },7000);
