@@ -1,7 +1,8 @@
 package com.ajdi.yassin.popularmovies.ui.movieslist;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -23,42 +24,24 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MoviesActivity extends AppCompatActivity {
-
     ImageView imageView;
-    ProgressDialog progressDlg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        imageView=(ImageView)findViewById(R.id.image);
+        imageView=(ImageView)findViewById(R.id.loading_fragment);
         if (savedInstanceState == null) {
-            // Glide.with(getBaseContext()).load(R.raw.marvle).into(imageView);
-
-            progressDlg = new ProgressDialog(this);
-            progressDlg.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            progressDlg.setMax(100);
-            progressDlg.setProgress(0);
-            new Thread(){
+            Glide.with(getBaseContext()).load(R.raw.marvle).into(imageView);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable(){
+                @Override
                 public void run() {
-                    for(int i=0;i<=100;i++) {
-                        progressDlg.setProgress(i);
-                        if(i==100)
-                            progressDlg.dismiss();
-                        try {
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    progressDlg.dismiss();
+                    setupViewFragment();
                 }
-            }.start();
-
-            setupViewFragment();
+            },7000);
         }
         setupToolbar();
         setupBottomNavigation();
-        initView();
     }
 
     private void setupViewFragment() {
