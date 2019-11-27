@@ -28,10 +28,11 @@ public class MoviesActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable(){
                 @Override
                 public void run() {
+                    imageView.setImageBitmap(null);
                     imageView.setVisibility(View.INVISIBLE);
                     setupViewFragment();
                 }
-            },7000);
+            },6000);
         }
         setupToolbar();
         setupBottomNavigation();
@@ -70,5 +71,5 @@ public class MoviesActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-   
+
 }
