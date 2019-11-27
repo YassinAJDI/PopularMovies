@@ -1,12 +1,8 @@
 package com.ajdi.yassin.popularmovies.ui.movieslist;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.ajdi.yassin.popularmovies.R;
@@ -19,12 +15,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class MoviesActivity extends AppCompatActivity {
-    ImageView imageView;
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +70,5 @@ public class MoviesActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
-    private void initView(){
-
-    }
+   
 }
