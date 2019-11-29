@@ -28,8 +28,6 @@ public class MoviesActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable(){
                 @Override
                 public void run() {
-                    imageView.setImageBitmap(null);
-                    imageView.setVisibility(View.INVISIBLE);
                     setupViewFragment();
                 }
             },6000);
@@ -40,6 +38,8 @@ public class MoviesActivity extends AppCompatActivity {
 
     private void setupViewFragment() {
         // show discover movies fragment by default
+        imageView.setImageBitmap(null);
+        imageView.setVisibility(View.INVISIBLE);
         DiscoverMoviesFragment discoverMoviesFragment = DiscoverMoviesFragment.newInstance();
         ActivityUtils.replaceFragmentInActivity(
                 getSupportFragmentManager(), discoverMoviesFragment, R.id.fragment_container);
