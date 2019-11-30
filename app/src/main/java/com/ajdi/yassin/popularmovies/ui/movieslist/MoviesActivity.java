@@ -1,10 +1,12 @@
 package com.ajdi.yassin.popularmovies.ui.movieslist;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.ajdi.yassin.popularmovies.LoadingActivity;
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.ui.movieslist.discover.DiscoverMoviesFragment;
 import com.ajdi.yassin.popularmovies.ui.movieslist.favorites.FavoritesFragment;
@@ -17,20 +19,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 public class MoviesActivity extends AppCompatActivity {
     private ImageView imageView;
+    Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView=(ImageView)findViewById(R.id.image);
         if (savedInstanceState == null) {
-            Glide.with(getBaseContext()).load(R.raw.marvle).into(imageView);
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable(){
-                @Override
-                public void run() {
-                    setupViewFragment();
-                }
-            },6000);
+            Intent intent = new Intent(this, LoadingActivity.class);
+            startActivity(intent);
+            setupViewFragment();
         }
         setupToolbar();
         setupBottomNavigation();
@@ -38,8 +36,7 @@ public class MoviesActivity extends AppCompatActivity {
 
     private void setupViewFragment() {
         // show discover movies fragment by default
-        imageView.setImageBitmap(null);
-        imageView.setVisibility(View.INVISIBLE);
+
         DiscoverMoviesFragment discoverMoviesFragment = DiscoverMoviesFragment.newInstance();
         ActivityUtils.replaceFragmentInActivity(
                 getSupportFragmentManager(), discoverMoviesFragment, R.id.fragment_container);
