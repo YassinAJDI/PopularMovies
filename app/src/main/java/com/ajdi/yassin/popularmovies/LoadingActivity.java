@@ -15,7 +15,7 @@ public class LoadingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
         ImageView imageView=findViewById(R.id.image_loading);
-        Glide.with(getBaseContext()).load(R.raw.marvel).fitCenter().override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL).into(imageView);
+        Glide.with(getBaseContext()).load(R.raw.marvel).into(imageView);
         startLoading();
     }
     private void startLoading() {
