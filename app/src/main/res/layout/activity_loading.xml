@@ -8,5 +8,8 @@
         android:id="@+id/image_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:adjustViewBounds="true"
         app:srcCompat="@drawable/film" />
 </LinearLayout>
