@@ -3,8 +3,6 @@ package com.ajdi.yassin.popularmovies;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.DisplayMetrics;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 
