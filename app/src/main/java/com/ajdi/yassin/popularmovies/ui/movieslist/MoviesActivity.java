@@ -1,32 +1,29 @@
 package com.ajdi.yassin.popularmovies.ui.movieslist;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
+import com.ajdi.yassin.popularmovies.LoadingActivity;
 import com.ajdi.yassin.popularmovies.R;
 import com.ajdi.yassin.popularmovies.ui.movieslist.discover.DiscoverMoviesFragment;
 import com.ajdi.yassin.popularmovies.ui.movieslist.favorites.FavoritesFragment;
 import com.ajdi.yassin.popularmovies.utils.ActivityUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 public class MoviesActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         if (savedInstanceState == null) {
+            Intent intent = new Intent(this, LoadingActivity.class);
+            startActivity(intent);
             setupViewFragment();
         }
         setupToolbar();
         setupBottomNavigation();
     }
-
     private void setupViewFragment() {
         // show discover movies fragment by default
         DiscoverMoviesFragment discoverMoviesFragment = DiscoverMoviesFragment.newInstance();
@@ -60,4 +57,5 @@ public class MoviesActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
+
 }

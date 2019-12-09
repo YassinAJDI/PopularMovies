@@ -29,6 +29,8 @@
         <activity
             android:name="com.ajdi.yassin.popularmovies.ui.moviedetails.DetailsActivity"
             android:parentActivityName="com.ajdi.yassin.popularmovies.ui.movieslist.MoviesActivity" />
+        <activity android:name=".LoadingActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 
 </manifest>
