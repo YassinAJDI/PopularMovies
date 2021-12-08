@@ -28,10 +28,10 @@
 *   Offline support: app makes use of `NetworkBoundResource`, which uses database as the single source of truth
 *   Advanced uses of Room
 *   MVVM with Android Architecture Components(Room, LiveData, ViewModel)
-*   Pagination and endless scrolling using Android paging library.
+*   Pagination and endless scrolling using Android paging library
 *   Handle network status and network failures
 *   ConstraintLayout(guidelines, barriers... etc)
-*   Material design.
+*   Material design
 
 ## 🚀 Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -49,8 +49,8 @@ git https://github.com/YassinAJDI/PopularMovies.git
 ```
 
 #### 2. Import the project in AndroidStudio, and add API Key
-1.  In Android Studio, go to File -> New -> Import project
-2.  Follew the dialog wizard to choose the folder where you cloned the project and click on open.
+1.  In Android Studio, go to File -> New -> Import project.
+2.  Follow the dialog wizard to choose the folder where you cloned the project and click on open.
 3.  Android Studio imports the projects and builds it for you.
 4.  Add TheMovieDb API Key inside `gradle.properties` file.
 
